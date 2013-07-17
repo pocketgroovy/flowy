@@ -54,8 +54,8 @@
     [super viewDidLoad];
     
     //sending email with the image attached.
-    UIBarButtonItem * snap = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shot:)];
-    [[self navigationItem]setRightBarButtonItem:snap];
+//    UIBarButtonItem * snap = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shot:)];
+//    [[self navigationItem]setRightBarButtonItem:snap];
     
     CGRect picViewFrame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     [picView setFrame:picViewFrame];
@@ -200,9 +200,10 @@
      UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"saved!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"failed!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"not sent!" message:@"Your email has not been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
+     UIAlertView * alert5 = [[UIAlertView alloc]initWithTitle:@"not sent!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
+            [alert5 show];
             break;
         case MFMailComposeResultSaved:
             [alert2 show];

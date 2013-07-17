@@ -192,11 +192,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LyH-HU-CmI"/>
-                                    <barButtonItem title="Try Again!" id="ymr-2a-IU6">
-                                        <connections>
-                                            <action selector="blowAgain:" destination="eAr-Jk-NBr" id="re3-Iy-WfM"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3eE-K6-jr7"/>
                                 </items>
                             </toolbar>
@@ -213,7 +208,13 @@
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="zFe-AA-Obu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="HF6-ST-qlG"/>
+                    <navigationItem key="navigationItem" id="HF6-ST-qlG">
+                        <barButtonItem key="rightBarButtonItem" title="Try Again!" id="ymr-2a-IU6">
+                            <connections>
+                                <action selector="blowAgain:" destination="eAr-Jk-NBr" id="re3-Iy-WfM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="picView" destination="Iq6-s6-qff" id="97e-eB-SHz"/>
                     </connections>
@@ -595,10 +596,6 @@
         <class className="MailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="enterAddressOne:"/>
-                <relationship kind="action" name="enterAddressTwo:"/>
-                <relationship kind="action" name="enterContents:"/>
-                <relationship kind="action" name="enterSubject:"/>
                 <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="go" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="txtAddressOne" candidateClass="UITextField"/>

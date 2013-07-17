@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate >
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate>
 {
 AVAudioRecorder *recorder;
 NSTimer *levelTimer;
