@@ -1,5 +1,5 @@
 //
-//  SelectorAppDelegate.h
+//  ShapeViewController.h
 //  Selector
 //
 //  Created by Yoshihisa Miyamoto on 4/23/13.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectorAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+
+@interface ShapeViewController : UIViewController
+@property (nonatomic, readonly) UIImage * selectedShape;
+
 
 @end

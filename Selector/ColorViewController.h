@@ -1,5 +1,5 @@
 //
-//  SelectorAppDelegate.h
+//  ColorViewController.h
 //  Selector
 //
 //  Created by Yoshihisa Miyamoto on 4/23/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectorAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface ColorViewController : UIViewController
+@property (nonatomic) UIColor * selectedColor;
 @end

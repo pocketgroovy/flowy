@@ -1,0 +1,143 @@
+//
+//  ShapeViewController.m
+//  Selector
+//
+//  Created by Yoshihisa Miyamoto on 4/23/13.
+//  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
+//
+
+#import "ShapeViewController.h"
+#import "UIColor+JP.h"
+#import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+
+
+
+@interface ShapeViewController ()<UIPickerViewDelegate>
+@property NSMutableArray * imageArray;
+@property (nonatomic)UIImageView * imageView;
+@property (nonatomic)UIImageView * imageView2;
+@property (nonatomic)UIImageView * imageView3;
+@property (nonatomic)UIImageView * imageView4;
+@property (nonatomic)UIImageView * imageView5;
+@property  (nonatomic) IBOutlet UIImageView *wallpaper;
+@property (weak, nonatomic) IBOutlet UIButton *go;
+@property (weak, nonatomic) IBOutlet UIButton *cancel;
+
+@property (nonatomic)UIImageView * selectedImageView;
+
+@end
+
+@implementation ShapeViewController
+@synthesize selectedShape;
+@synthesize imageArray;
+@synthesize imageView;
+@synthesize imageView2;
+@synthesize imageView3;
+@synthesize imageView4;
+@synthesize imageView5;
+@synthesize selectedImageView;
+@synthesize wallpaper;
+@synthesize go;
+@synthesize cancel;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+      [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
+    
+    imageArray = [[NSMutableArray alloc]init];
+        
+    imageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"star.png"]];
+    imageView2 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake.png"]];
+    imageView3 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake3.png"]];
+    imageView4 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake2.png"]];
+    imageView5 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circle.png"]];
+    wallpaper =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candies.png"]];
+
+
+    [imageArray addObject:imageView];
+    [imageArray addObject:imageView2];
+    [imageArray addObject:imageView3];
+    [imageArray addObject:imageView4];
+    [imageArray addObject:imageView5];
+
+    CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
+    UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
+    [pickerView setDelegate:self];
+    pickerView.showsSelectionIndicator = YES;
+    
+    selectedShape = [imageView image];      //default shape
+
+    [self.view addSubview:pickerView];
+    
+    [go setImage:[UIImage imageNamed:@"iine.png"] forState:UIControlStateNormal];
+    go.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
+    go.layer.borderWidth = 10.0f;
+    go.layer.cornerRadius = 20.0f;
+    
+    [cancel setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
+    cancel.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
+    cancel.layer.borderWidth = 5.0f;
+    cancel.layer.cornerRadius = 10.0f;
+
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [imageArray count];
+}
+
+
+#define MARGIN 15   //margin  
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    
+    CGSize mSize = [imageView sizeThatFits:imageView.bounds.size];
+    
+    return mSize.height + MARGIN;
+}
+
+
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    return [imageArray objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	
+    AudioServicesPlaySystemSound(0x450);
+
+    selectedImageView = [imageArray objectAtIndex:row];
+    
+    selectedShape = [selectedImageView image];
+
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+@end
