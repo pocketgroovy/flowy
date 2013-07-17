@@ -12,6 +12,5 @@
 @property (nonatomic, copy)NSData * imageData;
 @property (nonatomic, copy)UIImage * image;
 -(void)snap;
--(void)snapIpad;
-
+-(void)snapIpadInViewWidth:(CGFloat )width andHeight:(CGFloat)height withNavBar:(CGFloat)navHeight;
 @end

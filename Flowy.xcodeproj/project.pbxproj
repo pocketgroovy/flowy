@@ -225,28 +225,10 @@
 		78346F3217279550006B22BA /* Selector */ = {
 			isa = PBXGroup;
 			children = (
+				788DF9FE1796EF2E00E106DF /* controller */,
+				788DF9FD1796EF1B00E106DF /* model */,
 				78A183F4176B857E00F670AF /* ipad.storyboard */,
 				78346F4417279551006B22BA /* iphone.storyboard */,
-				781BC7A21751D7A400261653 /* UIColor+JP.h */,
-				781BC7A31751D7A400261653 /* UIColor+JP.m */,
-				DB7D292E1744725B008455D6 /* Snapshot.h */,
-				DB7D292F1744725B008455D6 /* Snapshot.m */,
-				781079C31732E1B40098114E /* BBFImageStore.h */,
-				781079C41732E1B40098114E /* BBFImageStore.m */,
-				781079C51732E1B40098114E /* BBFViewController.h */,
-				781079C61732E1B40098114E /* BBFViewController.m */,
-				7849A6EE174691A8000D99F6 /* FlowingController.h */,
-				7849A6EF174691A8000D99F6 /* FlowingController.m */,
-				788396AD1740918300F7382B /* MailViewController.h */,
-				788396AE1740918300F7382B /* MailViewController.m */,
-				781079C01732E13B0098114E /* MainViewController.h */,
-				781079C11732E13B0098114E /* MainViewController.m */,
-				78346F521727A2FB006B22BA /* ColorViewController.h */,
-				78346F531727A2FB006B22BA /* ColorViewController.m */,
-				78346F4F17279F8D006B22BA /* ShapeViewController.h */,
-				78346F5017279F8D006B22BA /* ShapeViewController.m */,
-				78346F4717279551006B22BA /* SelectorViewController.h */,
-				78346F4817279551006B22BA /* SelectorViewController.m */,
 				78346F3317279550006B22BA /* Supporting Files */,
 			);
 			path = Selector;
@@ -294,6 +276,40 @@
 				78346F4217279551006B22BA /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		788DF9FD1796EF1B00E106DF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				781BC7A21751D7A400261653 /* UIColor+JP.h */,
+				781BC7A31751D7A400261653 /* UIColor+JP.m */,
+				DB7D292E1744725B008455D6 /* Snapshot.h */,
+				DB7D292F1744725B008455D6 /* Snapshot.m */,
+				781079C31732E1B40098114E /* BBFImageStore.h */,
+				781079C41732E1B40098114E /* BBFImageStore.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		788DF9FE1796EF2E00E106DF /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				781079C51732E1B40098114E /* BBFViewController.h */,
+				781079C61732E1B40098114E /* BBFViewController.m */,
+				7849A6EE174691A8000D99F6 /* FlowingController.h */,
+				7849A6EF174691A8000D99F6 /* FlowingController.m */,
+				788396AD1740918300F7382B /* MailViewController.h */,
+				788396AE1740918300F7382B /* MailViewController.m */,
+				781079C01732E13B0098114E /* MainViewController.h */,
+				781079C11732E13B0098114E /* MainViewController.m */,
+				78346F521727A2FB006B22BA /* ColorViewController.h */,
+				78346F531727A2FB006B22BA /* ColorViewController.m */,
+				78346F4F17279F8D006B22BA /* ShapeViewController.h */,
+				78346F5017279F8D006B22BA /* ShapeViewController.m */,
+				78346F4717279551006B22BA /* SelectorViewController.h */,
+				78346F4817279551006B22BA /* SelectorViewController.m */,
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

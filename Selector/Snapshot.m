@@ -36,6 +36,7 @@
     //trim the screen image into the rect
     CGImageRef imageRef = CGImageCreateWithImageInRect(ref, imageRect);
     
+    
     image = [UIImage imageWithCGImage:imageRef];
     
     //convert the UIImage to PNG
@@ -46,7 +47,7 @@
 
 }
 
--(void)snapIpad
+-(void)snapIpadInViewWidth:(CGFloat )width andHeight:(CGFloat)height withNavBar:(CGFloat)navHeight
 {
     //     NSString * imagePath = [self imagePathForKey:@"s2.png"];
     
@@ -65,10 +66,11 @@
     CGImageRef ref = imageSource.CGImage;
 
     
-    CGRect imageRect = CGRectMake(50, 350, self.window.bounds.size.width - 130, 900);
+    CGRect imageRect = CGRectMake(navHeight, 0, width , height);
     
     //trim the screen image into the rect
     CGImageRef imageRef = CGImageCreateWithImageInRect(ref, imageRect);
+    
     
     image = [UIImage imageWithCGImage:imageRef];
     

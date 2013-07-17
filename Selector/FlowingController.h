@@ -18,10 +18,10 @@ NSTimer *levelTimer;
 double lowPassResults;
 }
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonMailItem;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbarButtom;
 @property (weak, nonatomic) IBOutlet UIToolbar *barButtonEmailItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonTryItem;
+@property (weak, nonatomic) IBOutlet UIImageView *photoView;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 @end

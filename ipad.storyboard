@@ -192,16 +192,10 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Gst-u6-x48"/>
                                     <barButtonItem title="EMAIL" id="4Bp-Tz-RtA">
                                         <connections>
-                                            <action selector="composeEmail:" destination="TUF-e3-hNQ" id="xRa-PJ-0VI"/>
-                                            <segue destination="JZE-re-mkt" kind="modal" identifier="mailComposition" id="O0Z-dE-Did"/>
+                                            <action selector="openMail:" destination="TUF-e3-hNQ" id="Fvr-yM-Eom"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QfN-rb-eCy"/>
-                                    <barButtonItem title="Try Again!" id="NWK-9f-FRk">
-                                        <connections>
-                                            <action selector="blowAgain:" destination="TUF-e3-hNQ" id="xZQ-4i-1OH"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="J9h-fF-hxZ"/>
                                 </items>
                             </toolbar>
@@ -209,9 +203,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Rey-Y6-cr3">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Dac-2L-niS"/>
-                                    <barButtonItem systemItem="action" id="ueJ-LV-aBT">
+                                    <barButtonItem title="Try Again!" id="NWK-9f-FRk">
                                         <connections>
-                                            <action selector="shot:" destination="TUF-e3-hNQ" id="mOV-Vh-coU"/>
+                                            <action selector="blowAgain:" destination="TUF-e3-hNQ" id="xZQ-4i-1OH"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -239,8 +233,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="barButtonEmailItem" destination="Fe8-uz-yh9" id="X2J-Kq-HR7"/>
-                        <outlet property="barButtonMailItem" destination="ueJ-LV-aBT" id="JUB-yP-bSO"/>
                         <outlet property="barButtonTryItem" destination="NWK-9f-FRk" id="61Y-S7-7MG"/>
+                        <outlet property="photoView" destination="4K9-q7-z7z" id="0OG-0i-F58"/>
                         <outlet property="picView" destination="4K9-q7-z7z" id="8Cp-Ki-HBK"/>
                         <outlet property="toolbar" destination="Rey-Y6-cr3" id="cex-GT-6ju"/>
                         <outlet property="toolbarButtom" destination="Fe8-uz-yh9" id="w6e-2k-GEU"/>
@@ -627,6 +621,86 @@
             <point key="canvasLocation" x="-1560" y="490"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BBFViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BBFViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="barButtonOK" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="ColorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="FlowingController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
+            <relationships>
+                <relationship kind="action" name="blowAgain:"/>
+                <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="moveLoop:"/>
+                <relationship kind="action" name="openMail:"/>
+                <relationship kind="action" name="shot:"/>
+                <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="MailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="enterAddressOne:"/>
+                <relationship kind="action" name="enterAddressTwo:"/>
+                <relationship kind="action" name="enterContents:"/>
+                <relationship kind="action" name="enterSubject:"/>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="txtAddressOne" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtAddressTwo" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtContents" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="txtSubject" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="instruction" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photos" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stars" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SelectorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="btnColor" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnReady" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnShape" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageBackGround" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="resultView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ShapeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShapeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wallpaper" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

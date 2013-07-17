@@ -123,34 +123,29 @@
 }
 
 
+#define NAVBARHEIGHT 67.00
 
 - (IBAction)shot:(id)sender {
     AudioServicesPlaySystemSound(0x450);
+    
+  
+
+    
+    float photoFrameWidth = self.photoView.bounds.size.height - 5;
+    float photoFrameHeight = self.photoView.bounds.size.width;
 
     if((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad))
     {
-        [snapShot snapIpad];
-        
+        [snapShot snapIpadInViewWidth:photoFrameWidth andHeight:photoFrameHeight withNavBar:NAVBARHEIGHT];
     }
     else{
     [snapShot snap];
     }
     //save the snapshot image to the store
     [[BBFImageStore sharedStore]setImage:snapShot.image forKey:@"snapshot"];
-   // [self openMail:sender];
 }
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    AudioServicesPlaySystemSound(0x450);
-//
-//    if([segue.identifier isEqualToString:@"mailComposition"]){
-//        if([segue.destinationViewController isKindOfClass:[MailViewController class]])
-//        {
-//            [self shot:sender];
-//        }
-//    }
-//}
+
 
 -(IBAction)cancelSelection:(UIStoryboardSegue *)segue
 {
@@ -158,31 +153,12 @@
 }
 
 
-//data from mailViewController. email subject, email addresses and email content
--(IBAction)mailData:(UIStoryboardSegue *)segue
-{
-    AudioServicesPlaySystemSound(0x450);
-
-    mvc = segue.sourceViewController;
-    if(mvc)
-    {
-        self.subject = mvc.mailSubject;
-        self.addresses = mvc.mailAddresses;
-        self.contents = mvc.mailContents;
-    }
-        
-}
-
-
-
 - (IBAction)openMail:(id)sender{
     if ([MFMailComposeViewController canSendMail]) {
         [self shot:sender];
         MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
-//        [mailer setSubject:self.subject];
-//        [mailer setToRecipients:self.addresses];
-//        [mailer setMessageBody:self.contents isHTML:NO];
+
         [mailer addAttachmentData:[snapShot imageData] mimeType:@"image/png" fileName:@"flowyImage"];
         
         [self presentViewController:mailer animated:YES completion:NULL];
@@ -402,10 +378,6 @@ if(distance.height != 0 && distance.width != 0)
     }
 }
 
-//-(NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskAll;
-//}
 
 
 
