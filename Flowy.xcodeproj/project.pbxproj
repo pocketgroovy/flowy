@@ -52,6 +52,8 @@
 		788921E51731931600549320 /* Water-Drops_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921E41731931600549320 /* Water-Drops_blue.png */; };
 		788921E9173193C600549320 /* Water-Drops_blue2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 788921E8173193C600549320 /* Water-Drops_blue2.jpeg */; };
 		788921EB1731946800549320 /* Water Drops_200.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921EA1731946800549320 /* Water Drops_200.png */; };
+		788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */; };
+		788DFA0817970EE300E106DF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DFA0717970EE300E106DF /* Social.framework */; };
 		789366A917568374009779D8 /* iine.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366A717568374009779D8 /* iine.png */; };
 		789366AA17568374009779D8 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366A817568374009779D8 /* cancel.png */; };
 		789366AC175687ED009779D8 /* cupcake_short.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366AB175687ED009779D8 /* cupcake_short.png */; };
@@ -132,6 +134,8 @@
 		788921E41731931600549320 /* Water-Drops_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Water-Drops_blue.png"; sourceTree = "<group>"; };
 		788921E8173193C600549320 /* Water-Drops_blue2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Water-Drops_blue2.jpeg"; sourceTree = "<group>"; };
 		788921EA1731946800549320 /* Water Drops_200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Water Drops_200.png"; sourceTree = "<group>"; };
+		788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-bird-light-bgs.png"; sourceTree = "<group>"; };
+		788DFA0717970EE300E106DF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		789366A717568374009779D8 /* iine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iine.png; sourceTree = "<group>"; };
 		789366A817568374009779D8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		789366AB175687ED009779D8 /* cupcake_short.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupcake_short.png; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788DFA0817970EE300E106DF /* Social.framework in Frameworks */,
 				784880651759BA0C000B2D32 /* AudioToolbox.framework in Frameworks */,
 				783FD559174C1E6300BDB30D /* CoreAudio.framework in Frameworks */,
 				783FD557174C1E1E00BDB30D /* AVFoundation.framework in Frameworks */,
@@ -209,6 +214,7 @@
 		78346F2B17279550006B22BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				788DFA0717970EE300E106DF /* Social.framework */,
 				784880641759BA0C000B2D32 /* AudioToolbox.framework */,
 				783FD558174C1E6300BDB30D /* CoreAudio.framework */,
 				783FD556174C1E1E00BDB30D /* AVFoundation.framework */,
@@ -239,6 +245,7 @@
 			children = (
 				784880621759A9E9000B2D32 /* click.mp3 */,
 				781BC7BD1751EBD300261653 /* candies.png */,
+				788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */,
 				789366A717568374009779D8 /* iine.png */,
 				789366A817568374009779D8 /* cancel.png */,
 				781BC7B91751E5DD00261653 /* go.png */,
@@ -409,6 +416,7 @@
 				78A183F1176B84CE00F670AF /* Default@2x.png in Resources */,
 				78A183F3176B84E100F670AF /* Default-568h@2x.png in Resources */,
 				78A183F5176B857E00F670AF /* ipad.storyboard in Resources */,
+				788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

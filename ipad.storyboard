@@ -196,6 +196,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QfN-rb-eCy"/>
+                                    <barButtonItem id="Ppi-F7-O4N">
+                                        <connections>
+                                            <action selector="tweetPhoto:" destination="TUF-e3-hNQ" id="cy2-21-4Eo"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="J9h-fF-hxZ"/>
                                 </items>
                             </toolbar>
@@ -238,6 +243,7 @@
                         <outlet property="picView" destination="4K9-q7-z7z" id="8Cp-Ki-HBK"/>
                         <outlet property="toolbar" destination="Rey-Y6-cr3" id="cex-GT-6ju"/>
                         <outlet property="toolbarButtom" destination="Fe8-uz-yh9" id="w6e-2k-GEU"/>
+                        <outlet property="twitBarItem" destination="Ppi-F7-O4N" id="xwt-32-uXz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGN-f0-fmk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -645,21 +651,19 @@
                 <relationship kind="action" name="moveLoop:"/>
                 <relationship kind="action" name="openMail:"/>
                 <relationship kind="action" name="shot:"/>
+                <relationship kind="action" name="tweetPhoto:"/>
                 <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="MailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="enterAddressOne:"/>
-                <relationship kind="action" name="enterAddressTwo:"/>
-                <relationship kind="action" name="enterContents:"/>
-                <relationship kind="action" name="enterSubject:"/>
                 <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="go" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="txtAddressOne" candidateClass="UITextField"/>

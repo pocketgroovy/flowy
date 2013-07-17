@@ -12,6 +12,8 @@
 #import "BBFImageStore.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+
+
 @interface FlowingController ()
 @property(nonatomic)CGSize screenSize;
 @property(nonatomic)CGRect frame;
@@ -40,7 +42,7 @@
 @synthesize addresses;
 @synthesize contents;
 @synthesize isBlowed;
-
+@synthesize twitBarItem;
 
 #define PARTICLE_SIZE 40
 #define NUMBER_OF_PARTICLE 50
@@ -53,9 +55,8 @@
     self.imageArray= [[NSMutableArray alloc]init];;
     [super viewDidLoad];
     
-    //sending email with the image attached.
-//    UIBarButtonItem * snap = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shot:)];
-//    [[self navigationItem]setRightBarButtonItem:snap];
+    //twitter button
+    [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
     
     CGRect picViewFrame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     [picView setFrame:picViewFrame];
@@ -122,7 +123,7 @@
     _frame.size = frame.size;
 }
 
-
+//navigation bar height
 #define NAVBARHEIGHT 67.00
 
 - (IBAction)shot:(id)sender {
@@ -198,6 +199,19 @@
 }
 
 
+- (IBAction)tweetPhoto:(id)sender {
+    
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+    
+    SLComposeViewController * tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [self shot:sender];
+
+        [tweet addImage:[[BBFImageStore sharedStore]imageForKey:@"snapshot"]];
+        [self presentViewController:tweet animated:YES completion:nil];
+         }
+  
+}1
 
 #define MOVE_DURATION 5.0
 
