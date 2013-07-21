@@ -211,7 +211,7 @@
         [self presentViewController:tweet animated:YES completion:nil];
          }
   
-}1
+}
 
 #define MOVE_DURATION 5.0
 

@@ -192,6 +192,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LyH-HU-CmI"/>
+                                    <barButtonItem id="LTC-Jo-UZS">
+                                        <connections>
+                                            <action selector="tweetPhoto:" destination="eAr-Jk-NBr" id="xEQ-QM-b3V"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3eE-K6-jr7"/>
                                 </items>
                             </toolbar>
@@ -217,6 +222,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="picView" destination="Iq6-s6-qff" id="97e-eB-SHz"/>
+                        <outlet property="twitBarItem" destination="LTC-Jo-UZS" id="KEs-0y-QUI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7y8-BJ-KFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,16 +587,17 @@
             <relationships>
                 <relationship kind="action" name="blowAgain:"/>
                 <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="mailData:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="action" name="moveLoop:"/>
                 <relationship kind="action" name="openMail:"/>
                 <relationship kind="action" name="shot:"/>
+                <relationship kind="action" name="tweetPhoto:"/>
                 <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="barButtonMailItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="MailViewController" superclassName="UIViewController">
