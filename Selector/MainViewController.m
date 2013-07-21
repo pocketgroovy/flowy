@@ -45,13 +45,6 @@
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
-//-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
-//{
-//    barButtonItem.title = @"Main";
-//    id detailViewController = [self.splitViewController.viewControllers lastObject];
-//    [detailViewController setSplitViewBarButtonItem:barButtonItem];
-//}
-//
 
 
 - (void)viewDidLoad
@@ -65,7 +58,13 @@
     if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
     {
         defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
+        instruction.text = @"2nd Step! Select Your Shape and Color!";
         
+    }
+    
+    else
+    {
+        instruction.text = @"1st Step! Take or Choose a Photo! ➡";
     }
     [photos setImage:defaultImage  forState:UIControlStateNormal];
     photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
@@ -81,8 +80,7 @@
     stars.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
     stars.layer.borderWidth = 20.0f;
     stars.layer.cornerRadius = 50.0f;
-    instruction.text = @"1st Step! Take or Choose a Photo! ➡";
-
+    
 }
 
 
@@ -102,10 +100,7 @@
         
         if([segue.destinationViewController isKindOfClass:[BBFViewController class]])
         {
-//            BBFViewController * dvc = [[BBFViewController alloc]init];
-//            
-//            dvc.photo = photos.imageView.image;
-            
+
         }
     }
 }
@@ -121,7 +116,6 @@
     {
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
          [photos setImage:picSelected forState:UIControlStateNormal];
-        instruction.text = @"2nd Step! Select your shape and a color!";
     }
 }
 

@@ -507,12 +507,6 @@
         <class className="FlowingController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
             <relationships>
-                <relationship kind="action" name="blowAgain:"/>
-                <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="moveLoop:"/>
-                <relationship kind="action" name="openMail:"/>
-                <relationship kind="action" name="shot:"/>
-                <relationship kind="action" name="tweetPhoto:"/>
                 <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>

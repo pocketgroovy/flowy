@@ -45,7 +45,6 @@
 		784880631759A9E9000B2D32 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 784880621759A9E9000B2D32 /* click.mp3 */; };
 		784880651759BA0C000B2D32 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784880641759BA0C000B2D32 /* AudioToolbox.framework */; };
 		7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7849A6EF174691A8000D99F6 /* FlowingController.m */; };
-		788396AF1740918300F7382B /* MailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788396AE1740918300F7382B /* MailViewController.m */; };
 		788921DD17318B0100549320 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921DC17318B0100549320 /* bg.png */; };
 		788921E11731909600549320 /* brown_leather_200.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921E01731909600549320 /* brown_leather_200.png */; };
 		788921E3173192DE00549320 /* Water-Drops_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921E2173192DE00549320 /* Water-Drops_white.png */; };
@@ -76,7 +75,7 @@
 
 /* Begin PBXFileReference section */
 		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
-		781079C01732E13B0098114E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		780AD09B179C613F0057F038 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		781079C31732E1B40098114E /* BBFImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFImageStore.h; sourceTree = "<group>"; };
 		781079C41732E1B40098114E /* BBFImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFImageStore.m; sourceTree = "<group>"; };
@@ -123,8 +122,6 @@
 		784880641759BA0C000B2D32 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7849A6EE174691A8000D99F6 /* FlowingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowingController.h; sourceTree = "<group>"; };
 		7849A6EF174691A8000D99F6 /* FlowingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowingController.m; sourceTree = "<group>"; };
-		788396AD1740918300F7382B /* MailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailViewController.h; sourceTree = "<group>"; };
-		788396AE1740918300F7382B /* MailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailViewController.m; sourceTree = "<group>"; };
 		788921DC17318B0100549320 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		788921E01731909600549320 /* brown_leather_200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brown_leather_200.png; sourceTree = "<group>"; };
 		788921E2173192DE00549320 /* Water-Drops_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Water-Drops_white.png"; sourceTree = "<group>"; };
@@ -296,10 +293,8 @@
 				781079C61732E1B40098114E /* BBFViewController.m */,
 				7849A6EE174691A8000D99F6 /* FlowingController.h */,
 				7849A6EF174691A8000D99F6 /* FlowingController.m */,
-				788396AD1740918300F7382B /* MailViewController.h */,
-				788396AE1740918300F7382B /* MailViewController.m */,
-				781079C01732E13B0098114E /* MainViewController.h */,
 				781079C11732E13B0098114E /* MainViewController.m */,
+				780AD09B179C613F0057F038 /* MainViewController.h */,
 				78346F521727A2FB006B22BA /* ColorViewController.h */,
 				78346F531727A2FB006B22BA /* ColorViewController.m */,
 				780AD099179C52E40057F038 /* ShapeViewController.m */,
@@ -422,7 +417,6 @@
 				781079C21732E13B0098114E /* MainViewController.m in Sources */,
 				781079C71732E1B40098114E /* BBFImageStore.m in Sources */,
 				781079C81732E1B40098114E /* BBFViewController.m in Sources */,
-				788396AF1740918300F7382B /* MailViewController.m in Sources */,
 				DB7D29301744725B008455D6 /* Snapshot.m in Sources */,
 				7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */,
 				781BC7A41751D7A400261653 /* UIColor+JP.m in Sources */,

@@ -13,7 +13,6 @@
 
 @property (nonatomic, copy)NSString * key;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-//@property (weak, nonatomic) IBOutlet UIBarButtonItem *splitViewBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonOK;
 @property (strong, nonatomic) UIImage * photo;

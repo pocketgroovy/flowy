@@ -24,32 +24,17 @@
 
 
 
-//-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    UIToolbar * toolbar = [self toolbar];
-//    NSMutableArray * toolbarItems = [toolbar.items mutableCopy];
-//    if(_splitViewBarButtonItem)[toolbarItems removeObject:_splitViewBarButtonItem];
-//    if(barButtonItem)[toolbarItems insertObject:barButtonItem atIndex:0];
-//    toolbar.items = toolbarItems;
-//    _splitViewBarButtonItem = barButtonItem;
-//    
-//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
+    
     photo = [[BBFImageStore sharedStore]imageForKey:@"defaultImage"];
     if(!photo)
     {
         photo = [UIImage imageNamed:@"camera2.png"];
     }
     imageView.image = photo;
-    
-    //     if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
-//     {
-//         barButtonOK.enabled = false;
-//     }
     
 }
 
@@ -64,24 +49,21 @@
         {
             MainViewController * mvc = [[MainViewController alloc]init];
             mvc.defaultImage = self.imageView.image;
-            NSLog(@"%s - %@", __FUNCTION__, mvc.defaultImage);
-            //NSLog(@" %s  - %@", __FUNCTION__, defaultImage);
-
         }
     }
-               
+    
 }
 
 - (IBAction)takePhoto:(UIBarButtonItem *)sender
 {
     AudioServicesPlaySystemSound(0x450);
-
+    
     [self presentImagePicker:UIImagePickerControllerSourceTypeCamera sender:sender];
 }
 - (IBAction)addPhoto:(UIBarButtonItem *)sender
 {
     AudioServicesPlaySystemSound(0x450);
-
+    
     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum sender:sender];
 }
 

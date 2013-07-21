@@ -42,20 +42,14 @@
     btnShape.layer.borderWidth = 5.0f;
     btnShape.layer.cornerRadius = 40.0f;
     
-    
-    
     bg = [UIImage imageNamed:@"colorful2.png"];
     [btnColor setBackgroundImage:bg forState:UIControlStateNormal];
     btnColor.layer.borderColor = [UIColor colorWithR:30 G:144 B:255 A:1].CGColor;
     btnColor.layer.borderWidth = 5.0f;
     btnColor.layer.cornerRadius = 40.0f;
     
-    
-    
     bg = [UIImage imageNamed:@"go.png"];
     [btnReady setBackgroundImage:bg forState:UIControlStateNormal];
-
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
