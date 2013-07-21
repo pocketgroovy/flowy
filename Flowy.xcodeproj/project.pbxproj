@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780AD099179C52E40057F038 /* ShapeViewController.m */; };
 		781079C21732E13B0098114E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C11732E13B0098114E /* MainViewController.m */; };
 		781079C71732E1B40098114E /* BBFImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C41732E1B40098114E /* BBFImageStore.m */; };
 		781079C81732E1B40098114E /* BBFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C61732E1B40098114E /* BBFViewController.m */; };
@@ -38,7 +39,6 @@
 		78346F4317279551006B22BA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78346F4217279551006B22BA /* Default-568h@2x.png */; };
 		78346F4617279551006B22BA /* iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78346F4417279551006B22BA /* iphone.storyboard */; };
 		78346F4917279551006B22BA /* SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F4817279551006B22BA /* SelectorViewController.m */; };
-		78346F5117279F8D006B22BA /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F5017279F8D006B22BA /* ShapeViewController.m */; };
 		78346F541727A2FB006B22BA /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F531727A2FB006B22BA /* ColorViewController.m */; };
 		783FD557174C1E1E00BDB30D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783FD556174C1E1E00BDB30D /* AVFoundation.framework */; };
 		783FD559174C1E6300BDB30D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783FD558174C1E6300BDB30D /* CoreAudio.framework */; };
@@ -64,9 +64,6 @@
 		78A183E9176B839300F670AF /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183E8176B839300F670AF /* Default-Landscape@2x~ipad.png */; };
 		78A183EB176B845600F670AF /* cupcake_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183EA176B845600F670AF /* cupcake_ipad@2x.png */; };
 		78A183ED176B847800F670AF /* cupcake_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183EC176B847800F670AF /* cupcake_ipad.png */; };
-		78A183EF176B84C100F670AF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183EE176B84C100F670AF /* Default.png */; };
-		78A183F1176B84CE00F670AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183F0176B84CE00F670AF /* Default@2x.png */; };
-		78A183F3176B84E100F670AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183F2176B84E100F670AF /* Default-568h@2x.png */; };
 		78A183F5176B857E00F670AF /* ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A183F4176B857E00F670AF /* ipad.storyboard */; };
 		78ED1703174C2DB4009C5DC4 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ED1702174C2DB4009C5DC4 /* star.png */; };
 		78ED1707174C2E7E009C5DC4 /* snowflake3.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ED1704174C2E7E009C5DC4 /* snowflake3.png */; };
@@ -78,6 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		781079C01732E13B0098114E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		781079C31732E1B40098114E /* BBFImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFImageStore.h; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		78346F4717279551006B22BA /* SelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectorViewController.h; sourceTree = "<group>"; };
 		78346F4817279551006B22BA /* SelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectorViewController.m; sourceTree = "<group>"; };
 		78346F4F17279F8D006B22BA /* ShapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeViewController.h; sourceTree = "<group>"; };
-		78346F5017279F8D006B22BA /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		78346F521727A2FB006B22BA /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		78346F531727A2FB006B22BA /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
 		783FD556174C1E1E00BDB30D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -146,9 +143,6 @@
 		78A183E8176B839300F670AF /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		78A183EA176B845600F670AF /* cupcake_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cupcake_ipad@2x.png"; sourceTree = "<group>"; };
 		78A183EC176B847800F670AF /* cupcake_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupcake_ipad.png; sourceTree = "<group>"; };
-		78A183EE176B84C100F670AF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		78A183F0176B84CE00F670AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		78A183F2176B84E100F670AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78A183F4176B857E00F670AF /* ipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ipad.storyboard; path = ../ipad.storyboard; sourceTree = "<group>"; };
 		78ED1702174C2DB4009C5DC4 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		78ED1704174C2E7E009C5DC4 /* snowflake3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snowflake3.png; sourceTree = "<group>"; };
@@ -186,9 +180,6 @@
 		78346F2017279550006B22BA = {
 			isa = PBXGroup;
 			children = (
-				78A183F2176B84E100F670AF /* Default-568h@2x.png */,
-				78A183F0176B84CE00F670AF /* Default@2x.png */,
-				78A183EE176B84C100F670AF /* Default.png */,
 				78A183EC176B847800F670AF /* cupcake_ipad.png */,
 				78A183EA176B845600F670AF /* cupcake_ipad@2x.png */,
 				78A183E8176B839300F670AF /* Default-Landscape@2x~ipad.png */,
@@ -311,8 +302,8 @@
 				781079C11732E13B0098114E /* MainViewController.m */,
 				78346F521727A2FB006B22BA /* ColorViewController.h */,
 				78346F531727A2FB006B22BA /* ColorViewController.m */,
+				780AD099179C52E40057F038 /* ShapeViewController.m */,
 				78346F4F17279F8D006B22BA /* ShapeViewController.h */,
-				78346F5017279F8D006B22BA /* ShapeViewController.m */,
 				78346F4717279551006B22BA /* SelectorViewController.h */,
 				78346F4817279551006B22BA /* SelectorViewController.m */,
 			);
@@ -412,9 +403,6 @@
 				78A183E9176B839300F670AF /* Default-Landscape@2x~ipad.png in Resources */,
 				78A183EB176B845600F670AF /* cupcake_ipad@2x.png in Resources */,
 				78A183ED176B847800F670AF /* cupcake_ipad.png in Resources */,
-				78A183EF176B84C100F670AF /* Default.png in Resources */,
-				78A183F1176B84CE00F670AF /* Default@2x.png in Resources */,
-				78A183F3176B84E100F670AF /* Default-568h@2x.png in Resources */,
 				78A183F5176B857E00F670AF /* ipad.storyboard in Resources */,
 				788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */,
 			);
@@ -430,7 +418,6 @@
 				78346F3917279550006B22BA /* main.m in Sources */,
 				78346F3D17279550006B22BA /* SelectorAppDelegate.m in Sources */,
 				78346F4917279551006B22BA /* SelectorViewController.m in Sources */,
-				78346F5117279F8D006B22BA /* ShapeViewController.m in Sources */,
 				78346F541727A2FB006B22BA /* ColorViewController.m in Sources */,
 				781079C21732E13B0098114E /* MainViewController.m in Sources */,
 				781079C71732E1B40098114E /* BBFImageStore.m in Sources */,
@@ -439,6 +426,7 @@
 				DB7D29301744725B008455D6 /* Snapshot.m in Sources */,
 				7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */,
 				781BC7A41751D7A400261653 /* UIColor+JP.m in Sources */,
+				780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

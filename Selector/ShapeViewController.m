@@ -70,9 +70,36 @@
     [imageArray addObject:imageView3];
     [imageArray addObject:imageView4];
     [imageArray addObject:imageView5];
-
+    
     CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
     UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
+
+    
+    float numPicker = self.view.frame.size.height /pickerView.frame.size.width;
+    float pickerX;
+
+
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        
+        if(((int)numPicker%2)== 0)
+        {
+            
+            pickerX = (pickerView.frame.size.width *(numPicker/2)) - (pickerView.frame.size.width/2);
+
+        }
+        else{
+     
+            pickerX = pickerView.frame.size.width *((float)numPicker/2) - (pickerView.frame.size.width/2);
+
+        }
+        
+        pickerFrame = CGRectMake(pickerX, 120, 0, 0);
+        pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
+
+    }
+  
+        
     [pickerView setDelegate:self];
     pickerView.showsSelectionIndicator = YES;
     
