@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780AD099179C52E40057F038 /* ShapeViewController.m */; };
+		780D43E117A83BF6007A68A2 /* ParticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43E017A83BF6007A68A2 /* ParticleView.m */; };
 		781079C21732E13B0098114E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C11732E13B0098114E /* MainViewController.m */; };
 		781079C71732E1B40098114E /* BBFImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C41732E1B40098114E /* BBFImageStore.m */; };
 		781079C81732E1B40098114E /* BBFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C61732E1B40098114E /* BBFViewController.m */; };
@@ -76,6 +77,8 @@
 /* Begin PBXFileReference section */
 		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		780AD09B179C613F0057F038 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		780D43DF17A83BF6007A68A2 /* ParticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleView.h; sourceTree = "<group>"; };
+		780D43E017A83BF6007A68A2 /* ParticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleView.m; sourceTree = "<group>"; };
 		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		781079C31732E1B40098114E /* BBFImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFImageStore.h; sourceTree = "<group>"; };
 		781079C41732E1B40098114E /* BBFImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFImageStore.m; sourceTree = "<group>"; };
@@ -174,6 +177,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		780D43E217A83C04007A68A2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				780D43DF17A83BF6007A68A2 /* ParticleView.h */,
+				780D43E017A83BF6007A68A2 /* ParticleView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		78346F2017279550006B22BA = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +231,7 @@
 		78346F3217279550006B22BA /* Selector */ = {
 			isa = PBXGroup;
 			children = (
+				780D43E217A83C04007A68A2 /* view */,
 				788DF9FE1796EF2E00E106DF /* controller */,
 				788DF9FD1796EF1B00E106DF /* model */,
 				78A183F4176B857E00F670AF /* ipad.storyboard */,
@@ -421,6 +434,7 @@
 				7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */,
 				781BC7A41751D7A400261653 /* UIColor+JP.m in Sources */,
 				780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */,
+				780D43E117A83BF6007A68A2 /* ParticleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
