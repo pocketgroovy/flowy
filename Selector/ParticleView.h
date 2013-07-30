@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ParticleView : UIView
+
+
+-(void)setEmitterPosition:(CGPoint)position;
+
 -(void)setEmitterPositionFromTouch:(UITouch *)touch;
 -(void)setIsEmitting:(BOOL)isEmitting;
 

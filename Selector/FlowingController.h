@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import <Social/Social.h>
+#import "ParticleView.h"
 
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate>
 {
@@ -24,6 +25,7 @@ double lowPassResults;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonTryItem;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
+
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 @end

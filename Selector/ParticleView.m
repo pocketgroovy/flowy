@@ -15,11 +15,12 @@
     
 }
 
+
+
 -(void)awakeFromNib
 {
-    
+
     particleLayer = (CAEmitterLayer*)self.layer;
-    particleLayer.emitterPosition = CGPointMake(self.layer.frame.size.width/2, self.layer.frame.size.height);
     particleLayer.emitterSize = CGSizeMake(10, 10);
    // particleLayer.renderMode = kCAEmitterLayerAdditive;
 
@@ -48,6 +49,13 @@
     NSLog(@"%s", __FUNCTION__);
 
     
+}
+
+
+-(void)setEmitterPosition:(CGPoint)position;
+{
+    particleLayer.emitterPosition = position;
+    NSLog(@"%f width, %f height, %s", position.x, position.y, __FUNCTION__);
 }
 
 -(void)setEmitterPositionFromTouch:(UITouch *)touch

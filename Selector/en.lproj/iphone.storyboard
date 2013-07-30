@@ -201,14 +201,19 @@
                                 </items>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-s6-qff"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FII-DY-d0y" customClass="ParticleView"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FII-DY-d0y" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="4CE-mF-hpm"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="7Qx-VQ-rj2"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="N11-XN-3aV"/>
+                            <constraint firstItem="FII-DY-d0y" firstAttribute="top" secondItem="CQ7-QW-C6x" secondAttribute="top" type="default" id="OrG-0k-lXd"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="bottom" secondItem="CQ7-QW-C6x" secondAttribute="bottom" type="default" id="Uq0-42-QBg"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="top" secondItem="CQ7-QW-C6x" secondAttribute="top" type="default" id="VsY-FE-FAz"/>
+                            <constraint firstItem="FII-DY-d0y" firstAttribute="bottom" secondItem="D90-0j-5Cg" secondAttribute="top" constant="8" symbolic="YES" type="user" id="XYg-rA-ouM"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="ld3-d6-e8f"/>
+                            <constraint firstItem="FII-DY-d0y" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="o0d-tO-YCn"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="top" secondItem="Iq6-s6-qff" secondAttribute="bottom" type="default" id="tGd-7j-tmj"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="zFe-AA-Obu"/>
                         </constraints>
@@ -222,6 +227,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="picView" destination="Iq6-s6-qff" id="97e-eB-SHz"/>
+                        <outlet property="pv" destination="FII-DY-d0y" id="eXT-ee-0LW"/>
                         <outlet property="twitBarItem" destination="LTC-Jo-UZS" id="KEs-0y-QUI"/>
                     </connections>
                 </viewController>
@@ -427,6 +433,76 @@
             <point key="canvasLocation" x="-1128" y="-667"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BBFViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BBFViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="barButtonOK" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="ColorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="FlowingController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
+            <relationships>
+                <relationship kind="action" name="blowAgain:"/>
+                <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="openMail:"/>
+                <relationship kind="action" name="shot:"/>
+                <relationship kind="action" name="tweetPhoto:"/>
+                <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="pv" candidateClass="ParticleView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="instruction" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photos" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stars" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ParticleView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ParticleView.h"/>
+        </class>
+        <class className="SelectorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="btnColor" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnReady" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnShape" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageBackGround" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="resultView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ShapeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShapeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wallpaper" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
