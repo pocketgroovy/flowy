@@ -15,5 +15,6 @@
 
 -(void)setEmitterPositionFromTouch:(UITouch *)touch;
 -(void)setIsEmitting:(BOOL)isEmitting;
+-(void)setParticleContents:(UIImage*)contents;
 
 @end

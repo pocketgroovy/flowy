@@ -12,7 +12,7 @@
 @implementation ParticleView
 {
     CAEmitterLayer * particleLayer;
-    
+    CAEmitterCell * particle;
 }
 
 
@@ -24,12 +24,12 @@
     particleLayer.emitterSize = CGSizeMake(10, 10);
    // particleLayer.renderMode = kCAEmitterLayerAdditive;
 
-    CAEmitterCell * particle = [CAEmitterCell emitterCell];
+    particle = [CAEmitterCell emitterCell];
     particle.birthRate = 0;
     particle.lifetime = 3.0;
     particle.lifetimeRange = 0.5;
     particle.color = [[UIColor colorWithRed:0.5 green:0.2 blue:1.0 alpha:0.2]CGColor];
-    particle.contents = (id)[[UIImage imageNamed:@"star.png"] CGImage];
+//   particle.contents = (id)[[UIImage imageNamed:@"star.png"] CGImage];
     
     particle.velocity = 150;
     particle.velocityRange = 20;
@@ -50,7 +50,12 @@
 
     
 }
+-(void)setParticleContents:(UIImage*)contents;
+{
+    particle.contents = (id)[contents CGImage];
+    NSLog(@"%@, %s", [contents CGImage], __FUNCTION__);
 
+}
 
 -(void)setEmitterPosition:(CGPoint)position;
 {
@@ -68,6 +73,7 @@
 -(void)setIsEmitting:(BOOL)isEmitting;
 {
     [particleLayer setValue:[NSNumber numberWithInt:isEmitting?50:0] forKeyPath:@"emitterCells.particle.birthRate"];
+    NSLog(@"%s", __FUNCTION__);
 }
 
 +(Class)layerClass

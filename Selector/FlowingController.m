@@ -53,6 +53,8 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%s in top", __FUNCTION__);
+
    // int i;
     self.imageArray= [[NSMutableArray alloc]init];;
     [super viewDidLoad];
@@ -72,9 +74,14 @@
     
     CGPoint position = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
     
+    [pv setParticleContents:[[BBFImageStore sharedStore]imageForKey:@"myColoredShape"]];
     
     [pv setEmitterPosition:position];
+    NSLog(@"%s after setEmitterPosition", __FUNCTION__);
     
+    snapShot = [[Snapshot alloc]init];
+    [self.view addSubview:snapShot];
+
 
     //get back the image selected earlier from the store and add them to the view
 //    for(i = 0; i < NUMBER_OF_PARTICLE ; i++)
@@ -87,8 +94,6 @@
 //        
 //    }
 //    
-//    snapShot = [[Snapshot alloc]init];
-//    [self.view addSubview:snapShot];
     
     
     // audio detection
@@ -149,7 +154,9 @@
     [snapShot snap];
     }
     //save the snapshot image to the store
+    NSLog(@"%@  & %s", snapShot.image, __FUNCTION__ );
     [[BBFImageStore sharedStore]setImage:snapShot.image forKey:@"snapshot"];
+    
 }
 
 
@@ -398,6 +405,7 @@
         
         [pv setIsEmitting:YES];
         isBlowed = YES;
+        NSLog(@"%s, %@", __FUNCTION__, pv);
     }
 }
 
