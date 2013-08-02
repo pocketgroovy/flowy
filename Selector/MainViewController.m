@@ -66,6 +66,8 @@
     {
         instruction.text = @"1st Step! Take or Choose a Photo! ➡";
     }
+    
+    //main photo button
     [photos setImage:defaultImage  forState:UIControlStateNormal];
     photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
     photos.layer.borderWidth = 20.0f;
@@ -75,7 +77,7 @@
     
     [[BBFImageStore sharedStore]setImage:defaultImage2 forKey:@"defaultImage2"];
 
-
+    //particles button
     [stars setImage:defaultImage2  forState:UIControlStateNormal];
     stars.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
     stars.layer.borderWidth = 20.0f;
