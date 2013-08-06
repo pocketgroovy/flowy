@@ -11,23 +11,24 @@
 #import "MailViewController.h"
 #import "BBFImageStore.h"
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "EmitterLayer.h"
 
 
 @interface FlowingController ()
 @property(nonatomic)CGSize screenSize;
 @property(nonatomic)CGRect frame;
-@property(nonatomic)NSMutableArray *imageArray;
+@property(nonatomic, strong)NSMutableArray *imageArray;
 @property(nonatomic)UIImageView * selectedImage;
 @property(nonatomic)CGRect newLocation;
-@property(nonatomic)Snapshot *snapShot;
+@property(nonatomic, strong)Snapshot *snapShot;
 @property (weak, nonatomic) IBOutlet UIImageView *picView;
-@property(nonatomic)MailViewController * mvc;
+@property(nonatomic, strong)MailViewController * mvc;
 @property(nonatomic)NSString * subject;
 @property(nonatomic)NSArray * addresses;
 @property(nonatomic)NSString * contents;
 @property(nonatomic)BOOL isBlowed;
 @property (weak, nonatomic) IBOutlet ParticleView *pv;
+@property (nonatomic, strong)CCDirector * director;
 @end
 
 @implementation FlowingController
@@ -45,6 +46,7 @@
 @synthesize isBlowed;
 @synthesize twitBarItem;
 @synthesize pv;
+@synthesize director;
 
 #define PARTICLE_SIZE 40
 #define NUMBER_OF_PARTICLE 50
@@ -56,31 +58,31 @@
     NSLog(@"%s in top", __FUNCTION__);
 
    // int i;
-    self.imageArray= [[NSMutableArray alloc]init];;
+   // self.imageArray= [[NSMutableArray alloc]init];;
     [super viewDidLoad];
     
     //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
     
-    CGRect picViewFrame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
-    [picView setFrame:picViewFrame];
-
-    //get back the picture selected earlier from the store and add it to the views
-    UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-    if(picSelected)
-    {
-    [picView setImage:picSelected];
-    }
+//    CGRect picViewFrame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
+//    [picView setFrame:picViewFrame];
+//
+//    //get back the picture selected earlier from the store and add it to the views
+//    UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
+//    if(picSelected)
+//    {
+//    [picView setImage:picSelected];
+//    }
+//    
+//    CGPoint position = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
+//    
+//    [pv setParticleContents:[[BBFImageStore sharedStore]imageForKey:@"myColoredShape"]];
+//    
+//    [pv setEmitterPosition:position];
+//    NSLog(@"%s after setEmitterPosition", __FUNCTION__);
     
-    CGPoint position = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
-    
-    [pv setParticleContents:[[BBFImageStore sharedStore]imageForKey:@"myColoredShape"]];
-    
-    [pv setEmitterPosition:position];
-    NSLog(@"%s after setEmitterPosition", __FUNCTION__);
-    
-    snapShot = [[Snapshot alloc]init];
-    [self.view addSubview:snapShot];
+//    snapShot = [[Snapshot alloc]init];
+//    [self.view addSubview:snapShot];
 
 
     //get back the image selected earlier from the store and add them to the view
@@ -93,7 +95,46 @@
 //        [self.view addSubview:[self.imageArray objectAtIndex:i ]];
 //        
 //    }
-//    
+//
+    
+    
+    director = [CCDirector sharedDirector];
+    
+    if([director isViewLoaded] == NO)
+    {
+        
+        CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
+                                       pixelFormat:kEAGLColorFormatRGB565
+                                       depthFormat:0
+                                preserveBackbuffer:NO
+                                        sharegroup:nil
+                                     multiSampling:NO
+                                   numberOfSamples:0];
+        
+        director.view = glView;
+        
+        [director setAnimationInterval:1.0f/60.0f];
+        [director enableRetinaDisplay:YES];
+    }
+    
+    director.delegate = self;
+    
+    [self addChildViewController:director];
+    
+    [self.view addSubview:director.view];
+    [self.view sendSubviewToBack:director.view];
+    
+    [director didMoveToParentViewController:self];
+    NSLog(@"before runWithScene %s", __FUNCTION__);
+    
+    if(![director runningScene])
+    {
+        [director runWithScene: [EmitterLayer  scene]];
+        [director pause];
+        
+    }
+    
+
     
     
     // audio detection
@@ -402,8 +443,7 @@
     {
 //        [self moveLoop:self];
 
-        
-        [pv setIsEmitting:YES];
+        [director resume];
         isBlowed = YES;
         NSLog(@"%s, %@", __FUNCTION__, pv);
     }

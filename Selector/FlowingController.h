@@ -12,8 +12,9 @@
 #import <CoreAudio/CoreAudioTypes.h>
 #import <Social/Social.h>
 #import "ParticleView.h"
+#import "cocos2d.h"
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate>
 {
 AVAudioRecorder *recorder;
 NSTimer *levelTimer;

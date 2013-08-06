@@ -38,7 +38,8 @@
     
     
     image = [UIImage imageWithCGImage:imageRef];
-    
+    CGImageRelease(imageRef);
+
     //convert the UIImage to PNG
     imageData = UIImagePNGRepresentation(image);
     
@@ -74,12 +75,13 @@
     
     image = [UIImage imageWithCGImage:imageRef];
     
-  
+    CGImageRelease(imageRef);
+
     
     //convert the UIImage to PNG
     imageData = UIImagePNGRepresentation(image);
     
-    
+
     //       [imageData writeToFile:imagePath atomically:YES];
     
 }
