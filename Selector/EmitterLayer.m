@@ -36,7 +36,8 @@
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
         
         CCSprite * bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
-        [bg setPosition:ccp(240, 160)];
+        CGSize  windowSize = [[CCDirector sharedDirector] winSize];
+        [bg setPosition:ccp(windowSize.width/2, windowSize.height/2)];
         [self addChild:bg z:0];
         
         emitter = [[CCParticleSpringParticle alloc]initWithTotalParticles:10];

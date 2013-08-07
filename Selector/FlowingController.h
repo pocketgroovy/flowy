@@ -14,7 +14,7 @@
 #import "ParticleView.h"
 #import "cocos2d.h"
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate>
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate>
 {
 AVAudioRecorder *recorder;
 NSTimer *levelTimer;

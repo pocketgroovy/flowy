@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    
     btnReady.hidden = YES;
     
     [imageBackGround setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"washi-01-swans-640.png"]]];
@@ -64,6 +66,7 @@
         }
     }
 }
+
 
 
 -(void)viewDidAppear:(BOOL)animated

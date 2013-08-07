@@ -57,10 +57,12 @@
 {
     NSLog(@"%s in top", __FUNCTION__);
 
+    
    // int i;
    // self.imageArray= [[NSMutableArray alloc]init];;
     [super viewDidLoad];
-    
+    UINavigationController  * nav = [[UINavigationController alloc]init];
+    nav.delegate = self;
     //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
     
@@ -161,6 +163,11 @@
 		NSLog(@"No recorder");
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"%s", __FUNCTION__);
+    [director end];
+}
 
 -(CGSize)screenSize
 {
