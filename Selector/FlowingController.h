@@ -11,7 +11,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import <Social/Social.h>
-#import "ParticleView.h"
 #import "cocos2d.h"
 
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate>

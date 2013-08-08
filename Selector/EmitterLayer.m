@@ -9,6 +9,14 @@
 #import "EmitterLayer.h"
 #import "BBFImageStore.h"
 
+@interface EmitterLayer()
+{
+    CCSprite * bg;
+    
+}
+
+
+@end 
 
 @implementation EmitterLayer
 @synthesize emitter;
@@ -35,14 +43,19 @@
         
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
         
-        CCSprite * bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
+        if(picSelected)
+        {
+        bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
+            NSLog(@"picselected %s", __FUNCTION__);
         CGSize  windowSize = [[CCDirector sharedDirector] winSize];
         [bg setPosition:ccp(windowSize.width/2, windowSize.height/2)];
         [self addChild:bg z:0];
+        }
         
         emitter = [[CCParticleSpringParticle alloc]initWithTotalParticles:10];
         
         UIImage * myShape = [[BBFImageStore sharedStore]imageForKey:@"myColoredShape"];
+        
         emitter.texture = [[CCTextureCache sharedTextureCache]addCGImage:myShape.CGImage forKey:@"myShape"];
         emitter.scale = 5.0f;
         emitter.position = ccp(150, 160);

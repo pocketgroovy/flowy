@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780AD099179C52E40057F038 /* ShapeViewController.m */; };
-		780D43E117A83BF6007A68A2 /* ParticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D43E017A83BF6007A68A2 /* ParticleView.m */; };
 		781079C21732E13B0098114E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C11732E13B0098114E /* MainViewController.m */; };
 		781079C71732E1B40098114E /* BBFImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C41732E1B40098114E /* BBFImageStore.m */; };
 		781079C81732E1B40098114E /* BBFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C61732E1B40098114E /* BBFViewController.m */; };
+		781671F117B306E600A7773C /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 781671F017B306E600A7773C /* Snapshot.m */; };
 		78174EC717306B1700949244 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78174EC617306B1700949244 /* circle.png */; };
 		781BC7991751C1D800261653 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 781BC7961751C1D800261653 /* camera.png */; };
 		781BC79B1751C1D800261653 /* camera3.png in Resources */ = {isa = PBXBuildFile; fileRef = 781BC7981751C1D800261653 /* camera3.png */; };
@@ -191,20 +191,19 @@
 		78ED1709174C2E7E009C5DC4 /* snowflake2.png in Resources */ = {isa = PBXBuildFile; fileRef = 78ED1706174C2E7E009C5DC4 /* snowflake2.png */; };
 		78FB15ED1736F14000946188 /* washi-01-swans-640.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB15EC1736F14000946188 /* washi-01-swans-640.png */; };
 		78FB15EF1736F17A00946188 /* cardboard-06.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB15EE1736F17A00946188 /* cardboard-06.png */; };
-		DB7D29301744725B008455D6 /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7D292F1744725B008455D6 /* Snapshot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		780AD09B179C613F0057F038 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		780D43DF17A83BF6007A68A2 /* ParticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleView.h; sourceTree = "<group>"; };
-		780D43E017A83BF6007A68A2 /* ParticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleView.m; sourceTree = "<group>"; };
 		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		781079C31732E1B40098114E /* BBFImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFImageStore.h; sourceTree = "<group>"; };
 		781079C41732E1B40098114E /* BBFImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFImageStore.m; sourceTree = "<group>"; };
 		781079C51732E1B40098114E /* BBFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFViewController.h; sourceTree = "<group>"; };
 		781079C61732E1B40098114E /* BBFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFViewController.m; sourceTree = "<group>"; };
 		781079C91732E2010098114E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		781671EF17B306E600A7773C /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
+		781671F017B306E600A7773C /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
 		78174EC617306B1700949244 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		781BC7961751C1D800261653 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		781BC7981751C1D800261653 /* camera3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera3.png; sourceTree = "<group>"; };
@@ -528,8 +527,6 @@
 		78FB15EC1736F14000946188 /* washi-01-swans-640.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "washi-01-swans-640.png"; sourceTree = "<group>"; };
 		78FB15EE1736F17A00946188 /* cardboard-06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cardboard-06.png"; sourceTree = "<group>"; };
 		78FB15F017370B0D00946188 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		DB7D292E1744725B008455D6 /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
-		DB7D292F1744725B008455D6 /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
 		DB7D297917449945008455D6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -562,8 +559,6 @@
 		780D43E217A83C04007A68A2 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				780D43DF17A83BF6007A68A2 /* ParticleView.h */,
-				780D43E017A83BF6007A68A2 /* ParticleView.m */,
 				78330DC017B1B9B7000C55F9 /* EmitterLayer.h */,
 				78330DC117B1B9B7000C55F9 /* EmitterLayer.m */,
 			);
@@ -926,7 +921,6 @@
 		78346F2017279550006B22BA = {
 			isa = PBXGroup;
 			children = (
-				78330F4417B1BB9C000C55F9 /* libz.dylib */,
 				78A183EC176B847800F670AF /* cupcake_ipad.png */,
 				78A183EA176B845600F670AF /* cupcake_ipad@2x.png */,
 				78A183E8176B839300F670AF /* Default-Landscape@2x~ipad.png */,
@@ -952,6 +946,7 @@
 		78346F2B17279550006B22BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78330F4417B1BB9C000C55F9 /* libz.dylib */,
 				78330F4017B1BA67000C55F9 /* OpenAL.framework */,
 				78330F4117B1BA67000C55F9 /* OpenGLES.framework */,
 				78330F3E17B1BA54000C55F9 /* GameKit.framework */,
@@ -1033,9 +1028,9 @@
 			isa = PBXGroup;
 			children = (
 				781BC7A21751D7A400261653 /* UIColor+JP.h */,
+				781671EF17B306E600A7773C /* Snapshot.h */,
+				781671F017B306E600A7773C /* Snapshot.m */,
 				781BC7A31751D7A400261653 /* UIColor+JP.m */,
-				DB7D292E1744725B008455D6 /* Snapshot.h */,
-				DB7D292F1744725B008455D6 /* Snapshot.m */,
 				781079C31732E1B40098114E /* BBFImageStore.h */,
 				781079C41732E1B40098114E /* BBFImageStore.m */,
 			);
@@ -1179,11 +1174,9 @@
 				781079C21732E13B0098114E /* MainViewController.m in Sources */,
 				781079C71732E1B40098114E /* BBFImageStore.m in Sources */,
 				781079C81732E1B40098114E /* BBFViewController.m in Sources */,
-				DB7D29301744725B008455D6 /* Snapshot.m in Sources */,
 				7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */,
 				781BC7A41751D7A400261653 /* UIColor+JP.m in Sources */,
 				780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */,
-				780D43E117A83BF6007A68A2 /* ParticleView.m in Sources */,
 				78330DC217B1B9B7000C55F9 /* EmitterLayer.m in Sources */,
 				78330ECA17B1B9F0000C55F9 /* CCAction.m in Sources */,
 				78330ECB17B1B9F0000C55F9 /* CCActionCamera.m in Sources */,
@@ -1293,6 +1286,7 @@
 				78330F3617B1B9F0000C55F9 /* vec2.c in Sources */,
 				78330F3717B1B9F0000C55F9 /* vec3.c in Sources */,
 				78330F3817B1B9F0000C55F9 /* vec4.c in Sources */,
+				781671F117B306E600A7773C /* Snapshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

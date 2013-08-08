@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cocos2d.h"
+
 @interface Snapshot : UIView
-
-+(UIImage*)takeAsUIImage;
-+(NSData*)takeAsPNG;
-
-
+@property (nonatomic, copy)NSData * imageData;
+@property (nonatomic, copy)UIImage * image;
+-(void)snap;
 -(void)snapIpadInViewWidth:(CGFloat )width andHeight:(CGFloat)height withNavBar:(CGFloat)navHeight;
 @end

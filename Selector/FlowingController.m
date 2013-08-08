@@ -7,12 +7,11 @@
 //
 
 #import "FlowingController.h"
-#import "Snapshot.h"
 #import "MailViewController.h"
 #import "BBFImageStore.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "EmitterLayer.h"
-
+#import "Snapshot.h"
 
 @interface FlowingController ()
 @property(nonatomic)CGSize screenSize;
@@ -20,14 +19,12 @@
 @property(nonatomic, strong)NSMutableArray *imageArray;
 @property(nonatomic)UIImageView * selectedImage;
 @property(nonatomic)CGRect newLocation;
-@property(nonatomic, strong)Snapshot *snapShot;
 @property (weak, nonatomic) IBOutlet UIImageView *picView;
 @property(nonatomic, strong)MailViewController * mvc;
 @property(nonatomic)NSString * subject;
 @property(nonatomic)NSArray * addresses;
 @property(nonatomic)NSString * contents;
 @property(nonatomic)BOOL isBlowed;
-@property (weak, nonatomic) IBOutlet ParticleView *pv;
 @property (nonatomic, strong)CCDirector * director;
 @end
 
@@ -38,14 +35,12 @@
 @synthesize selectedImage;
 @synthesize picView;
 @synthesize newLocation;
-@synthesize snapShot;
 @synthesize mvc;
 @synthesize subject;
 @synthesize addresses;
 @synthesize contents;
 @synthesize isBlowed;
 @synthesize twitBarItem;
-@synthesize pv;
 @synthesize director;
 
 #define PARTICLE_SIZE 40
@@ -61,8 +56,8 @@
    // int i;
    // self.imageArray= [[NSMutableArray alloc]init];;
     [super viewDidLoad];
-    UINavigationController  * nav = [[UINavigationController alloc]init];
-    nav.delegate = self;
+//    UINavigationController  * nav = [[UINavigationController alloc]init];
+//    nav.delegate = self;
     //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
     
@@ -100,6 +95,102 @@
 //
     
     
+    // audio detection
+    
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    
+	NSError *error;
+    
+	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+	if (recorder) {
+		[recorder prepareToRecord];
+		recorder.meteringEnabled = YES;
+		[recorder record];
+		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+	} else
+		NSLog(@"No recorder");
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    [director end];
+}
+
+-(CGSize)screenSize
+{
+    CGSize screenSize = self.view.bounds.size;
+    return screenSize;
+}
+
+
+-(void)setFrame:(CGRect)frame
+{
+    _frame.origin = frame.origin;
+    _frame.size = frame.size;
+}
+
+//navigation bar height
+#define NAVBARHEIGHT 67.00
+
+- (IBAction)shot:(id)sender {
+    AudioServicesPlaySystemSound(0x450);
+    
+    UIImage * snapShot;
+
+    
+//    float photoFrameWidth = self.photoView.bounds.size.height - 5;
+//    float photoFrameHeight = self.photoView.bounds.size.width;
+
+    if((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad))
+    {
+       snapShot = [Snapshot takeAsUIImage];
+
+//        //[snapShot snapIpadInViewWidth:photoFrameWidth andHeight:photoFrameHeight withNavBar:NAVBARHEIGHT];
+    }
+    else{
+    snapShot = [Snapshot takeAsUIImage];
+    }
+    //save the snapshot image to the store
+    [[BBFImageStore sharedStore]setImage:snapShot forKey:@"snapshot"];
+    
+}
+
+
+
+-(IBAction)cancelSelection:(UIStoryboardSegue *)segue
+{
+    
+}
+
+
+- (IBAction)openMail:(id)sender{
+    if ([MFMailComposeViewController canSendMail]) {
+        [self shot:sender];
+        MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
+        mailer.mailComposeDelegate = self;
+
+        [mailer addAttachmentData:[Snapshot takeAsPNG] mimeType:@"image/png" fileName:@"flowyImage"];
+        
+        [self presentViewController:mailer animated:YES completion:NULL];
+    }
+    else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+-(void)viewDidAppear:(BOOL)animated
+{
     director = [CCDirector sharedDirector];
     
     if([director isViewLoaded] == NO)
@@ -135,102 +226,8 @@
         [director pause];
         
     }
-    
-
-    
-    
-    // audio detection
-    
-    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-    
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-							  nil];
-    
-	NSError *error;
-    
-	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-    
-	if (recorder) {
-		[recorder prepareToRecord];
-		recorder.meteringEnabled = YES;
-		[recorder record];
-		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-	} else
-		NSLog(@"No recorder");
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
     NSLog(@"%s", __FUNCTION__);
-    [director end];
 }
-
--(CGSize)screenSize
-{
-    CGSize screenSize = self.view.bounds.size;
-    return screenSize;
-}
-
-
--(void)setFrame:(CGRect)frame
-{
-    _frame.origin = frame.origin;
-    _frame.size = frame.size;
-}
-
-//navigation bar height
-#define NAVBARHEIGHT 67.00
-
-- (IBAction)shot:(id)sender {
-    AudioServicesPlaySystemSound(0x450);
-    
-  
-
-    
-    float photoFrameWidth = self.photoView.bounds.size.height - 5;
-    float photoFrameHeight = self.photoView.bounds.size.width;
-
-    if((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad))
-    {
-        [snapShot snapIpadInViewWidth:photoFrameWidth andHeight:photoFrameHeight withNavBar:NAVBARHEIGHT];
-    }
-    else{
-    [snapShot snap];
-    }
-    //save the snapshot image to the store
-    NSLog(@"%@  & %s", snapShot.image, __FUNCTION__ );
-    [[BBFImageStore sharedStore]setImage:snapShot.image forKey:@"snapshot"];
-    
-}
-
-
-
--(IBAction)cancelSelection:(UIStoryboardSegue *)segue
-{
-    
-}
-
-
-- (IBAction)openMail:(id)sender{
-    if ([MFMailComposeViewController canSendMail]) {
-        [self shot:sender];
-        MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
-        mailer.mailComposeDelegate = self;
-
-        [mailer addAttachmentData:[snapShot imageData] mimeType:@"image/png" fileName:@"flowyImage"];
-        
-        [self presentViewController:mailer animated:YES completion:NULL];
-    }
-    else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-}
-
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -256,6 +253,7 @@
             [alert4 show];
             break;
     }
+
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -452,7 +450,6 @@
 
         [director resume];
         isBlowed = YES;
-        NSLog(@"%s, %@", __FUNCTION__, pv);
     }
 }
 

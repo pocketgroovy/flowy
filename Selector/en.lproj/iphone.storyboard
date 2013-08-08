@@ -227,7 +227,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="picView" destination="Iq6-s6-qff" id="97e-eB-SHz"/>
-                        <outlet property="pv" destination="FII-DY-d0y" id="eXT-ee-0LW"/>
                         <outlet property="twitBarItem" destination="LTC-Jo-UZS" id="KEs-0y-QUI"/>
                     </connections>
                 </viewController>
@@ -461,7 +460,6 @@
                 <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="pv" candidateClass="ParticleView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
@@ -477,9 +475,6 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ParticleView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ParticleView.h"/>
         </class>
         <class className="SelectorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
