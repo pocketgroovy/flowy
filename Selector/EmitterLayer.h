@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface EmitterLayer : CCLayer
-@property (nonatomic, strong)CCParticleSpringParticle * emitter;
+@interface EmitterLayer : CCLayerColor
 
+@property (nonatomic, strong)CCParticleFireworks * emitter;
 +(CCScene *) scene;
+
 @end

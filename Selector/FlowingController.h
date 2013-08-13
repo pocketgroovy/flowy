@@ -16,15 +16,9 @@
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate>
 {
 AVAudioRecorder *recorder;
-NSTimer *levelTimer;
+NSTimer *levelTimer, *particleTimer;
 double lowPassResults;
 }
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbarButtom;
-@property (weak, nonatomic) IBOutlet UIToolbar *barButtonEmailItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonTryItem;
-@property (weak, nonatomic) IBOutlet UIImageView *photoView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
 
 
 - (void)levelTimerCallback:(NSTimer *)timer;

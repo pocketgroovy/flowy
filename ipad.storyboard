@@ -237,12 +237,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="barButtonEmailItem" destination="Fe8-uz-yh9" id="X2J-Kq-HR7"/>
-                        <outlet property="barButtonTryItem" destination="NWK-9f-FRk" id="61Y-S7-7MG"/>
-                        <outlet property="photoView" destination="4K9-q7-z7z" id="0OG-0i-F58"/>
                         <outlet property="picView" destination="4K9-q7-z7z" id="8Cp-Ki-HBK"/>
-                        <outlet property="toolbar" destination="Rey-Y6-cr3" id="cex-GT-6ju"/>
-                        <outlet property="toolbarButtom" destination="Fe8-uz-yh9" id="w6e-2k-GEU"/>
                         <outlet property="twitBarItem" destination="Ppi-F7-O4N" id="xwt-32-uXz"/>
                     </connections>
                 </viewController>
@@ -512,13 +507,7 @@
                 <relationship kind="action" name="openMail:"/>
                 <relationship kind="action" name="shot:"/>
                 <relationship kind="action" name="tweetPhoto:"/>
-                <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="pv" candidateClass="ParticleView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
@@ -533,12 +522,12 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="ParticleView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ParticleView.h"/>
-        </class>
         <class className="SelectorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="confirmedColor:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="confirmedShape:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="btnColor" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnReady" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnShape" candidateClass="UIButton"/>

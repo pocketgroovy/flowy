@@ -26,6 +26,8 @@
 @property(nonatomic)NSString * contents;
 @property(nonatomic)BOOL isBlowed;
 @property (nonatomic, strong)CCDirector * director;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
+
 @end
 
 @implementation FlowingController
@@ -52,50 +54,18 @@
 {
     NSLog(@"%s in top", __FUNCTION__);
 
-    
-   // int i;
-   // self.imageArray= [[NSMutableArray alloc]init];;
+
     [super viewDidLoad];
-//    UINavigationController  * nav = [[UINavigationController alloc]init];
-//    nav.delegate = self;
-    //twitter button
+    
+    
+    
+   //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
+        
     
-//    CGRect picViewFrame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
-//    [picView setFrame:picViewFrame];
-//
-//    //get back the picture selected earlier from the store and add it to the views
-//    UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-//    if(picSelected)
-//    {
-//    [picView setImage:picSelected];
-//    }
-//    
-//    CGPoint position = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height);
-//    
-//    [pv setParticleContents:[[BBFImageStore sharedStore]imageForKey:@"myColoredShape"]];
-//    
-//    [pv setEmitterPosition:position];
-//    NSLog(@"%s after setEmitterPosition", __FUNCTION__);
     
-//    snapShot = [[Snapshot alloc]init];
-//    [self.view addSubview:snapShot];
+    //SET UP RECORDER FOR SOUND LEVEL DETECTION
 
-
-    //get back the image selected earlier from the store and add them to the view
-//    for(i = 0; i < NUMBER_OF_PARTICLE ; i++)
-//    {
-//        selectedImage =[[UIImageView alloc]initWithImage:[[BBFImageStore sharedStore]imageForKey:@"myColoredShape"]];
-//        selectedImage.frame = CGRectMake(arc4random()% (int)self.screenSize.width/4 + (self.screenSize.width/3), arc4random()% (int)self.screenSize.height/20 + (self.screenSize.height/20 * 15), PARTICLE_SIZE, PARTICLE_SIZE);
-//
-//        [self.imageArray addObject:selectedImage];
-//        [self.view addSubview:[self.imageArray objectAtIndex:i ]];
-//        
-//    }
-//
-    
-    
-    // audio detection
     
     NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
@@ -108,13 +78,14 @@
     
 	NSError *error;
     
-	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     
 	if (recorder) {
 		[recorder prepareToRecord];
 		recorder.meteringEnabled = YES;
 		[recorder record];
-		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+        
 	} else
 		NSLog(@"No recorder");
 }
@@ -148,15 +119,9 @@
     
     UIImage * snapShot;
 
-    
-//    float photoFrameWidth = self.photoView.bounds.size.height - 5;
-//    float photoFrameHeight = self.photoView.bounds.size.width;
-
     if((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad))
     {
        snapShot = [Snapshot takeAsUIImage];
-
-//        //[snapShot snapIpadInViewWidth:photoFrameWidth andHeight:photoFrameHeight withNavBar:NAVBARHEIGHT];
     }
     else{
     snapShot = [Snapshot takeAsUIImage];
@@ -189,6 +154,8 @@
         [alert show];
     }
 }
+
+//COCOS DIRECTOR INIT
 -(void)viewDidAppear:(BOOL)animated
 {
     director = [CCDirector sharedDirector];
@@ -220,6 +187,7 @@
     [director didMoveToParentViewController:self];
     NSLog(@"before runWithScene %s", __FUNCTION__);
     
+
     if(![director runningScene])
     {
         [director runWithScene: [EmitterLayer  scene]];
@@ -229,6 +197,8 @@
     NSLog(@"%s", __FUNCTION__);
 }
 
+
+//MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"sent!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -271,171 +241,16 @@
          }
   
 }
-//
-//#define MOVE_DURATION 5.0
-//
-//-(void)setRandomLocationForView:(UIView *)view atDistance:(CGSize)distance
-//{
-// 
-//if(distance.height != 0 && distance.width != 0)
-//{
-//    newLocation.origin.x= arc4random()%((int)distance.width+1) + view.frame.origin.x;
-//    newLocation.origin.y=arc4random()%((int)distance.height+1) + view.frame.origin.y;
-//    
-//    //set new location within the screen
-//    if(newLocation.origin.x > self.screenSize.width)
-//    {
-//        newLocation.origin.x -= self.screenSize.width;
-//    }
-//    if(newLocation.origin.y > self.screenSize.height)
-//    {
-//        newLocation.origin.y -= self.screenSize.height;
-//        
-//    }
-//    
-//    view.center = CGPointMake(newLocation.origin.x, newLocation.origin.y);
-//}
-//    else
-//        view.center = CGPointMake(view.frame.origin.x, view.frame.origin.y);
-//}
+
 
 - (IBAction)blowAgain:(id)sender {
     AudioServicesPlaySystemSound(1057);
 
     isBlowed = NO;
 }
-//
-//
-//- (IBAction)moveLoop:(id)sender {
-//    for(int i = 0; i < [imageArray count]; i++)
-//    {
-//        [self move:[imageArray objectAtIndex:i]];
-//    }
-//}
-//
-//-(void)move:(UIImageView *) image
-//{
-//    
-//    CGSize __block newDistance;
-//    CGPoint __block orgPoint;
-//    
-//    
-//    CGAffineTransform transform = image.transform;
-//    
-//    [UIView animateWithDuration:MOVE_DURATION/5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        image.transform = CGAffineTransformRotate(transform, 2*M_PI/3);
-//        orgPoint.x = image.frame.origin.x;
-//        orgPoint.y = image.frame.origin.y;
-//        
-//        newLocation.size = self.view.frame.size;
-//        
-//        [self setRandomLocationForView:image atDistance:newLocation.size];
-//        
-//        //location
-//        newDistance.width = orgPoint.x - newLocation.origin.x;
-//        newDistance.height = orgPoint.y - newLocation.origin.y;
-//        
-//        if(newDistance.width < 0)
-//            newDistance.width *= -1;
-//        if(newDistance.height < 0)
-//            newDistance.height *= -1;
-//        
-//    } completion:^(BOOL finished){
-//        if(finished)
-//        {
-//            [UIView animateWithDuration:MOVE_DURATION/5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//                image.transform = CGAffineTransformRotate(transform, -2*M_PI/3);
-//                orgPoint.x = image.frame.origin.x;
-//                orgPoint.y = image.frame.origin.y;
-//                
-//                [self setRandomLocationForView:image atDistance:newDistance];
-//                
-//                
-//                //location
-//                newDistance.width = orgPoint.x - newLocation.origin.x;
-//                newDistance.height = orgPoint.y - newLocation.origin.y;
-//                
-//                if(newDistance.width < 0)
-//                    newDistance.width *= -1;
-//                if(newDistance.height < 0)
-//                    newDistance.height *= -1;
-//                
-//                
-//                
-//            }
-//             
-//                             completion:^(BOOL finished){
-//                                 if(finished){
-//                                     [UIView animateWithDuration:MOVE_DURATION/5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//                                         image.transform = CGAffineTransformRotate(transform, 0);
-//                                         orgPoint.x = image.frame.origin.x;
-//                                         orgPoint.y = image.frame.origin.y;
-//                                         
-//                                         [self setRandomLocationForView:image atDistance:newDistance];
-//                                         
-//                                         //location
-//                                         newDistance.width = orgPoint.x - newLocation.origin.x;
-//                                         newDistance.height = orgPoint.y - newLocation.origin.y;
-//                                         
-//                                         if(newDistance.width < 0)
-//                                             newDistance.width *= -1;
-//                                         if(newDistance.height < 0)
-//                                             newDistance.height *= -1;
-//                                         
-//                                         
-//                                     }
-//                                                      completion:^(BOOL finished){
-//                                                          if(finished){
-//                                                              [UIView animateWithDuration:MOVE_DURATION/5 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//                                                                  image.transform = CGAffineTransformRotate(transform, 2*M_PI/3);
-//                                                                  
-//                                                                  orgPoint.x = image.frame.origin.x;
-//                                                                  orgPoint.y = image.frame.origin.y;
-//                                                                  [self setRandomLocationForView:image atDistance:newDistance];
-//                                                                  
-//                                                                  
-//                                                                  //location
-//                                                                  newDistance.width = orgPoint.x - newLocation.origin.x;
-//                                                                  newDistance.height = orgPoint.y - newLocation.origin.y;
-//                                                                  
-//                                                                  if(newDistance.width < 0)
-//                                                                      newDistance.width *= -1;
-//                                                                  if(newDistance.height < 0)
-//                                                                      newDistance.height *= -1;
-//                                                                  
-//                                                                  
-//                                                              }completion:^(BOOL finished){
-//                                                                  if(finished){
-//                                                                      [UIView animateWithDuration:MOVE_DURATION/5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//                                                                          image.transform = CGAffineTransformRotate(transform, -2*M_PI/3);
-//                                                                          orgPoint.x = image.frame.origin.x;
-//                                                                          orgPoint.y = image.frame.origin.y;
-//                                                                          
-//                                                                          [self setRandomLocationForView:image atDistance:newDistance];
-// 
-//                                                                          
-//                                                                      }
-//                                                                    completion:nil];
-//                                                                  }
-//                                                              }];
-//                                                          }
-//                                                      }];
-//                                 }
-//                             }];
-//        }
-//    }];
-//    
-//    
-//}
-//
-//
-//
-//
 
 
-
-
-
+//SOUND LEVEL DETECTOR TO TRIGGER THE PARTICLES
 
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
@@ -444,16 +259,21 @@
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
 	
-	if (lowPassResults > 0.65 && !isBlowed)
+	if (lowPassResults > 0.1 && !isBlowed)
     {
-//        [self moveLoop:self];
-
         [director resume];
         isBlowed = YES;
+        particleTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(particleTimerCallback:) userInfo: nil repeats: NO];
     }
+    
+    
 }
 
-
+-(void)particleTimerCallback:(NSTimer *)timer
+{
+    [director pause];
+    NSLog(@"%s", __FUNCTION__);
+}
 
 
 - (void)didReceiveMemoryWarning

@@ -201,19 +201,14 @@
                                 </items>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-s6-qff"/>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FII-DY-d0y" customClass="ParticleView"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FII-DY-d0y" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="4CE-mF-hpm"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="7Qx-VQ-rj2"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="N11-XN-3aV"/>
-                            <constraint firstItem="FII-DY-d0y" firstAttribute="top" secondItem="CQ7-QW-C6x" secondAttribute="top" type="default" id="OrG-0k-lXd"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="bottom" secondItem="CQ7-QW-C6x" secondAttribute="bottom" type="default" id="Uq0-42-QBg"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="top" secondItem="CQ7-QW-C6x" secondAttribute="top" type="default" id="VsY-FE-FAz"/>
-                            <constraint firstItem="FII-DY-d0y" firstAttribute="bottom" secondItem="D90-0j-5Cg" secondAttribute="top" constant="8" symbolic="YES" type="user" id="XYg-rA-ouM"/>
                             <constraint firstItem="Iq6-s6-qff" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="ld3-d6-e8f"/>
-                            <constraint firstItem="FII-DY-d0y" firstAttribute="leading" secondItem="CQ7-QW-C6x" secondAttribute="leading" type="default" id="o0d-tO-YCn"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="top" secondItem="Iq6-s6-qff" secondAttribute="bottom" type="default" id="tGd-7j-tmj"/>
                             <constraint firstItem="D90-0j-5Cg" firstAttribute="trailing" secondItem="CQ7-QW-C6x" secondAttribute="trailing" type="default" id="zFe-AA-Obu"/>
                         </constraints>

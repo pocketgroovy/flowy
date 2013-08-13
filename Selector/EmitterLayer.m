@@ -9,6 +9,9 @@
 #import "EmitterLayer.h"
 #import "BBFImageStore.h"
 
+
+static NSUInteger intNumber;
+
 @interface EmitterLayer()
 {
     CCSprite * bg;
@@ -21,52 +24,59 @@
 @implementation EmitterLayer
 @synthesize emitter;
 
-+(CCScene *) scene;
+#define NUMOFPARTICLES 130
+
++(CCScene *) scene
 {
+    
     CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
 	EmitterLayer *layer = [EmitterLayer node];
-	
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
     
+    NSLog(@"%s", __FUNCTION__);
 	// return the scene
 	return scene;
 }
 
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
-	if(self=[super init])  {
+    if(self=[super initWithColor:ccc4(255, 255, 255, 255)])  {
         
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
         
         if(picSelected)
         {
-        bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
+            bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
             NSLog(@"picselected %s", __FUNCTION__);
-        CGSize  windowSize = [[CCDirector sharedDirector] winSize];
-        [bg setPosition:ccp(windowSize.width/2, windowSize.height/2)];
-        [self addChild:bg z:0];
+            CGSize  windowSize = [[CCDirector sharedDirector] winSize];
+            [bg setPosition:ccp(windowSize.width/2, windowSize.height/2)];
+            [self addChild:bg z:0];
         }
         
-        emitter = [[CCParticleSpringParticle alloc]initWithTotalParticles:10];
+        emitter = [[CCParticleFireworks alloc]initWithTotalParticles:NUMOFPARTICLES];
         
         UIImage * myShape = [[BBFImageStore sharedStore]imageForKey:@"myColoredShape"];
         
         emitter.texture = [[CCTextureCache sharedTextureCache]addCGImage:myShape.CGImage forKey:@"myShape"];
-        emitter.scale = 5.0f;
-        emitter.position = ccp(150, 160);
-        emitter.speed = 50;
+        emitter.scale = 10.0f;
+        emitter.position = ccp(320, 0);
+        emitter.speed = 100;
         emitter.speedVar = 10;
-        emitter.life = 10;
+        emitter.life = 3;
         [self addChild:emitter z:1];
         NSLog(@"%s", __FUNCTION__);
-	}
+        NSLog(@"%d parciles %s", intNumber,  __FUNCTION__);
+        
+        
+    }
 	return self;
 }
+
+
 
 - (void) dealloc
 {
