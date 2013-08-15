@@ -221,7 +221,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="picView" destination="Iq6-s6-qff" id="97e-eB-SHz"/>
                         <outlet property="twitBarItem" destination="LTC-Jo-UZS" id="KEs-0y-QUI"/>
                     </connections>
                 </viewController>
@@ -451,12 +450,6 @@
                 <relationship kind="action" name="openMail:"/>
                 <relationship kind="action" name="shot:"/>
                 <relationship kind="action" name="tweetPhoto:"/>
-                <relationship kind="outlet" name="barButtonEmailItem" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="barButtonTryItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="picView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="toolbarButtom" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
@@ -474,6 +467,9 @@
         <class className="SelectorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelSelection:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="confirmedColor:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="confirmedShape:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="btnColor" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnReady" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="btnShape" candidateClass="UIButton"/>

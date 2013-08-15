@@ -14,5 +14,4 @@
 +(NSData*)takeAsPNG;
 
 
--(void)snapIpadInViewWidth:(CGFloat )width andHeight:(CGFloat)height withNavBar:(CGFloat)navHeight;
 @end

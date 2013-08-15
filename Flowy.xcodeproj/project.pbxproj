@@ -1375,7 +1375,7 @@
 				GCC_PREFIX_HEADER = "Selector/Flowy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Selector/Flowy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Flowy;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1389,7 +1389,7 @@
 				GCC_PREFIX_HEADER = "Selector/Flowy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Selector/Flowy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Flowy;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

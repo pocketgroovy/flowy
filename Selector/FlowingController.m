@@ -14,16 +14,6 @@
 #import "Snapshot.h"
 
 @interface FlowingController ()
-@property(nonatomic)CGSize screenSize;
-@property(nonatomic)CGRect frame;
-@property(nonatomic, strong)NSMutableArray *imageArray;
-@property(nonatomic)UIImageView * selectedImage;
-@property(nonatomic)CGRect newLocation;
-@property (weak, nonatomic) IBOutlet UIImageView *picView;
-@property(nonatomic, strong)MailViewController * mvc;
-@property(nonatomic)NSString * subject;
-@property(nonatomic)NSArray * addresses;
-@property(nonatomic)NSString * contents;
 @property(nonatomic)BOOL isBlowed;
 @property (nonatomic, strong)CCDirector * director;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
@@ -31,16 +21,6 @@
 @end
 
 @implementation FlowingController
-@synthesize screenSize = _screenSize;
-@synthesize frame = _frame;
-@synthesize imageArray;
-@synthesize selectedImage;
-@synthesize picView;
-@synthesize newLocation;
-@synthesize mvc;
-@synthesize subject;
-@synthesize addresses;
-@synthesize contents;
 @synthesize isBlowed;
 @synthesize twitBarItem;
 @synthesize director;
@@ -98,18 +78,7 @@
     [director end];
 }
 
--(CGSize)screenSize
-{
-    CGSize screenSize = self.view.bounds.size;
-    return screenSize;
-}
 
-
--(void)setFrame:(CGRect)frame
-{
-    _frame.origin = frame.origin;
-    _frame.size = frame.size;
-}
 
 //navigation bar height
 #define NAVBARHEIGHT 67.00
@@ -166,7 +135,7 @@
         CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
                                        pixelFormat:kEAGLColorFormatRGB565
                                        depthFormat:0
-                                preserveBackbuffer:NO
+                                preserveBackbuffer:YES
                                         sharegroup:nil
                                      multiSampling:NO
                                    numberOfSamples:0];
@@ -259,7 +228,7 @@
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
 	
-	if (lowPassResults > 0.1 && !isBlowed)
+	if (lowPassResults > 0.3 && !isBlowed)
     {
         [director resume];
         isBlowed = YES;
