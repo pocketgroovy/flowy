@@ -13,6 +13,7 @@
 		781079C81732E1B40098114E /* BBFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C61732E1B40098114E /* BBFViewController.m */; };
 		781671F117B306E600A7773C /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 781671F017B306E600A7773C /* Snapshot.m */; };
 		78174EC717306B1700949244 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 78174EC617306B1700949244 /* circle.png */; };
+		7817AA1D17BE7AB900DB9DAA /* CCNode+Scaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817AA1C17BE7AB900DB9DAA /* CCNode+Scaling.m */; };
 		781BC7991751C1D800261653 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 781BC7961751C1D800261653 /* camera.png */; };
 		781BC79B1751C1D800261653 /* camera3.png in Resources */ = {isa = PBXBuildFile; fileRef = 781BC7981751C1D800261653 /* camera3.png */; };
 		781BC79F1751C51300261653 /* camera2.png in Resources */ = {isa = PBXBuildFile; fileRef = 781BC79E1751C51300261653 /* camera2.png */; };
@@ -205,6 +206,8 @@
 		781671EF17B306E600A7773C /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
 		781671F017B306E600A7773C /* Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Snapshot.m; sourceTree = "<group>"; };
 		78174EC617306B1700949244 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		7817AA1B17BE7AB900DB9DAA /* CCNode+Scaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+Scaling.h"; sourceTree = "<group>"; };
+		7817AA1C17BE7AB900DB9DAA /* CCNode+Scaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Scaling.m"; sourceTree = "<group>"; };
 		781BC7961751C1D800261653 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		781BC7981751C1D800261653 /* camera3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera3.png; sourceTree = "<group>"; };
 		781BC79E1751C51300261653 /* camera2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera2.png; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 			children = (
 				78330DC017B1B9B7000C55F9 /* EmitterLayer.h */,
 				78330DC117B1B9B7000C55F9 /* EmitterLayer.m */,
+				7817AA1B17BE7AB900DB9DAA /* CCNode+Scaling.h */,
+				7817AA1C17BE7AB900DB9DAA /* CCNode+Scaling.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1287,6 +1292,7 @@
 				78330F3717B1B9F0000C55F9 /* vec3.c in Sources */,
 				78330F3817B1B9F0000C55F9 /* vec4.c in Sources */,
 				781671F117B306E600A7773C /* Snapshot.m in Sources */,
+				7817AA1D17BE7AB900DB9DAA /* CCNode+Scaling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

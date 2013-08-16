@@ -8,6 +8,7 @@
 
 #import "EmitterLayer.h"
 #import "BBFImageStore.h"
+#import "CCNode+Scaling.h"
 
 
 static NSUInteger intNumber;
@@ -47,14 +48,23 @@ static NSUInteger intNumber;
     if(self=[super initWithColor:ccc4(255, 255, 255, 255)])  {
         
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-        
+        CGSize  windowSize =[[CCDirector sharedDirector] winSize];;
         if(picSelected)
         {
             bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
             NSLog(@"picselected %s", __FUNCTION__);
-            CGSize  windowSize = [[CCDirector sharedDirector] winSize];
-            [bg setPosition:ccp(windowSize.width/2, windowSize.height/2)];
+            if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+            {
+                windowSize = CGSizeMake(768.0f, 704.0f);
+                [bg setPosition:ccp(windowSize.height-320 + 0.5f, windowSize.width/2 + 0.5f)];
+
+            }
+            else{
+            [bg setPosition:ccp(windowSize.width/2+0.5f, windowSize.height/2 + 0.5f)];
+
+            }
             [self addChild:bg z:0];
+            [bg scaleToSize:windowSize fitType:CCScaleFitAspectFit];
         }
         
         emitter = [[CCParticleFireworks alloc]initWithTotalParticles:NUMOFPARTICLES];
