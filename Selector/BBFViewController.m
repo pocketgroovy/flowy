@@ -107,19 +107,11 @@
     if(!image) image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if(image)
     {
-        
-        //        CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-        //        CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-        //        key = (__bridge NSString *)newUniqueIDString;
-        
+
         //save the photo a user selected to the store
         
         [[BBFImageStore sharedStore]setImage:image forKey:@"mySelectedPhoto"];
-        
-        //
-        //        CFRelease(newUniqueIDString);
-        //        CFRelease(newUniqueID);
-        
+
         [self.imageView setImage:image];
         
     }
@@ -139,8 +131,6 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {

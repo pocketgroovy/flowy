@@ -149,7 +149,7 @@
 		78330F3F17B1BA54000C55F9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78330F3E17B1BA54000C55F9 /* GameKit.framework */; };
 		78330F4217B1BA67000C55F9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78330F4017B1BA67000C55F9 /* OpenAL.framework */; };
 		78330F4317B1BA67000C55F9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78330F4117B1BA67000C55F9 /* OpenGLES.framework */; };
-		78330F4517B1BB9C000C55F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78330F4417B1BB9C000C55F9 /* libz.dylib */; };
+		78330F4517B1BB9C000C55F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78330F4417B1BB9C000C55F9 /* libz.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		78346F2D17279550006B22BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F2C17279550006B22BA /* UIKit.framework */; };
 		78346F2F17279550006B22BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F2E17279550006B22BA /* Foundation.framework */; };
 		78346F3117279550006B22BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F3017279550006B22BA /* CoreGraphics.framework */; };
@@ -174,7 +174,7 @@
 		788921E9173193C600549320 /* Water-Drops_blue2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 788921E8173193C600549320 /* Water-Drops_blue2.jpeg */; };
 		788921EB1731946800549320 /* Water Drops_200.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921EA1731946800549320 /* Water Drops_200.png */; };
 		788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */; };
-		788DFA0817970EE300E106DF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DFA0717970EE300E106DF /* Social.framework */; };
+		788DFA0817970EE300E106DF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DFA0717970EE300E106DF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		789366A917568374009779D8 /* iine.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366A717568374009779D8 /* iine.png */; };
 		789366AA17568374009779D8 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366A817568374009779D8 /* cancel.png */; };
 		789366AC175687ED009779D8 /* cupcake_short.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366AB175687ED009779D8 /* cupcake_short.png */; };
@@ -1343,7 +1343,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1367,7 +1367,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1381,9 +1381,10 @@
 				GCC_PREFIX_HEADER = "Selector/Flowy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Selector/Flowy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Flowy;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s i386 armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1395,9 +1396,10 @@
 				GCC_PREFIX_HEADER = "Selector/Flowy-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Selector/Flowy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = Flowy;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s i386 armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
