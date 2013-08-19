@@ -11,7 +11,6 @@
 #import "CCNode+Scaling.h"
 
 
-static NSUInteger intNumber;
 
 @interface EmitterLayer()
 {
@@ -52,7 +51,8 @@ static NSUInteger intNumber;
         if(picSelected)
         {
             bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
-            NSLog(@"picselected %s", __FUNCTION__);
+            NSLog(@"%@, picselected %s", picSelected, __FUNCTION__);
+
             if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
             {
                 windowSize = CGSizeMake(768.0f, 704.0f);
@@ -79,7 +79,6 @@ static NSUInteger intNumber;
         emitter.life = 3;
         [self addChild:emitter z:1];
         NSLog(@"%s", __FUNCTION__);
-        NSLog(@"%d parciles %s", intNumber,  __FUNCTION__);
         
         
     }

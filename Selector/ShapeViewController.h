@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ShapeViewController;
 
+@protocol ShapeViewControllerDelegate <NSObject>
 
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage*)shape;
+
+@end
 
 @interface ShapeViewController : UIViewController
 @property (nonatomic, readonly) UIImage * selectedShape;
-
+@property (nonatomic) id<ShapeViewControllerDelegate>shapeDelegate;
 
 @end

@@ -5,10 +5,7 @@
 //  Created by Yoshihisa Miyamoto on 4/23/13.
 //  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
 //
-
 #import "SelectorViewController.h"
-#import "ShapeViewController.h"
-#import "ColorViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FlowingController.h"
 #import "BBFImageStore.h"
@@ -16,43 +13,67 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface SelectorViewController ()
-@property ShapeViewController * shape;
-@property ColorViewController * colorView;
+@property (nonatomic, weak)ShapeViewController * shapeVC;
+@property (nonatomic, weak)ColorViewController * colorVC;
+@property (nonatomic, weak)FlowingController * flowVC;
+@property (nonatomic, weak)UIImage * myShape;
+@property (nonatomic, weak)UIColor * myColor;
 @end
 
-@implementation SelectorViewController
+@implementation SelectorViewController 
 @synthesize btnShape;
 @synthesize resultView;
 @synthesize btnColor;
-@synthesize shape;
+@synthesize shapeVC;
 @synthesize btnReady;
-@synthesize colorView;
+@synthesize colorVC;
 @synthesize imageBackGround;
+@synthesize myShape;
+@synthesize myColor;
+@synthesize flowVC;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    
     btnReady.hidden = YES;
     
+    //wallpaper
     [imageBackGround setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"washi-01-swans-640.png"]]];
+    
+    //shape button
     UIImage * bg = [UIImage imageNamed:@"candy2.jpeg"];
     [btnShape setBackgroundImage:bg forState:UIControlStateNormal];
     btnShape.layer.borderColor = [UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
     btnShape.layer.borderWidth = 5.0f;
     btnShape.layer.cornerRadius = 40.0f;
     
+    //color button
     bg = [UIImage imageNamed:@"colorful2.png"];
     [btnColor setBackgroundImage:bg forState:UIControlStateNormal];
     btnColor.layer.borderColor = [UIColor colorWithR:30 G:144 B:255 A:1].CGColor;
     btnColor.layer.borderWidth = 5.0f;
     btnColor.layer.cornerRadius = 40.0f;
     
-    bg = [UIImage imageNamed:@"go.png"];
-    [btnReady setBackgroundImage:bg forState:UIControlStateNormal];
+    //go button
+    UIImage * readyImage = [UIImage imageNamed:@"go.png"];
+    CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - 75), 400, 150, 150);
+    btnReady = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnReady setImage:readyImage forState:UIControlStateNormal];
+    [btnReady setFrame:btnFrame];
+    [btnReady addTarget:self action:@selector(flowy:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnReady];
+
+
 }
+
+-(void)flowy:(id)sender
+{
+    [self performSegueWithIdentifier:@"flowing" sender:sender];
+    NSLog(@"%s", __FUNCTION__);
+}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -61,17 +82,38 @@
     if([segue.identifier isEqualToString:@"flowing"]){
         if([segue.destinationViewController isKindOfClass:[FlowingController class]])
         {
-   
+            flowVC =(FlowingController*) segue.destinationViewController;
+            NSLog(@"%s - Flowing Segue", __FUNCTION__);
+        }
+    }
+    if([segue.identifier isEqualToString:@"shapeModal"]){
+        if([segue.destinationViewController isKindOfClass:[ShapeViewController class]])
+        {
+            shapeVC =(ShapeViewController*) segue.destinationViewController;
+            shapeVC.shapeDelegate = self;
+            NSLog(@"%s - Shape Segue", __FUNCTION__);
             
         }
     }
+    
+    if([segue.identifier isEqualToString:@"colorModal"]){
+        if([segue.destinationViewController isKindOfClass:[ColorViewController class]])
+        {
+            colorVC =(ColorViewController*) segue.destinationViewController;
+            colorVC.colorDelegate = self;
+            NSLog(@"%s - Color Segue", __FUNCTION__);
+            
+        }
+    }
+    
+    
 }
 
 
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if ([resultView image]&& colorView.selectedColor ) {
+    if (myShape && myColor) {
         btnReady.hidden = NO;
     }
     else
@@ -79,40 +121,73 @@
 
 }
 
--(IBAction)cancelSelection:(UIStoryboardSegue *)segue
+//-(IBAction)cancelSelection:(UIStoryboardSegue *)segue
+//{
+//    AudioServicesPlaySystemSound(0x450);
+//
+//}
+//
+//-(IBAction)confirmedShape:(UIStoryboardSegue *)segue
+//{
+//    AudioServicesPlaySystemSound(0x450);
+//
+//    shape = segue.sourceViewController;
+//    if(shape)
+//    [resultView setImage:[self colorShape:colorView.selectedColor]];
+//}
+//
+//
+//-(IBAction)confirmedColor:(UIStoryboardSegue *) segue
+//{
+//    AudioServicesPlaySystemSound(0x450);
+//
+//    colorView = segue.sourceViewController;
+//    if(shape)
+//    {
+//    [resultView setImage:nil];
+//    [resultView setImage:[self colorShape:colorView.selectedColor]];
+//    }
+//    
+//}
+
+-(void)viewWillAppear:(BOOL)animated
 {
-    AudioServicesPlaySystemSound(0x450);
-
-}
-
--(IBAction)confirmedShape:(UIStoryboardSegue *)segue
-{
-    AudioServicesPlaySystemSound(0x450);
-
-    shape = segue.sourceViewController;
-    if(shape)
-    [resultView setImage:[self colorShape:colorView.selectedColor]];
-}
-
-
--(IBAction)confirmedColor:(UIStoryboardSegue *) segue
-{
-    AudioServicesPlaySystemSound(0x450);
-
-    colorView = segue.sourceViewController;
-    if(shape)
-    {
-    [resultView setImage:nil];
-    [resultView setImage:[self colorShape:colorView.selectedColor]];
-    }
     
+    NSLog(@"%s", __FUNCTION__);
 }
 
 
+#pragma mark - COLORVIEWCONTROLLER DELEGATE
+-(void)colorViewController:(ColorViewController *)controller didFinishSelecting:(UIColor *)color
+{
+    myColor = color;
+    [resultView setImage:nil];
+    if(myShape)
+    {
+    [resultView setImage:[self colorShape:myColor]];
+    }
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
+#pragma mark - SHAPEVIEWCONTROLLER DELEGATE
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape
+{    NSLog(@"%s", __FUNCTION__);
+    myShape = shape;
+    
+    [resultView setImage:myShape];
+    if(myColor)
+    {
+        [resultView setImage:[self colorShape:myColor]];
+    }
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
+#pragma mark - COLOR THE SELECTED SHAPE
 -(UIImage *) colorShape:(UIColor *)color
 {
    
-    UIImage * myShape = shape.selectedShape;
     UIGraphicsBeginImageContext(myShape.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -137,7 +212,13 @@
 }
 
 
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 
+#pragma mark
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

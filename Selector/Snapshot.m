@@ -10,6 +10,7 @@
 
 @implementation Snapshot
 
+#pragma mark - Snapshot in UIImage
 
 +(UIImage*)takeAsUIImage
 {
@@ -54,6 +55,7 @@
     return outputImage;
 }
 
+#pragma mark - Snapshot in PNG
 +(NSData *)takeAsPNG
 {
     NSData * ouputImage = UIImagePNGRepresentation([Snapshot takeAsUIImage]);

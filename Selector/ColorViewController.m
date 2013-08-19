@@ -10,6 +10,7 @@
 #import "UIColor+JP.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "SelectorViewController.h"
 
 @interface ColorViewController ()<UIPickerViewDelegate>
 
@@ -159,7 +160,24 @@
     
 }
 
+#pragma mark - Send the delegate the selected color
+- (IBAction)colorSelected:(id)sender {
+    [self.colorDelegate colorViewController:self didFinishSelecting:selectedColor];
+}
 
+- (IBAction)cancelled:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark
 
 - (void)didReceiveMemoryWarning
 {

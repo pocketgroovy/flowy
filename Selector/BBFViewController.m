@@ -11,6 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MainViewController.h"
+#import "MailViewController.h"
 
 @interface BBFViewController ()
 @property (strong, nonatomic)UIPopoverController * imagePickerPopover;
@@ -21,7 +22,6 @@
 @synthesize imageView;
 @synthesize barButtonOK;
 @synthesize photo;
-
 
 
 - (void)viewDidLoad
@@ -36,23 +36,9 @@
     }
     imageView.image = photo;
     
+
 }
 
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    AudioServicesPlaySystemSound(0x450);
-    
-    if([segue.identifier isEqualToString:@"backToMain"]){
-        if([segue.destinationViewController isKindOfClass:[MainViewController class]])
-        {
-            MainViewController * mvc = [[MainViewController alloc]init];
-            mvc.defaultImage = self.imageView.image;
-        }
-    }
-    
-}
 
 - (IBAction)takePhoto:(UIBarButtonItem *)sender
 {
@@ -101,6 +87,8 @@
 }
 
 
+#pragma mark - UIImagePickerControllerDelegate
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage * image = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -112,8 +100,8 @@
         
         [[BBFImageStore sharedStore]setImage:image forKey:@"mySelectedPhoto"];
 
-        [self.imageView setImage:image];
-        
+        //[self.imageView setImage:image];
+        [imageView setImage:image];
     }
     
     if(self.imagePickerPopover)
@@ -127,10 +115,30 @@
     }
 }
 
+#pragma mark - For iPhone to return to the main controller
+- (IBAction)returnToMain:(id)sender {
+    
+    for (UIViewController * vc in [self.navigationController viewControllers]) {
+        if([vc isKindOfClass:[MainViewController class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+    
+}
+
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

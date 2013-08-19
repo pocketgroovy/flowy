@@ -55,18 +55,7 @@
     defaultImage = [UIImage imageNamed:@"camera2.png"];
 
     [[BBFImageStore sharedStore]setImage:defaultImage forKey:@"defaultImage"];
-    if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
-    {
-        defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-        instruction.text = @"2nd Step! Select Your Shape and Color!";
-        
-    }
-    
-    else
-    {
-        instruction.text = @"1st Step! Take or Choose a Photo! ➡";
-    }
-    
+
     //main photo button
     [photos setImage:defaultImage  forState:UIControlStateNormal];
     photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
@@ -83,43 +72,77 @@
     stars.layer.borderWidth = 20.0f;
     stars.layer.cornerRadius = 50.0f;
     
-}
-
-
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-        AudioServicesPlaySystemSound(0x450);
+    NSLog(@"%s", __FUNCTION__);
     
-    if([segue.identifier isEqualToString:@"SelectImage"]){
-        
-        if([segue.destinationViewController isKindOfClass:[SelectorViewController class]])
-        {
-        }
-    }
-    if([segue.identifier isEqualToString:@"SelectPhoto"]){
-        
-        if([segue.destinationViewController isKindOfClass:[BBFViewController class]])
-        {
-
-        }
-    }
 }
 
 
 
--(IBAction)confirmedPhoto:(UIStoryboardSegue *)segue
+
+#pragma mark - Set selected photo from BBFViewController
+
+-(void)viewWillAppear:(BOOL)animated
 {
-    AudioServicesPlaySystemSound(0x450);
-
-    picVC = segue.sourceViewController;
-    if(picVC)
+    if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
     {
-        UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-         [photos setImage:picSelected forState:UIControlStateNormal];
+        defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
+        instruction.text = @"2nd Step! Select Your Shape and Color!";
+        
     }
+    
+    else
+    {
+        instruction.text = @"1st Step! Take or Choose a Photo! ➡";
+    }
+
+    
+    [photos setImage:defaultImage  forState:UIControlStateNormal];
+
+    
 }
+
+
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//        AudioServicesPlaySystemSound(0x450);
+//    
+//    if([segue.identifier isEqualToString:@"SelectImage"]){
+//        
+//        if([segue.destinationViewController isKindOfClass:[SelectorViewController class]])
+//        {
+//        }
+//    }
+//    if([segue.identifier isEqualToString:@"SelectPhoto"]){
+//        
+//        if([segue.destinationViewController isKindOfClass:[BBFViewController class]])
+//        {
+//            [segue.destinationViewController setDelegate:self];
+//
+//        }
+//    }
+//}
+
+
+
+//-(IBAction)confirmedPhoto:(UIStoryboardSegue *)segue
+//{
+//    AudioServicesPlaySystemSound(0x450);
+//
+//    picVC = segue.sourceViewController;
+//    if(picVC)
+//    {
+//        UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
+//         [photos setImage:picSelected forState:UIControlStateNormal];
+//    }
+//}
+
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark
 
 - (void)didReceiveMemoryWarning
 {

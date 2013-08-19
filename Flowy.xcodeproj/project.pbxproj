@@ -1053,8 +1053,8 @@
 				780AD09B179C613F0057F038 /* MainViewController.h */,
 				78346F521727A2FB006B22BA /* ColorViewController.h */,
 				78346F531727A2FB006B22BA /* ColorViewController.m */,
-				780AD099179C52E40057F038 /* ShapeViewController.m */,
 				78346F4F17279F8D006B22BA /* ShapeViewController.h */,
+				780AD099179C52E40057F038 /* ShapeViewController.m */,
 				78346F4717279551006B22BA /* SelectorViewController.h */,
 				78346F4817279551006B22BA /* SelectorViewController.m */,
 			);

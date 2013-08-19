@@ -10,6 +10,7 @@
 #import "UIColor+JP.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "SelectorViewController.h"
 
 
 
@@ -40,6 +41,7 @@
 @synthesize wallpaper;
 @synthesize go;
 @synthesize cancel;
+@synthesize shapeDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -134,6 +136,8 @@
 
 #define MARGIN 15   //margin  
 
+
+#pragma mark - UIPickerViewDelegate
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     
@@ -155,9 +159,32 @@
     selectedImageView = [imageArray objectAtIndex:row];
     
     selectedShape = [selectedImageView image];
+    
+
+    NSLog(@"%s", __FUNCTION__);
 
 }
 
+
+
+- (IBAction)shapeSelected:(id)sender {
+        [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape];
+
+}
+
+
+- (IBAction)cancelled:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark
 
 - (void)didReceiveMemoryWarning
 {

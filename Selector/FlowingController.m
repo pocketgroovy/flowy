@@ -29,7 +29,6 @@
 #define NUMBER_OF_PARTICLE 50
 
 
-
 - (void)viewDidLoad
 {
     NSLog(@"%s in top", __FUNCTION__);
@@ -42,7 +41,49 @@
    //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
         
+    director = [CCDirector sharedDirector];
     
+    if([director isViewLoaded] == NO)
+    {
+        
+        CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
+                                       pixelFormat:kEAGLColorFormatRGB565
+                                       depthFormat:0
+                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
+                                        sharegroup:nil
+                                     multiSampling:NO
+                                   numberOfSamples:0];
+        
+        director.view = glView;
+        
+        [director setAnimationInterval:1.0f/60.0f];
+        [director enableRetinaDisplay:YES];
+    }
+    
+    director.delegate = self;
+    
+    NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
+    
+    
+    [self addChildViewController:director];
+    [self.view addSubview:director.view];
+    [self.view sendSubviewToBack:director.view];
+    
+    [director didMoveToParentViewController:self];
+    NSLog(@"before runWithScene %s", __FUNCTION__);
+    
+    
+    //run the scene and pause the emitter for a user to blow
+    if(![director runningScene])
+    {
+        
+        [director runWithScene: [EmitterLayer  scene]];
+        //[director pause];
+        NSLog(@"after runWithScene %s", __FUNCTION__);
+        
+        
+    }
+    NSLog(@"%s", __FUNCTION__);
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
 
@@ -70,7 +111,7 @@
 		NSLog(@"No recorder");
 }
 
-
+#pragma mark - end the scene if the view is unloaded
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"%s", __FUNCTION__);
@@ -80,21 +121,18 @@
 
 
 
-//navigation bar height
+#pragma mark - navigation bar height
 #define NAVBARHEIGHT 67.00
 
-- (IBAction)shot:(id)sender {
+#pragma mark - SNAPSHOT
+
+- (void)shot:(id)sender {
     AudioServicesPlaySystemSound(0x450);
     
     UIImage * snapShot;
 
-    if((UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad))
-    {
-       snapShot = [Snapshot takeAsUIImage];
-    }
-    else{
     snapShot = [Snapshot takeAsUIImage];
-    }
+
     //save the snapshot image to the store
     [[BBFImageStore sharedStore]setImage:snapShot forKey:@"snapshot"];
     
@@ -102,12 +140,8 @@
 
 
 
--(IBAction)cancelSelection:(UIStoryboardSegue *)segue
-{
-    
-}
 
-
+#pragma mark - OPEN MAIL COMPOSER
 - (IBAction)openMail:(id)sender{
     if ([MFMailComposeViewController canSendMail]) {
         [self shot:sender];
@@ -124,9 +158,11 @@
     }
 }
 
-//COCOS DIRECTOR INIT
+#pragma mark - COCOS DIRECTOR INIT
 -(void)viewDidAppear:(BOOL)animated
 {
+    if(!director)
+    {
     director = [CCDirector sharedDirector];
     
     if([director isViewLoaded] == NO)
@@ -135,7 +171,7 @@
         CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
                                        pixelFormat:kEAGLColorFormatRGB565
                                        depthFormat:0
-                                preserveBackbuffer:YES
+                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
                                         sharegroup:nil
                                      multiSampling:NO
                                    numberOfSamples:0];
@@ -148,8 +184,10 @@
     
     director.delegate = self;
     
-    [self addChildViewController:director];
+    NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
+
     
+    [self addChildViewController:director];
     [self.view addSubview:director.view];
     [self.view sendSubviewToBack:director.view];
     
@@ -157,17 +195,22 @@
     NSLog(@"before runWithScene %s", __FUNCTION__);
     
 
+    //run the scene and pause the emitter for a user to blow
     if(![director runningScene])
     {
+        
         [director runWithScene: [EmitterLayer  scene]];
         [director pause];
+        NSLog(@"after runWithScene %s", __FUNCTION__);
+
         
     }
     NSLog(@"%s", __FUNCTION__);
+    }
 }
 
 
-//MAIL COMPOSE DELEGATE
+#pragma mark - MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"sent!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -196,7 +239,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-
+#pragma mark - Twitter
 - (IBAction)tweetPhoto:(id)sender {
     
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
@@ -208,18 +251,23 @@
         [tweet addImage:[[BBFImageStore sharedStore]imageForKey:@"snapshot"]];
         [self presentViewController:tweet animated:YES completion:nil];
          }
+    else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the Twitter" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
   
 }
 
-
+#pragma mark - Try blow
 - (IBAction)blowAgain:(id)sender {
-    AudioServicesPlaySystemSound(1057);
+   AudioServicesPlaySystemSound(1057);
 
     isBlowed = NO;
 }
 
 
-//SOUND LEVEL DETECTOR TO TRIGGER THE PARTICLES
+#pragma mark SOUND LEVEL DETECTOR TO TRIGGER THE PARTICLES
 
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
@@ -238,13 +286,21 @@
     
 }
 
+#pragma mark Particle Pause
+
 -(void)particleTimerCallback:(NSTimer *)timer
 {
     [director pause];
     NSLog(@"%s", __FUNCTION__);
 }
 
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 
+#pragma mark
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
