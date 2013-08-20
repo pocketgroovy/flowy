@@ -37,8 +37,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    btnReady.hidden = YES;
-    
+
     //wallpaper
     [imageBackGround setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"washi-01-swans-640.png"]]];
     
@@ -58,14 +57,25 @@
     
     //go button
     UIImage * readyImage = [UIImage imageNamed:@"go.png"];
-    CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - 75), 400, 150, 150);
+    
+    //for iphone display size
+    float btnYOrigin = resultView.frame.origin.y + resultView.bounds.size.height;
+    NSLog(@"%f btnY %s", btnYOrigin, __FUNCTION__);
+
+    //for iPad Landscape display
+    if(btnYOrigin +imageBackGround.bounds.size.width/4 > imageBackGround.bounds.size.height - btnColor.bounds.size.height + 20)
+    {
+        btnYOrigin = resultView.frame.origin.y + 80;
+        NSLog(@"ipad %s", __FUNCTION__);
+    }
+    
+    CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - (imageBackGround.bounds.size.width/4)/2), btnYOrigin, imageBackGround.bounds.size.width/4, imageBackGround.bounds.size.width/4);
     btnReady = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnReady setImage:readyImage forState:UIControlStateNormal];
     [btnReady setFrame:btnFrame];
     [btnReady addTarget:self action:@selector(flowy:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnReady];
-
-
+    btnReady.hidden = YES;
 }
 
 -(void)flowy:(id)sender

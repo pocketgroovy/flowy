@@ -213,11 +213,11 @@
 #pragma mark - MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"sent!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"saved!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"failed!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"not sent!" message:@"Your email has not been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert5 = [[UIAlertView alloc]initWithTitle:@"not sent!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"SENT!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"SAVED!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"FAILED!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"Your email has not been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert5 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
             [alert5 show];
@@ -242,7 +242,36 @@
 #pragma mark - Twitter
 - (IBAction)tweetPhoto:(id)sender {
     
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+//    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])  //for iOS5.1 and earlier
+//    {
+//        if(![TWTweetComposeViewController canSendTweet])
+//        {
+//            NSLog(@"Can't tweet");
+//            twitBarItem.enabled = NO;
+//        }
+//    
+//        TWTweetComposeViewController * tweetVC = [[TWTweetComposeViewController alloc]init];
+//        [tweetVC setCompletionHandler:^(TWTweetComposeViewControllerResult result){
+//            switch (result) {
+//                case TWTweetComposeViewControllerResultCancelled:
+//                    NSLog(@"Tweet cancelled");
+//                    
+//                    break;
+//                    
+//                case TWTweetComposeViewControllerResultDone:
+//                    NSLog(@"Tweet done");
+//                    
+//                default:
+//                    break;
+//            }
+//            
+//            [self dismissModalViewControllerAnimated:YES];
+//        }];
+//        
+//        [self presentModalViewController:tweetVC animated:YES];
+//    
+//    }
+ if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
     
     SLComposeViewController * tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
