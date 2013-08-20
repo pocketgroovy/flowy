@@ -12,6 +12,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "EmitterLayer.h"
 #import "Snapshot.h"
+#import <Twitter/Twitter.h>
+#import <Social/Social.h>
 
 @interface FlowingController ()
 @property(nonatomic)BOOL isBlowed;
@@ -78,7 +80,7 @@
     {
         
         [director runWithScene: [EmitterLayer  scene]];
-        //[director pause];
+        [director pause];
         NSLog(@"after runWithScene %s", __FUNCTION__);
         
         
@@ -242,49 +244,58 @@
 #pragma mark - Twitter
 - (IBAction)tweetPhoto:(id)sender {
     
-//    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])  //for iOS5.1 and earlier
-//    {
-//        if(![TWTweetComposeViewController canSendTweet])
-//        {
-//            NSLog(@"Can't tweet");
-//            twitBarItem.enabled = NO;
-//        }
-//    
-//        TWTweetComposeViewController * tweetVC = [[TWTweetComposeViewController alloc]init];
-//        [tweetVC setCompletionHandler:^(TWTweetComposeViewControllerResult result){
-//            switch (result) {
-//                case TWTweetComposeViewControllerResultCancelled:
-//                    NSLog(@"Tweet cancelled");
-//                    
-//                    break;
-//                    
-//                case TWTweetComposeViewControllerResultDone:
-//                    NSLog(@"Tweet done");
-//                    
-//                default:
-//                    break;
-//            }
-//            
-//            [self dismissModalViewControllerAnimated:YES];
-//        }];
-//        
-//        [self presentModalViewController:tweetVC animated:YES];
-//    
-//    }
- if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+  
+    if(NSClassFromString(@"SLComposeViewController")) // check to see Social framework is applied
     {
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        {
+        
+            SLComposeViewController * tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [self shot:sender];
+        
+            [tweet addImage:[[BBFImageStore sharedStore]imageForKey:@"snapshot"]];
+            [self presentViewController:tweet animated:YES completion:nil];
+        }
+ 
     
-    SLComposeViewController * tweet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    }
+    else if(NSClassFromString(@"TWTweetComposeViewController"))  //for iOS5.1 and earlier
+    {
+        if(![TWTweetComposeViewController canSendTweet])
+        {
+            NSLog(@"Can't tweet");
+            twitBarItem.enabled = NO;
+        }
+    
+        TWTweetComposeViewController * tweetVC = [[TWTweetComposeViewController alloc]init];
         [self shot:sender];
 
-        [tweet addImage:[[BBFImageStore sharedStore]imageForKey:@"snapshot"]];
-        [self presentViewController:tweet animated:YES completion:nil];
-         }
+        [tweetVC addImage:[[BBFImageStore sharedStore]imageForKey:@"snapshot"]];
+
+        [tweetVC setCompletionHandler:^(TWTweetComposeViewControllerResult result){
+            switch (result) {
+                case TWTweetComposeViewControllerResultCancelled:
+                    NSLog(@"Tweet cancelled");
+
+                    break;
+                    
+                case TWTweetComposeViewControllerResultDone:
+                    NSLog(@"Tweet done");
+                    
+                default:
+                    break;
+            }
+            
+            [self dismissModalViewControllerAnimated:YES];
+        }];
+        
+        [self presentModalViewController:tweetVC animated:YES];
+    
+    }
     else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the Twitter" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the Twitter" delegate:nil cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
         [alert show];
     }
-    
   
 }
 

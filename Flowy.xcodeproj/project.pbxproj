@@ -179,6 +179,7 @@
 		789366AA17568374009779D8 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366A817568374009779D8 /* cancel.png */; };
 		789366AC175687ED009779D8 /* cupcake_short.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366AB175687ED009779D8 /* cupcake_short.png */; };
 		789366AE17568830009779D8 /* cupcake.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366AD17568830009779D8 /* cupcake.png */; };
+		7899859D17C4162D005EA369 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7899859C17C4162D005EA369 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78A183E3176B837D00F670AF /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183E2176B837D00F670AF /* Default-Portrait~ipad.png */; };
 		78A183E5176B838800F670AF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183E4176B838800F670AF /* Default-Landscape~ipad.png */; };
 		78A183E7176B838F00F670AF /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A183E6176B838F00F670AF /* Default-Portrait@2x~ipad.png */; };
@@ -516,6 +517,7 @@
 		789366A817568374009779D8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		789366AB175687ED009779D8 /* cupcake_short.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupcake_short.png; sourceTree = "<group>"; };
 		789366AD17568830009779D8 /* cupcake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupcake.png; sourceTree = "<group>"; };
+		7899859C17C4162D005EA369 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		78A183E2176B837D00F670AF /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		78A183E4176B838800F670AF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		78A183E6176B838F00F670AF /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7899859D17C4162D005EA369 /* Twitter.framework in Frameworks */,
 				78330F4517B1BB9C000C55F9 /* libz.dylib in Frameworks */,
 				78330F4217B1BA67000C55F9 /* OpenAL.framework in Frameworks */,
 				78330F4317B1BA67000C55F9 /* OpenGLES.framework in Frameworks */,
@@ -952,6 +955,7 @@
 			isa = PBXGroup;
 			children = (
 				78330F4417B1BB9C000C55F9 /* libz.dylib */,
+				7899859C17C4162D005EA369 /* Twitter.framework */,
 				78330F4017B1BA67000C55F9 /* OpenAL.framework */,
 				78330F4117B1BA67000C55F9 /* OpenGLES.framework */,
 				78330F3E17B1BA54000C55F9 /* GameKit.framework */,
@@ -1345,7 +1349,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 			};
 			name = Debug;
 		};
@@ -1369,7 +1373,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
