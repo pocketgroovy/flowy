@@ -60,15 +60,14 @@
     
     //for iphone display size
     float btnYOrigin = resultView.frame.origin.y + resultView.bounds.size.height;
-    NSLog(@"%f btnY %s", btnYOrigin, __FUNCTION__);
 
     //for iPad Landscape display
     if(btnYOrigin +imageBackGround.bounds.size.width/4 > imageBackGround.bounds.size.height - btnColor.bounds.size.height + 20)
     {
         btnYOrigin = resultView.frame.origin.y + 80;
-        NSLog(@"ipad %s", __FUNCTION__);
     }
     
+    //ready go button
     CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - (imageBackGround.bounds.size.width/4)/2), btnYOrigin, imageBackGround.bounds.size.width/4, imageBackGround.bounds.size.width/4);
     btnReady = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnReady setImage:readyImage forState:UIControlStateNormal];
@@ -81,7 +80,6 @@
 -(void)flowy:(id)sender
 {
     [self performSegueWithIdentifier:@"flowing" sender:sender];
-    NSLog(@"%s", __FUNCTION__);
 }
 
 
@@ -93,16 +91,13 @@
         if([segue.destinationViewController isKindOfClass:[FlowingController class]])
         {
             flowVC =(FlowingController*) segue.destinationViewController;
-            NSLog(@"%s - Flowing Segue", __FUNCTION__);
         }
     }
     if([segue.identifier isEqualToString:@"shapeModal"]){
         if([segue.destinationViewController isKindOfClass:[ShapeViewController class]])
         {
             shapeVC =(ShapeViewController*) segue.destinationViewController;
-            shapeVC.shapeDelegate = self;
-            NSLog(@"%s - Shape Segue", __FUNCTION__);
-            
+            shapeVC.shapeDelegate = self;            
         }
     }
     
@@ -110,17 +105,13 @@
         if([segue.destinationViewController isKindOfClass:[ColorViewController class]])
         {
             colorVC =(ColorViewController*) segue.destinationViewController;
-            colorVC.colorDelegate = self;
-            NSLog(@"%s - Color Segue", __FUNCTION__);
-            
+            colorVC.colorDelegate = self;            
         }
     }
-    
-    
 }
 
 
-
+// show the ready button when both shape and color are selected
 -(void)viewDidAppear:(BOOL)animated
 {
     if (myShape && myColor) {
@@ -132,16 +123,10 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated
-{
-    
-    NSLog(@"%s", __FUNCTION__);
-}
-
-
 #pragma mark - COLORVIEWCONTROLLER DELEGATE
 -(void)colorViewController:(ColorViewController *)controller didFinishSelecting:(UIColor *)color
 {
+    NSLog(@"%@, %s", color, __FUNCTION__);
     myColor = color;
     [resultView setImage:nil];
     if(myShape)

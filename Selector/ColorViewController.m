@@ -45,29 +45,55 @@
 -(void) colorList
 {
     colorArray = [[NSMutableArray alloc]init];
+    float redColor = 1.0f;
+    float greenColor = 1.0f;
+    float blueColor = 1.0f;
 
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:1.0 green:0.0 blue:0.0 alpha:1]];
-    [colorArray addObject:colorFrame];
 
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:1.0 green:0.0 blue:1.0 alpha:1]];
+    for (int i = 0; i < 3; i++ )
+    {
+    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
+    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:redColor green:0.0 blue:0.0 alpha:1]];
     [colorArray addObject:colorFrame];
+        redColor -= 0.3;
+    }
+    greenColor = 0.3f;
+    redColor = 1.0f;
+
+    for (int i = 0; i < 3; i++ )
+    {   
+        colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
+        [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:redColor green:greenColor blue:0.0 alpha:1]];
+        [colorArray addObject:colorFrame];
+        redColor -= 0.3f;
+        greenColor+=0.3f;
+    }
     
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:0.0 green:1.0 blue:0.0 alpha:1]];
-    [colorArray addObject:colorFrame];
+    blueColor = 0.3f;
+    greenColor = 1.0f;
+    redColor = 0.0f;
     
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:0.0 green:1.0 blue:1.0 alpha:1]];
-    [colorArray addObject:colorFrame];
+    for (int i = 0; i < 3; i++ )
+    {
+        colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
+        [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:redColor green:greenColor blue:blueColor alpha:1]];
+        [colorArray addObject:colorFrame];
+        greenColor-=0.3f;
+        blueColor += 0.3f;
+    }
     
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:0.0 green:0.0 blue:1.0 alpha:1]];
-    [colorArray addObject:colorFrame];
+    blueColor = 1.0f;
+    for (int i = 0; i < 3; i++ )
+    {
+        colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
+        [colorFrame setBackgroundColor:[[UIColor alloc]initWithRed:0.0 green:0.0 blue:blueColor alpha:1]];
+        [colorArray addObject:colorFrame];
+        blueColor -= 0.3;
+    }
+
     
-    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setText:@"Omakase!"];
+    colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
+    [colorFrame setText:@"Only the Shape!"];
 
     colorFrame.textAlignment = NSTextAlignmentCenter;
     [colorFrame setTextColor:[UIColor brownColor]];

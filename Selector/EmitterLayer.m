@@ -15,7 +15,7 @@
 @interface EmitterLayer()
 {
     CCSprite * bg;
-    
+    UIImageView * imageView;
 }
 
 
@@ -24,7 +24,10 @@
 @implementation EmitterLayer
 @synthesize emitter;
 
-#define NUMOFPARTICLES 130
+
+//change size and a number of particle for iphone and iPad
+#define PARTICLE_SIZE (isIphone ? 8.0f:12.0f)
+#define NUMBER_OF_PARTICLE (isIphone ? 100:180)
 
 +(CCScene *) scene
 {
@@ -37,7 +40,6 @@
 	// add layer as a child to scene
 	[scene addChild: layer];
     
-    NSLog(@"%s", __FUNCTION__);
 	// return the scene
 	return scene;
 }
@@ -51,7 +53,6 @@
         if(picSelected)
         {
             bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];
-            NSLog(@"%@, picselected %s", picSelected, __FUNCTION__);
 
             if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
             {
@@ -64,25 +65,41 @@
 
             }
             [self addChild:bg z:0];
+            
+            //CCNode scaling to fit the background size to the view
             [bg scaleToSize:windowSize fitType:CCScaleFitAspectFit];
         }
         
-        emitter = [[CCParticleFireworks alloc]initWithTotalParticles:NUMOFPARTICLES];
+        emitter = [[CCParticleFireworks alloc]initWithTotalParticles:NUMBER_OF_PARTICLE];
         
         UIImage * myShape = [[BBFImageStore sharedStore]imageForKey:@"myColoredShape"];
         
         emitter.texture = [[CCTextureCache sharedTextureCache]addCGImage:myShape.CGImage forKey:@"myShape"];
-        emitter.scale = 10.0f;
-        emitter.position = ccp(320, 0);
-        emitter.speed = 100;
+        
+        emitter.scale = PARTICLE_SIZE;
+        emitter.position = ccp(windowSize.width/2, 0);
+        emitter.speed = 50;
         emitter.speedVar = 10;
         emitter.life = 3;
+        emitter.startColorVar = ccc4f(0.3, 0.3, 0.3, 1);
+        if(windowSize.width > 320) //iPad gravity
+        {
+        emitter.gravity = ccp(0,-20);
+        }
+        else    //iPhone gravity
+        {
+        emitter.gravity = ccp(0,-30);
+        }
         [self addChild:emitter z:1];
-        NSLog(@"%s", __FUNCTION__);
-        
-        
     }
+    
 	return self;
+}
+
+-(id) initWithImageView:(UIImageView*)myImageView
+{
+    imageView = myImageView;
+    return [self init];
 }
 
 

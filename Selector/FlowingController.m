@@ -27,19 +27,12 @@
 @synthesize twitBarItem;
 @synthesize director;
 
-#define PARTICLE_SIZE 40
-#define NUMBER_OF_PARTICLE 50
 
 
 - (void)viewDidLoad
 {
-    NSLog(@"%s in top", __FUNCTION__);
-
-
     [super viewDidLoad];
-    
-    
-    
+        
    //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
         
@@ -51,7 +44,7 @@
         CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
                                        pixelFormat:kEAGLColorFormatRGB565
                                        depthFormat:0
-                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
+                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to place the scene in the snapshot
                                         sharegroup:nil
                                      multiSampling:NO
                                    numberOfSamples:0];
@@ -64,32 +57,21 @@
     
     director.delegate = self;
     
-    NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
-    
-    
     [self addChildViewController:director];
     [self.view addSubview:director.view];
     [self.view sendSubviewToBack:director.view];
     
-    [director didMoveToParentViewController:self];
-    NSLog(@"before runWithScene %s", __FUNCTION__);
-    
+    [director didMoveToParentViewController:self];    
     
     //run the scene and pause the emitter for a user to blow
     if(![director runningScene])
     {
-        
         [director runWithScene: [EmitterLayer  scene]];
         [director pause];
-        NSLog(@"after runWithScene %s", __FUNCTION__);
-        
-        
     }
-    NSLog(@"%s", __FUNCTION__);
+    
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
-
-    
     NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
 	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -111,13 +93,13 @@
         
 	} else
 		NSLog(@"No recorder");
+    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+
 }
 
 #pragma mark - end the scene if the view is unloaded
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"%s", __FUNCTION__);
-
     [director end];
     director = nil;
     [particleTimer invalidate];
@@ -188,6 +170,8 @@
             break;
     }
     
+    
+    //recover the selected picture after the email composer returns
     if(!director)
     {
         director = [CCDirector sharedDirector];
@@ -205,34 +189,22 @@
             director.view = glView;
             
             [director setAnimationInterval:1.0f/60.0f];
-            [director enableRetinaDisplay:YES];
-            NSLog(@"isViewLoaded %s", __FUNCTION__);
-            
+            [director enableRetinaDisplay:YES];            
         }
         director.delegate = self;
-        
-        NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
-        
+                
         [self addChildViewController:director];
         [self.view addSubview:director.view];
         [self.view sendSubviewToBack:director.view];
         
         [director didMoveToParentViewController:self];
-        NSLog(@"before runWithScene %s", __FUNCTION__);
-        
-        
         
         if(![director runningScene])
         {
-            
             [director runWithScene: [EmitterLayer  scene]];
             [director pause];
-            NSLog(@"after runWithScene %s", __FUNCTION__);
-            
-            
         }
     }
-
 
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -327,7 +299,6 @@
 -(void)particleTimerCallback:(NSTimer *)timer
 {
     [director pause];
-    NSLog(@"%s", __FUNCTION__);
 }
 
 #pragma mark - For iOS5 and older orientation in iPAD
