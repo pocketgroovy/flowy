@@ -119,6 +119,8 @@
     NSLog(@"%s", __FUNCTION__);
 
     [director end];
+    director = nil;
+    [particleTimer invalidate];
 }
 
 
@@ -160,58 +162,6 @@
     }
 }
 
-#pragma mark - COCOS DIRECTOR INIT
--(void)viewDidAppear:(BOOL)animated
-{
-    if(!director)
-    {
-    director = [CCDirector sharedDirector];
-    
-    if([director isViewLoaded] == NO)
-    {
-        
-        CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
-                                       pixelFormat:kEAGLColorFormatRGB565
-                                       depthFormat:0
-                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
-                                        sharegroup:nil
-                                     multiSampling:NO
-                                   numberOfSamples:0];
-        
-        director.view = glView;
-        
-        [director setAnimationInterval:1.0f/60.0f];
-        [director enableRetinaDisplay:YES];
-    }
-    
-    director.delegate = self;
-    
-    NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
-
-    
-    [self addChildViewController:director];
-    [self.view addSubview:director.view];
-    [self.view sendSubviewToBack:director.view];
-    
-    [director didMoveToParentViewController:self];
-    NSLog(@"before runWithScene %s", __FUNCTION__);
-    
-
-    //run the scene and pause the emitter for a user to blow
-    if(![director runningScene])
-    {
-        
-        [director runWithScene: [EmitterLayer  scene]];
-        [director pause];
-        NSLog(@"after runWithScene %s", __FUNCTION__);
-
-        
-    }
-    NSLog(@"%s", __FUNCTION__);
-    }
-}
-
-
 #pragma mark - MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -237,6 +187,52 @@
             [alert4 show];
             break;
     }
+    
+    if(!director)
+    {
+        director = [CCDirector sharedDirector];
+        if([director isViewLoaded] == NO)
+        {
+            
+            CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
+                                           pixelFormat:kEAGLColorFormatRGB565
+                                           depthFormat:0
+                                    preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
+                                            sharegroup:nil
+                                         multiSampling:NO
+                                       numberOfSamples:0];
+            
+            director.view = glView;
+            
+            [director setAnimationInterval:1.0f/60.0f];
+            [director enableRetinaDisplay:YES];
+            NSLog(@"isViewLoaded %s", __FUNCTION__);
+            
+        }
+        director.delegate = self;
+        
+        NSLog(@"%@, --%s", [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"], __FUNCTION__);
+        
+        [self addChildViewController:director];
+        [self.view addSubview:director.view];
+        [self.view sendSubviewToBack:director.view];
+        
+        [director didMoveToParentViewController:self];
+        NSLog(@"before runWithScene %s", __FUNCTION__);
+        
+        
+        
+        if(![director runningScene])
+        {
+            
+            [director runWithScene: [EmitterLayer  scene]];
+            [director pause];
+            NSLog(@"after runWithScene %s", __FUNCTION__);
+            
+            
+        }
+    }
+
 
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

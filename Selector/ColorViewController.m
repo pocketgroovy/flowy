@@ -67,7 +67,7 @@
     [colorArray addObject:colorFrame];
     
     colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-    [colorFrame setText:@"Various"];
+    [colorFrame setText:@"Omakase!"];
 
     colorFrame.textAlignment = NSTextAlignmentCenter;
     [colorFrame setTextColor:[UIColor brownColor]];

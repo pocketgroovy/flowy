@@ -59,9 +59,12 @@
     
     imageArray = [[NSMutableArray alloc]init];
         
-    imageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"star.png"]];
-    imageView2 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake.png"]];
-    imageView3 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake3.png"]];
+    imageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"smileyStar.png"]];
+    imageView.frame = CGRectMake(0, 0, 100, 100);
+    imageView2 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"diamond.png"]];
+    imageView2.frame = CGRectMake(0, 0, 100, 100);
+    imageView3 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"egg.png"]];
+    imageView3.frame = CGRectMake(0, 0, 100, 100);
     imageView4 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake2.png"]];
     imageView5 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circle.png"]];
     wallpaper =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candies.png"]];
@@ -141,9 +144,8 @@
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
     
-    CGSize mSize = [imageView sizeThatFits:imageView.bounds.size];
-    
-    return mSize.height + MARGIN;
+  
+    return 100.0f +MARGIN;
 }
 
 

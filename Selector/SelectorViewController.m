@@ -131,34 +131,6 @@
 
 }
 
-//-(IBAction)cancelSelection:(UIStoryboardSegue *)segue
-//{
-//    AudioServicesPlaySystemSound(0x450);
-//
-//}
-//
-//-(IBAction)confirmedShape:(UIStoryboardSegue *)segue
-//{
-//    AudioServicesPlaySystemSound(0x450);
-//
-//    shape = segue.sourceViewController;
-//    if(shape)
-//    [resultView setImage:[self colorShape:colorView.selectedColor]];
-//}
-//
-//
-//-(IBAction)confirmedColor:(UIStoryboardSegue *) segue
-//{
-//    AudioServicesPlaySystemSound(0x450);
-//
-//    colorView = segue.sourceViewController;
-//    if(shape)
-//    {
-//    [resultView setImage:nil];
-//    [resultView setImage:[self colorShape:colorView.selectedColor]];
-//    }
-//    
-//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
