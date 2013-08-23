@@ -307,6 +307,18 @@
     return YES;
 }
 
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+
 #pragma mark
 - (void)didReceiveMemoryWarning
 {

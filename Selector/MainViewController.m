@@ -102,45 +102,30 @@
 }
 
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//        AudioServicesPlaySystemSound(0x450);
-//    
-//    if([segue.identifier isEqualToString:@"SelectImage"]){
-//        
-//        if([segue.destinationViewController isKindOfClass:[SelectorViewController class]])
-//        {
-//        }
-//    }
-//    if([segue.identifier isEqualToString:@"SelectPhoto"]){
-//        
-//        if([segue.destinationViewController isKindOfClass:[BBFViewController class]])
-//        {
-//            [segue.destinationViewController setDelegate:self];
-//
-//        }
-//    }
-//}
-
-
-
-//-(IBAction)confirmedPhoto:(UIStoryboardSegue *)segue
-//{
-//    AudioServicesPlaySystemSound(0x450);
-//
-//    picVC = segue.sourceViewController;
-//    if(picVC)
-//    {
-//        UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-//         [photos setImage:picSelected forState:UIControlStateNormal];
-//    }
-//}
-
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    NSLog(@"%s", __FUNCTION__);
+
     return YES;
 }
+
+#pragma mark - For iOS6
+-(BOOL)shouldAutorotate
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    return NO;
+}
+
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 
 #pragma mark
 

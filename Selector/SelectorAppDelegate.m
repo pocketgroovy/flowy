@@ -43,12 +43,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//for iOS6 rotation bug
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         return  UIInterfaceOrientationMaskAll;
     else
-        return UIInterfaceOrientationMaskAllButUpsideDown;
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

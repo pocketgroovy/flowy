@@ -130,8 +130,22 @@
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    NSLog(@"%s", __FUNCTION__);
+
     return YES;
 }
+-(BOOL)shouldAutorotate
+{    NSLog(@"%s", __FUNCTION__);
+
+    return NO;
+}
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{    NSLog(@"%s", __FUNCTION__);
+
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 
 #pragma mark 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

@@ -183,8 +183,18 @@
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES;
+    return YES;//needs to be YES for iOS5 and 5.1 to stay in Landscape
 }
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 
 #pragma mark
 

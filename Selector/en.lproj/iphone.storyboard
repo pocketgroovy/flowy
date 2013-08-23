@@ -329,6 +329,54 @@
             <point key="canvasLocation" x="-1138" y="-713"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BBFViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BBFViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="barButtonOK" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="ColorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="FlowingController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="instruction" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photos" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stars" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SelectorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectorViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="btnColor" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnShape" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageBackGround" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="resultView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ShapeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShapeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="go" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wallpaper" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

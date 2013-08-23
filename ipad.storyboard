@@ -291,10 +291,10 @@
             </objects>
             <point key="canvasLocation" x="-1089" y="-819"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Flowy Split View Controller-->
         <scene sceneID="YsN-NW-iX3">
             <objects>
-                <splitViewController id="1n8-eh-jUQ" sceneMemberID="viewController">
+                <splitViewController id="1n8-eh-jUQ" customClass="FlowySplitViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -412,8 +412,6 @@
         <class className="ColorViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelled:"/>
-                <relationship kind="action" name="colorSelected:"/>
                 <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="go" candidateClass="UIButton"/>
             </relationships>
@@ -423,6 +421,9 @@
             <relationships>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
+        </class>
+        <class className="FlowySplitViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowySplitViewController.h"/>
         </class>
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
