@@ -49,7 +49,8 @@
     if(self=[super initWithColor:ccc4(255, 255, 255, 255)])  {
         
         UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-        CGSize  windowSize =[[CCDirector sharedDirector] winSize];;
+        CGSize  windowSize =[[CCDirector sharedDirector] winSize];
+        
         if(picSelected)
         {
             bg = [CCSprite spriteWithCGImage:picSelected.CGImage key:@"picSelected"];

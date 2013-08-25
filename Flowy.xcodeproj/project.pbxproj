@@ -996,13 +996,13 @@
 				788DF9FE1796EF2E00E106DF /* controller */,
 				788DF9FD1796EF1B00E106DF /* model */,
 				78A183F4176B857E00F670AF /* ipad.storyboard */,
+				78346F4417279551006B22BA /* iphone.storyboard */,
 				78254B6F17C7C6280090B511 /* FlowySplitViewController.h */,
 				78254B7017C7C6290090B511 /* FlowySplitViewController.m */,
 				78254B6917C7BC620090B511 /* MainNavViewController.h */,
 				78254B6A17C7BC620090B511 /* MainNavViewController.m */,
 				78254B6C17C7BD2A0090B511 /* DetailNavViewController.h */,
 				78254B6D17C7BD2B0090B511 /* DetailNavViewController.m */,
-				78346F4417279551006B22BA /* iphone.storyboard */,
 				78346F3B17279550006B22BA /* SelectorAppDelegate.h */,
 				78346F3C17279550006B22BA /* SelectorAppDelegate.m */,
 				78330DC317B1B9F0000C55F9 /* libs */,
@@ -1412,6 +1412,7 @@
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Selector/Flowy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Flowy;
 				TARGETED_DEVICE_FAMILY = "1,2";

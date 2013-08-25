@@ -12,53 +12,25 @@
 
 #pragma mark - Snapshot in UIImage
 
-+(UIImage*)takeAsUIImage
+
++(UIImage*)takeAsUIImage:(CCNode*)startNode
 {
     CCDirector* director = [CCDirector sharedDirector];
     CGSize size = [director winSize];
-    //Create buffer for pixels
-    GLuint bufferLength = size.width * size.height * 4;
-    GLubyte* buffer = (GLubyte*)malloc(bufferLength);
-    //Read Pixels from OpenGL
-    glReadPixels(0, 0, size.width, size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-    //Make data provider with data.
-    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, bufferLength, NULL);
-    //Configure image
-    int bitsPerComponent = 8;
-    int bitsPerPixel = 32;
-    int bytesPerRow = 4 * size.width;
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
-    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
-    CGImageRef iref = CGImageCreate(size.width, size.height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, YES, renderingIntent);
+    CCRenderTexture * rtx = [CCRenderTexture renderTextureWithWidth:size.width height:size.height];
     
-    uint32_t*pixels = (uint32_t*)malloc(bufferLength);
-    CGContextRef context = CGBitmapContextCreate(pixels, [director winSize].width, [director winSize].height, 8, [director winSize].width * 4, CGImageGetColorSpace(iref), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    [rtx begin];
+    [startNode visit];
+    [rtx end];
     
-    CGContextTranslateCTM(context, 0, size.height);
-    CGContextScaleCTM(context, 1.0f, -1.0f);
-    
- 
-    
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, size.width, size.height), iref);
-    UIImage *outputImage = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
-    
-    
-    
-    //Dealloc
-    CGDataProviderRelease(provider);
-    CGImageRelease(iref);
-    CGContextRelease(context);
-    free(buffer);
-    free(pixels);
-    
-    return outputImage;
+    return [rtx getUIImage];
 }
 
+
 #pragma mark - Snapshot in PNG
-+(NSData *)takeAsPNG
++(NSData *)takeAsPNG:(CCNode*)statrtNode
 {
-    NSData * ouputImage = UIImagePNGRepresentation([Snapshot takeAsUIImage]);
+    NSData * ouputImage = UIImagePNGRepresentation([Snapshot takeAsUIImage:statrtNode]);
     
     return ouputImage;
 }

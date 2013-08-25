@@ -48,7 +48,9 @@
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
+		<string>microphone</string>
 		<string>armv7</string>
+		<string>still-camera</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

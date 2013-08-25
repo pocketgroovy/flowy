@@ -10,8 +10,8 @@
 #import "cocos2d.h"
 @interface Snapshot : UIView
 
-+(UIImage*)takeAsUIImage;
-+(NSData*)takeAsPNG;
++(UIImage*)takeAsUIImage:(CCNode*)startNode;
++(NSData*)takeAsPNG:(CCNode*)statrtNode;
 
 
 @end

@@ -117,7 +117,10 @@
     
     UIImage * snapShot;
 
-    snapShot = [Snapshot takeAsUIImage];
+    CCScene * scene = [[CCDirector sharedDirector]runningScene];
+    CCNode * node = [scene.children objectAtIndex:0];
+    
+    snapShot = [Snapshot takeAsUIImage:node];
 
     //save the snapshot image to the store
     [[BBFImageStore sharedStore]setImage:snapShot forKey:@"snapshot"];
@@ -129,12 +132,14 @@
 
 #pragma mark - OPEN MAIL COMPOSER
 - (IBAction)openMail:(id)sender{
+    CCScene * scene = [[CCDirector sharedDirector]runningScene];
+    CCNode * node = [scene.children objectAtIndex:0];
+    
     if ([MFMailComposeViewController canSendMail]) {
-        [self shot:sender];
         MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
 
-        [mailer addAttachmentData:[Snapshot takeAsPNG] mimeType:@"image/png" fileName:@"flowyImage"];
+        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"flowyImage"];
         
         [self presentViewController:mailer animated:YES completion:NULL];
     }
@@ -150,7 +155,6 @@
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"SENT!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"SAVED!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"FAILED!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"Your email has not been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert5 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
@@ -166,7 +170,7 @@
             [alert3 show];
             break;
         default:
-            [alert4 show];
+            [alert5 show];
             break;
     }
     
@@ -181,7 +185,7 @@
             CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
                                            pixelFormat:kEAGLColorFormatRGB565
                                            depthFormat:0
-                                    preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be in the snapshot
+                                    preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to be taken for the snapshot
                                             sharegroup:nil
                                          multiSampling:NO
                                        numberOfSamples:0];
@@ -213,7 +217,7 @@
 - (IBAction)tweetPhoto:(id)sender {
     
   
-    if(NSClassFromString(@"SLComposeViewController")) // check to see Social framework is applied
+    if(NSClassFromString(@"SLComposeViewController")) // check to see Social framework is available
     {
         if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
         {
@@ -307,6 +311,7 @@
     return YES;
 }
 
+#pragma mark - For iOS6
 -(BOOL)shouldAutorotate
 {
     return NO;

@@ -77,11 +77,14 @@
     btnReady.hidden = YES;
 }
 
+
+#pragma mark - segue to Flowing Controller
 -(void)flowy:(id)sender
 {
     [self performSegueWithIdentifier:@"flowing" sender:sender];
 }
 
+#pragma mark - prepareForSegue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -111,7 +114,7 @@
 }
 
 
-// show the ready button when both shape and color are selected
+#pragma mark - show the ready button when both shape and color are selected
 -(void)viewDidAppear:(BOOL)animated
 {
     if (myShape && myColor) {
@@ -185,6 +188,8 @@
     NSLog(@"%s", __FUNCTION__);
     return YES;
 }
+
+#pragma mark - For iOS6
 -(BOOL)shouldAutorotate
 {
     return NO;

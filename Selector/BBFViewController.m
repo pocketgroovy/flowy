@@ -53,6 +53,9 @@
     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum sender:sender];
 }
 
+
+#pragma mark - Presenting Camera
+
 -(void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType sender:(UIBarButtonItem *)sender
 {
     if(!self.imagePickerPopover &&[UIImagePickerController isSourceTypeAvailable:sourceType])
@@ -80,6 +83,7 @@
     }
 }
 
+#pragma mark - UIPopoverControllerDelegate
 
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
@@ -134,11 +138,15 @@
 
     return YES;
 }
+
+#pragma mark - For iOS6
+
 -(BOOL)shouldAutorotate
 {    NSLog(@"%s", __FUNCTION__);
 
     return NO;
 }
+
 #pragma mark - For iOS6 bug
 -(NSUInteger)supportedInterfaceOrientations
 {    NSLog(@"%s", __FUNCTION__);

@@ -8,15 +8,14 @@
 
 #import "CCNode+Scaling.h"
 
-
 @implementation  CCNode (Scaling)
+
 -(void)scaleToSize:(CGSize)size fitType:(CCScaleFit)fitType
 {
     CGSize targetSize =size;
     CGSize mySize = [self contentSize];
-    
-    float xScale = [self scaleX];
-    float yScale = [self scaleY];
+    float xScale;
+    float yScale;
  
     switch (fitType) {
         case CCScaleFitFull:

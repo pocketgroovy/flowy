@@ -10,7 +10,6 @@
 #import "UIColor+JP.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "SelectorViewController.h"
 
 
 
@@ -124,6 +123,8 @@
 
 }
 
+
+#pragma mark - UIPickerViewDelegate
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -140,11 +141,8 @@
 #define MARGIN 15   //margin  
 
 
-#pragma mark - UIPickerViewDelegate
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    
-  
     return 100.0f +MARGIN;
 }
 
@@ -168,7 +166,7 @@
 }
 
 
-
+#pragma mark - Send the delegate the selected shape
 - (IBAction)shapeSelected:(id)sender {
         [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape];
 
@@ -185,6 +183,8 @@
 {
     return YES;//needs to be YES for iOS5 and 5.1 to stay in Landscape
 }
+
+#pragma mark - For iOS6
 -(BOOL)shouldAutorotate
 {
     return NO;

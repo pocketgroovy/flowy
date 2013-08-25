@@ -10,7 +10,6 @@
 #import "UIColor+JP.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "SelectorViewController.h"
 
 @interface ColorViewController ()<UIPickerViewDelegate>
 
@@ -155,6 +154,9 @@
     
 }
 
+
+#pragma mark - UIPickerViewDelegate
+
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -202,6 +204,9 @@
 {
     return YES; //needs to be YES for iOS5 and 5.1 to stay in Landscape
 }
+
+
+#pragma mark - For iOS6
 -(BOOL)shouldAutorotate
 {
     return NO;

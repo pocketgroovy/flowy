@@ -40,6 +40,8 @@
     self.splitViewController.delegate=self;
 }
 
+
+#pragma mark - UISplitViewControllerDelegate
 -(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
     return UIInterfaceOrientationIsPortrait(orientation);
@@ -79,7 +81,7 @@
 
 
 
-#pragma mark - Set selected photo from BBFViewController
+#pragma mark - get selected photo from BBFImageStore
 
 -(void)viewWillAppear:(BOOL)animated
 {
