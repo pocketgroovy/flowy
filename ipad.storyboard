@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="704" height="748"/>
                             </imageView>
                             <button clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="95s-l9-A5H">
-                                <rect key="frame" x="52" y="6" width="600" height="150"/>
+                                <rect key="frame" x="52" y="6" width="600" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="CHOOSE YOUR SHAPE">
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sQr-3m-c1q">
-                                <rect key="frame" x="52" y="542" width="600" height="151"/>
+                                <rect key="frame" x="52" y="542" width="600" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="CHOOSE YOUR BASE COLOR">
@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.80000001192092896" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="azm-cr-sgN">
-                                <rect key="frame" x="0.0" y="70" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="128" width="320" height="290"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.1172990127" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="photos">
@@ -252,7 +252,7 @@
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.80000001192092896" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g1F-eD-Y8L">
-                                <rect key="frame" x="0.0" y="387" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="417" width="320" height="290"/>
                                 <color key="backgroundColor" red="0.9106445312" green="0.86367049569999998" blue="0.050022076950000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="stars">
@@ -267,7 +267,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Ip-uE-K9U">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="53" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

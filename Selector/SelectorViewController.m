@@ -18,6 +18,7 @@
 @property (nonatomic, weak)FlowingController * flowVC;
 @property (nonatomic, weak)UIImage * myShape;
 @property (nonatomic, weak)UIColor * myColor;
+@property (nonatomic, weak)UIImage * coloredShape;
 @end
 
 @implementation SelectorViewController 
@@ -31,7 +32,8 @@
 @synthesize myShape;
 @synthesize myColor;
 @synthesize flowVC;
-
+@synthesize adView;
+@synthesize coloredShape;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,6 +77,32 @@
     [btnReady addTarget:self action:@selector(flowy:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnReady];
     btnReady.hidden = YES;
+    
+    
+    //MoPub Ad
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+                                                 size:MOPUB_BANNER_SIZE];
+    self.adView.delegate = self;
+    CGRect frame = self.adView.frame;
+    CGSize size = [self.adView adContentViewSize];
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+    {
+    frame.origin.y = btnShape.bounds.size.height;
+    }
+    else{
+        frame.origin.y = self.view.bounds.size.width - size.height*2;
+        frame.origin.x = size.width;
+    }
+    self.adView.frame = frame;
+    [self.view addSubview:self.adView];
+    [self.adView loadAd];
+    
+}
+
+
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
 }
 
 
@@ -117,7 +145,7 @@
 #pragma mark - show the ready button when both shape and color are selected
 -(void)viewDidAppear:(BOOL)animated
 {
-    if (myShape && myColor) {
+    if (coloredShape) {
         btnReady.hidden = NO;
     }
     else
@@ -172,7 +200,7 @@
     CGContextClipToMask(context, rect, myShape.CGImage);
     CGContextAddRect(context, rect);
     CGContextFillPath(context);
-    UIImage * coloredShape = UIGraphicsGetImageFromCurrentImageContext();
+    coloredShape = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     NSString * key = @"myColoredShape";

@@ -25,6 +25,7 @@
 @synthesize stars;
 @synthesize instruction;
 @synthesize defaultImage;
+@synthesize adView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,9 +77,22 @@
     
     NSLog(@"%s", __FUNCTION__);
     
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+                                                 size:MOPUB_BANNER_SIZE];
+    self.adView.delegate = self;
+    CGRect frame = self.adView.frame;
+    frame.origin.y = 0;
+    self.adView.frame = frame;
+    [self.view addSubview:self.adView];
+    [self.adView loadAd];
+
+    
 }
 
-
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
 
 
 #pragma mark - get selected photo from BBFImageStore

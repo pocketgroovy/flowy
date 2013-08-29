@@ -12,14 +12,16 @@
 #import <CoreAudio/CoreAudioTypes.h>
 #import <Social/Social.h>
 #import "cocos2d.h"
+#import "MPInterstitialAdController.h"
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate>
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate>
 {
 AVAudioRecorder *recorder;
 NSTimer *levelTimer, *particleTimer;
 double lowPassResults;
 }
-
+@property (nonatomic, strong)MPInterstitialAdController *interstitial;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
+
 @end

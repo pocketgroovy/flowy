@@ -8,12 +8,14 @@
 #import "ShapeViewController.h"
 #import "ColorViewController.h"
 #import <UIKit/UIKit.h>
-@interface SelectorViewController : UIViewController<ShapeViewControllerDelegate, ColorViewControllerDelegate>
+#import "MPAdView.h"
+@interface SelectorViewController : UIViewController<ShapeViewControllerDelegate, ColorViewControllerDelegate, MPAdViewDelegate>
 @property (strong, nonatomic) UIButton *btnReady;
 @property (weak, nonatomic) IBOutlet UIButton *btnShape;
 @property (weak, nonatomic) IBOutlet UIImageView *resultView;
 @property (weak, nonatomic) IBOutlet UIButton *btnColor;
 @property (weak, nonatomic) IBOutlet UIImageView *imageBackGround;
+@property (nonatomic, retain) MPAdView *adView;
 
 -(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape;
 

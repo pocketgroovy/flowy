@@ -15,6 +15,7 @@
 #import <Twitter/Twitter.h>
 #import <Social/Social.h>
 
+
 @interface FlowingController ()
 @property(nonatomic)BOOL isBlowed;
 @property (nonatomic, strong)CCDirector * director;
@@ -26,6 +27,7 @@
 @synthesize isBlowed;
 @synthesize twitBarItem;
 @synthesize director;
+@synthesize interstitial;
 
 
 
@@ -94,8 +96,29 @@
 	} else
 		NSLog(@"No recorder");
     NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+    
+    
+    //MoPub
+    
+    interstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"];
+    interstitial.delegate = self;
+    [interstitial loadAd];
+    
 
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+}
+
+-(void)spaceDidFailToReceiveAd:(NSString *)adSpace error:(NSError *)error
+{
+    NSLog(@"%@", error );
+}
+
+
 
 #pragma mark - end the scene if the view is unloaded
 -(void)viewWillDisappear:(BOOL)animated
@@ -174,7 +197,7 @@
             break;
     }
     
-    
+
     //recover the selected picture after the email composer returns
     if(!director)
     {
@@ -209,8 +232,19 @@
             [director pause];
         }
     }
+    
+    if(interstitial.ready)
+    {
+        [interstitial showFromViewController:self];
+    }
+    else{
+        NSLog(@"not ready");
+    }
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+
+    
 }
 
 #pragma mark - Twitter
