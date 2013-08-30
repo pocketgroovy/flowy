@@ -27,7 +27,7 @@
 @synthesize isBlowed;
 @synthesize twitBarItem;
 @synthesize director;
-@synthesize interstitial;
+@synthesize interstitialAd;
 
 
 
@@ -100,16 +100,75 @@
     
     //MoPub
     
-    interstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"];
-    interstitial.delegate = self;
-    [interstitial loadAd];
-    
+    interstitialAd = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"13260008add211e295fa123138070049"];
+    interstitialAd.delegate = self;
+    [interstitialAd loadAd];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    director = [CCDirector sharedDirector];
+    
+    if([director isViewLoaded] == NO)
+    {
+        
+        CCGLView *glView = [CCGLView viewWithFrame:[[[UIApplication sharedApplication] keyWindow]bounds]
+                                       pixelFormat:kEAGLColorFormatRGB565
+                                       depthFormat:0
+                                preserveBackbuffer:YES  //this needs to be YES for iOS 6 and newer to place the scene in the snapshot
+                                        sharegroup:nil
+                                     multiSampling:NO
+                                   numberOfSamples:0];
+        
+        director.view = glView;
+        
+        [director setAnimationInterval:1.0f/60.0f];
+        [director enableRetinaDisplay:YES];
+    }
+    
+    director.delegate = self;
+    
+    [self addChildViewController:director];
+    [self.view addSubview:director.view];
+    [self.view sendSubviewToBack:director.view];
+    
+    [director didMoveToParentViewController:self];
+    
+    //run the scene and pause the emitter for a user to blow
+    if(![director runningScene])
+    {
+        [director runWithScene: [EmitterLayer  scene]];
+        [director pause];
+    }
+    
+    
+    //SET UP RECORDER FOR SOUND LEVEL DETECTION
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    
+	NSError *error;
+    
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+	if (recorder) {
+		[recorder prepareToRecord];
+		recorder.meteringEnabled = YES;
+		[recorder record];
+		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+        
+	} else
+		NSLog(@"No recorder");
+    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+    
+
 
 }
 
@@ -233,19 +292,33 @@
         }
     }
     
-    if(interstitial.ready)
-    {
-        [interstitial showFromViewController:self];
-    }
-    else{
-        NSLog(@"not ready");
-    }
+
 
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 
     
 }
+
+-(void)interstitialDidLoadAd:(MPInterstitialAdController *)interstitial
+{
+    if(interstitial.ready)
+    {
+        [interstitialAd showFromViewController:self];
+        NSLog(@"ready, %s", __FUNCTION__ );
+
+    }
+    else{
+        NSLog(@"not ready");
+    }
+}
+
+
+-(void)interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial
+{
+    NSLog(@"Failed to load, %s", __FUNCTION__);
+}
+
 
 #pragma mark - Twitter
 - (IBAction)tweetPhoto:(id)sender {
