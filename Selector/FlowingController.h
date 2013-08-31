@@ -20,7 +20,7 @@ AVAudioRecorder *recorder;
 NSTimer *levelTimer, *particleTimer;
 double lowPassResults;
 }
-@property (nonatomic, retain)MPInterstitialAdController *interstitialAd;
+@property (nonatomic, strong)MPInterstitialAdController *interstitial;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 
