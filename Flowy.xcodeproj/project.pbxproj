@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780894D117D274AA00676075 /* InterstitialAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780894D017D274AA00676075 /* InterstitialAdViewController.m */; };
 		780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780AD099179C52E40057F038 /* ShapeViewController.m */; };
 		781079C21732E13B0098114E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C11732E13B0098114E /* MainViewController.m */; };
 		781079C71732E1B40098114E /* BBFImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C41732E1B40098114E /* BBFImageStore.m */; };
@@ -289,6 +290,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780894CF17D274A900676075 /* InterstitialAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialAdViewController.h; sourceTree = "<group>"; };
+		780894D017D274AA00676075 /* InterstitialAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialAdViewController.m; sourceTree = "<group>"; };
 		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		780AD09B179C613F0057F038 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -1739,6 +1742,8 @@
 				7849A6EF174691A8000D99F6 /* FlowingController.m */,
 				780AD09B179C613F0057F038 /* MainViewController.h */,
 				781079C11732E13B0098114E /* MainViewController.m */,
+				780894CF17D274A900676075 /* InterstitialAdViewController.h */,
+				780894D017D274AA00676075 /* InterstitialAdViewController.m */,
 				78346F521727A2FB006B22BA /* ColorViewController.h */,
 				78346F531727A2FB006B22BA /* ColorViewController.m */,
 				78346F4F17279F8D006B22BA /* ShapeViewController.h */,
@@ -2079,6 +2084,7 @@
 				7845DB2217CFBD4C0037BCC4 /* MPBannerCustomEvent.m in Sources */,
 				7845DB2317CFBD4C0037BCC4 /* MPInterstitialAdController.m in Sources */,
 				7845DB2417CFBD4C0037BCC4 /* MPInterstitialCustomEvent.m in Sources */,
+				780894D117D274AA00676075 /* InterstitialAdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,7 +28,7 @@
 @synthesize twitBarItem;
 @synthesize director;
 @synthesize interstitialAd;
-
+@synthesize recorder;
 
 
 - (void)viewDidLoad
@@ -76,6 +76,8 @@
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
     NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
+    NSLog(@"%@, %s", url, __FUNCTION__);
+    
 	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
 							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
 							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
@@ -96,13 +98,6 @@
 	} else
 		NSLog(@"No recorder");
     NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
-    
-    
-    //MoPub
-    
-    interstitialAd = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"13260008add211e295fa123138070049"];
-    interstitialAd.delegate = self;
-    [interstitialAd loadAd];
 
 }
 
@@ -166,8 +161,12 @@
         
 	} else
 		NSLog(@"No recorder");
-    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
     
+
+    //MoPub Interstitial for iPhone
+    interstitialAd = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"13260008add211e295fa123138070049"];
+    interstitialAd.delegate = self;
+    [interstitialAd loadAd];
 
 
 }
@@ -237,10 +236,10 @@
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"SENT!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"SAVED!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
      UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"FAILED!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert5 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
-            [alert5 show];
+            [alert4 show];
             break;
         case MFMailComposeResultSaved:
             [alert2 show];
@@ -252,9 +251,14 @@
             [alert3 show];
             break;
         default:
-            [alert5 show];
+            [alert4 show];
             break;
     }
+    
+    alert.delegate = self;
+    alert2.delegate = self;
+    alert3.delegate = self;
+    alert4.delegate = self;
     
 
     //recover the selected picture after the email composer returns
@@ -291,28 +295,33 @@
             [director pause];
         }
     }
-    
 
 
     [self dismissViewControllerAnimated:YES completion:NULL];
     
+ 
 
     
 }
 
--(void)interstitialDidLoadAd:(MPInterstitialAdController *)interstitial
-{
-    if(interstitial.ready)
-    {
-        [interstitialAd showFromViewController:self];
-        NSLog(@"ready, %s", __FUNCTION__ );
+#pragma mark - AlertViewDelegate Method
 
-    }
-    else{
-        NSLog(@"not ready");
-    }
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(interstitialAd.ready && (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone))
+            {
+                [interstitialAd showFromViewController:self];
+                NSLog(@"ready, %s", __FUNCTION__ );
+        
+            }
+            else{
+                NSLog(@"not ready or it's not an iPhone");
+            }
+
 }
 
+
+#pragma mark - MPInterstitialAdControllerDelegate Method
 
 -(void)interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial
 {

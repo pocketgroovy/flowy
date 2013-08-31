@@ -77,7 +77,7 @@
     
     NSLog(@"%s", __FUNCTION__);
     
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"23b49916add211e281c11231392559e4"
                                                  size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = self.adView.frame;
@@ -121,15 +121,12 @@
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSLog(@"%s", __FUNCTION__);
-
     return YES;
 }
 
 #pragma mark - For iOS6
 -(BOOL)shouldAutorotate
 {
-    NSLog(@"%s", __FUNCTION__);
 
     return NO;
 }
@@ -137,7 +134,6 @@
 #pragma mark - For iOS6 bug
 -(NSUInteger)supportedInterfaceOrientations
 {
-    NSLog(@"%s", __FUNCTION__);
 
     return UIInterfaceOrientationMaskLandscape;
 }

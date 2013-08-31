@@ -80,7 +80,7 @@
     
     
     //MoPub Ad
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"23b49916add211e281c11231392559e4"
                                                  size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = self.adView.frame;
@@ -110,6 +110,11 @@
 -(void)flowy:(id)sender
 {
     [self performSegueWithIdentifier:@"flowing" sender:sender];
+    
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+    [self performSegueWithIdentifier:@"showAd" sender:sender];
+    }
 }
 
 #pragma mark - prepareForSegue
