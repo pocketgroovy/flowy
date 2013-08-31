@@ -28,7 +28,6 @@
 @synthesize twitBarItem;
 @synthesize director;
 @synthesize interstitialAd;
-@synthesize recorder;
 
 
 
@@ -85,7 +84,7 @@
 							  nil];
     
 	NSError *error;
-
+    
     recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     
 	if (recorder) {
@@ -146,29 +145,29 @@
     
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
-//    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-//    
-//	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-//							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-//							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-//							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-//							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-//							  nil];
-//    
-//	NSError *error;
-//    
-//    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-//    
-//	if (recorder) {
-//		[recorder prepareToRecord];
-//		recorder.meteringEnabled = YES;
-//		[recorder record];
-//		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-//        
-//	} else
-//		NSLog(@"No recorder");
-//    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
-//    
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    
+	NSError *error;
+    
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+	if (recorder) {
+		[recorder prepareToRecord];
+		recorder.meteringEnabled = YES;
+		[recorder record];
+		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+        
+	} else
+		NSLog(@"No recorder");
+    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+    
 
 
 }

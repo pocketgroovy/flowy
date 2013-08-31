@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="1n8-eh-jUQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="1n8-eh-jUQ">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
+        <development version="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
@@ -418,9 +419,6 @@
         <class className="FlowingController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
             <relationships>
-                <relationship kind="action" name="blowAgain:"/>
-                <relationship kind="action" name="openMail:"/>
-                <relationship kind="action" name="tweetPhoto:"/>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

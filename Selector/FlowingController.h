@@ -16,11 +16,12 @@
 
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate>
 {
+AVAudioRecorder *recorder;
 NSTimer *levelTimer, *particleTimer;
 double lowPassResults;
 }
 @property (nonatomic, retain)MPInterstitialAdController *interstitialAd;
-@property (nonatomic, strong)AVAudioRecorder *recorder;
+
 - (void)levelTimerCallback:(NSTimer *)timer;
 
 @end
