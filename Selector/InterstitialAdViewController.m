@@ -31,8 +31,8 @@
 	// Do any additional setup after loading the view.
     
     //MoPub Ad
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"23b49916add211e281c11231392559e4"
-                                                size:MOPUB_MEDIUM_RECT_SIZE ];
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+                                                size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = CGRectMake(0, 0, 320, 780);
    // CGSize size = [self.adView adContentViewSize];

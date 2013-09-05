@@ -11,6 +11,7 @@
 #import "BBFImageStore.h"
 #import "UIColor+JP.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "Flurry.h"
 
 @interface SelectorViewController ()
 @property (nonatomic, weak)ShapeViewController * shapeVC;
@@ -80,7 +81,7 @@
     
     
     //MoPub Ad
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"23b49916add211e281c11231392559e4"
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
                                                  size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = self.adView.frame;
@@ -190,7 +191,9 @@
 #pragma mark - COLOR THE SELECTED SHAPE
 -(UIImage *) colorShape:(UIColor *)color
 {
-   
+ 
+    NSLog(@"%@, %s", color, __FUNCTION__);
+    
     UIGraphicsBeginImageContext(myShape.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();

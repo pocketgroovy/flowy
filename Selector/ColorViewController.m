@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <StoreKit/StoreKit.h>
+#import "Flurry.h"
 
 @interface ColorViewController ()<UIPickerViewDelegate>
 
@@ -21,6 +22,7 @@
 @property (nonatomic) UILabel * colorFrame;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIButton *go;
+@property (assign, nonatomic) NSInteger selectedRow;
 @end
 @implementation ColorViewController
 
@@ -30,6 +32,7 @@
 @synthesize colorFrame;
 @synthesize go;
 @synthesize cancel;
+@synthesize selectedRow;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -187,11 +190,22 @@
 
     selectedColor = [[colorArray objectAtIndex:row]backgroundColor];
     
+    selectedRow = row;
+     
 }
 
 #pragma mark - Send the delegate the selected color
 - (IBAction)colorSelected:(id)sender {
     [self.colorDelegate colorViewController:self didFinishSelecting:selectedColor];
+    
+    
+    NSString * selectedColorRowNumber = [NSString stringWithFormat:@"%d", selectedRow];
+    NSLog(@"%@, %s", selectedColorRowNumber, __FUNCTION__);
+    
+    NSDictionary *colorChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:selectedColorRowNumber, @"Selected Color Row", nil ];
+    
+    [Flurry logEvent:@"Color_Selected" withParameters:colorChosenByUser];
+
 }
 
 - (IBAction)cancelled:(id)sender {

@@ -164,9 +164,12 @@
     
 
     //MoPub Interstitial for iPhone
-    interstitialAd = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"13260008add211e295fa123138070049"];
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+    {
+    interstitialAd = [MPInterstitialAdController interstitialAdControllerForAdUnitId:@"2d8de964e4d74164a7180f2b65f5f5fa"];
     interstitialAd.delegate = self;
     [interstitialAd loadAd];
+    }
 
 
 }
@@ -220,7 +223,7 @@
         MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
 
-        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"flowyImage"];
+        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"Flowyee_Image"];
         
         [self presentViewController:mailer animated:YES completion:NULL];
     }

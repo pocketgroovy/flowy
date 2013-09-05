@@ -7,14 +7,15 @@
 //
 
 #import "SelectorAppDelegate.h"
-
+#import "Flurry.h"
 @implementation SelectorAppDelegate
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
+    
+        [Flurry startSession:@"5BBZNGZ2FK9YFQ7SKZY5"];
     
     return YES;
 }

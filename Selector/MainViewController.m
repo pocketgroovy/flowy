@@ -77,7 +77,7 @@
     
     NSLog(@"%s", __FUNCTION__);
     
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"23b49916add211e281c11231392559e4"
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
                                                  size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = self.adView.frame;
