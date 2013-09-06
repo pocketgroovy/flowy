@@ -22,7 +22,6 @@
 @synthesize imageView;
 @synthesize barButtonOK;
 @synthesize photo;
-@synthesize choosePhoto;
 
 
 - (void)viewDidLoad
@@ -36,7 +35,6 @@
         photo = [UIImage imageNamed:@"camera2.png"];
     }
     imageView.image = photo;
-    [choosePhoto setTitle:NSLocalizedString(@"CHOOSE_PHOTO", nil)];
     
 
 }
@@ -169,6 +167,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

@@ -319,7 +319,7 @@
                                 <rect key="frame" x="0.0" y="724" width="703" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="scl-U8-7Wb"/>
-                                    <barButtonItem id="LZj-zE-KnF">
+                                    <barButtonItem title="CHOOSE PHOTO" id="LZj-zE-KnF">
                                         <connections>
                                             <action selector="addPhoto:" destination="cjx-de-JmG" id="Bzn-kC-Sdo"/>
                                         </connections>
@@ -352,7 +352,6 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="barButtonOK" destination="euj-sq-Aau" id="o3r-hx-eQI"/>
-                        <outlet property="choosePhoto" destination="LZj-zE-KnF" id="P0T-oR-Lgj"/>
                         <outlet property="imageView" destination="Fhg-Dr-snC" id="2gH-Rl-TDK"/>
                         <outlet property="toolbar" destination="cz0-c9-TYW" id="VME-cq-xRU"/>
                     </connections>
@@ -424,11 +423,7 @@
         <class className="BBFViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BBFViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addPhoto:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="returnToMain:"/>
-                <relationship kind="action" name="takePhoto:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="barButtonOK" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="choosePhoto" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>

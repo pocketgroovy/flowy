@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		780894D117D274AA00676075 /* InterstitialAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780894D017D274AA00676075 /* InterstitialAdViewController.m */; };
 		780AD09A179C52E40057F038 /* ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780AD099179C52E40057F038 /* ShapeViewController.m */; };
+		781079C21732E13B0098114E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C11732E13B0098114E /* MainViewController.m */; };
 		781079C71732E1B40098114E /* BBFImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C41732E1B40098114E /* BBFImageStore.m */; };
 		781079C81732E1B40098114E /* BBFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781079C61732E1B40098114E /* BBFViewController.m */; };
 		781671F117B306E600A7773C /* Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 781671F017B306E600A7773C /* Snapshot.m */; };
@@ -154,18 +155,15 @@
 		78346F2D17279550006B22BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F2C17279550006B22BA /* UIKit.framework */; };
 		78346F2F17279550006B22BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F2E17279550006B22BA /* Foundation.framework */; };
 		78346F3117279550006B22BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78346F3017279550006B22BA /* CoreGraphics.framework */; };
+		78346F3717279550006B22BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78346F3517279550006B22BA /* InfoPlist.strings */; };
 		78346F3917279550006B22BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F3817279550006B22BA /* main.m */; };
 		78346F3D17279550006B22BA /* SelectorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F3C17279550006B22BA /* SelectorAppDelegate.m */; };
 		78346F3F17279551006B22BA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78346F3E17279551006B22BA /* Default.png */; };
 		78346F4117279551006B22BA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78346F4017279551006B22BA /* Default@2x.png */; };
 		78346F4317279551006B22BA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78346F4217279551006B22BA /* Default-568h@2x.png */; };
+		78346F4617279551006B22BA /* iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78346F4417279551006B22BA /* iphone.storyboard */; };
 		78346F4917279551006B22BA /* SelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F4817279551006B22BA /* SelectorViewController.m */; };
 		78346F541727A2FB006B22BA /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78346F531727A2FB006B22BA /* ColorViewController.m */; };
-		783F3EE717DA5195003785C6 /* MailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F3EE617DA5195003785C6 /* MailViewController.m */; };
-		783F3EE817DA55FC003785C6 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787B1C8717D674E60010CC8C /* libGoogleAdMobAds.a */; };
-		783F3EF117DA582E003785C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 783F3EEB17DA582E003785C6 /* Localizable.strings */; };
-		783F3EF217DA582E003785C6 /* iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783F3EED17DA582E003785C6 /* iphone.storyboard */; };
-		783F3EF317DA582E003785C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 783F3EEF17DA582E003785C6 /* InfoPlist.strings */; };
 		783FD557174C1E1E00BDB30D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783FD556174C1E1E00BDB30D /* AVFoundation.framework */; };
 		7845DAE017CFBD4C0037BCC4 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7845DA3717CFBD4C0037BCC4 /* CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7845DAE117CFBD4C0037BCC4 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7845DA3A17CFBD4C0037BCC4 /* CFilteringJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -251,8 +249,10 @@
 		785F33EB17C997B100AA8B67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785F33EA17C997B100AA8B67 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		787B1B9717D661A40010CC8C /* MPiAdBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1B9417D661A40010CC8C /* MPiAdBannerCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		787B1B9817D661A40010CC8C /* MPiAdInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1B9617D661A40010CC8C /* MPiAdInterstitialCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		787B1C8817D674E60010CC8C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787B1C8717D674E60010CC8C /* libGoogleAdMobAds.a */; };
 		787B1D8817D67A150010CC8C /* MPGoogleAdMobBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1D7917D67A150010CC8C /* MPGoogleAdMobBannerCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		787B1D8917D67A150010CC8C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1D7B17D67A150010CC8C /* MPGoogleAdMobInterstitialCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		787B1D8A17D67A150010CC8C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787B1D8617D67A150010CC8C /* libGoogleAdMobAds.a */; };
 		788921DD17318B0100549320 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921DC17318B0100549320 /* bg.png */; };
 		788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */; };
 		788DFA0817970EE300E106DF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DFA0717970EE300E106DF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -262,6 +262,7 @@
 		789366AE17568830009779D8 /* cupcake.png in Resources */ = {isa = PBXBuildFile; fileRef = 789366AD17568830009779D8 /* cupcake.png */; };
 		7899859D17C4162D005EA369 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7899859C17C4162D005EA369 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		789CCD7517CBBAE50000CBB4 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789CCD7417CBBAE50000CBB4 /* libFlurry_4.2.3.a */; };
+		789CCD7A17CBC1CC0000CBB4 /* libFlurryAds_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 789CCD7917CBC1CC0000CBB4 /* libFlurryAds_4.2.3.a */; };
 		789CCD7C17CBC5160000CBB4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789CCD7B17CBC5160000CBB4 /* SystemConfiguration.framework */; };
 		789CCD7E17CBC5270000CBB4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789CCD7D17CBC5270000CBB4 /* Security.framework */; };
 		789CCD8017CBC52F0000CBB4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789CCD7F17CBC52F0000CBB4 /* AdSupport.framework */; };
@@ -286,6 +287,7 @@
 		780894D017D274AA00676075 /* InterstitialAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialAdViewController.m; sourceTree = "<group>"; };
 		780AD099179C52E40057F038 /* ShapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeViewController.m; sourceTree = "<group>"; };
 		780AD09B179C613F0057F038 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		781079C11732E13B0098114E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		781079C31732E1B40098114E /* BBFImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFImageStore.h; sourceTree = "<group>"; };
 		781079C41732E1B40098114E /* BBFImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBFImageStore.m; sourceTree = "<group>"; };
 		781079C51732E1B40098114E /* BBFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBFViewController.h; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		78346F2E17279550006B22BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78346F3017279550006B22BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		78346F3417279550006B22BA /* Flowee-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Flowee-Info.plist"; sourceTree = "<group>"; };
+		78346F3617279550006B22BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78346F3817279550006B22BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78346F3A17279550006B22BA /* Flowee-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flowee-Prefix.pch"; sourceTree = "<group>"; };
 		78346F3B17279550006B22BA /* SelectorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectorAppDelegate.h; sourceTree = "<group>"; };
@@ -583,16 +586,12 @@
 		78346F3E17279551006B22BA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78346F4017279551006B22BA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		78346F4217279551006B22BA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		78346F4517279551006B22BA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iphone.storyboard; sourceTree = "<group>"; };
 		78346F4717279551006B22BA /* SelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectorViewController.h; sourceTree = "<group>"; };
 		78346F4817279551006B22BA /* SelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectorViewController.m; sourceTree = "<group>"; };
 		78346F4F17279F8D006B22BA /* ShapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeViewController.h; sourceTree = "<group>"; };
 		78346F521727A2FB006B22BA /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		78346F531727A2FB006B22BA /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
-		783F3EE617DA5195003785C6 /* MailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailViewController.m; sourceTree = "<group>"; };
-		783F3EEA17DA582E003785C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = en; path = en.lproj/MainViewController.m; sourceTree = "<group>"; };
-		783F3EEC17DA582E003785C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		783F3EEE17DA582E003785C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iphone.storyboard; sourceTree = "<group>"; };
-		783F3EF017DA582E003785C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		783FD556174C1E1E00BDB30D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7845DA3617CFBD4C0037BCC4 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		7845DA3717CFBD4C0037BCC4 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
@@ -781,6 +780,9 @@
 		7899859C17C4162D005EA369 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		789CCD7317CBBAE50000CBB4 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		789CCD7417CBBAE50000CBB4 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
+		789CCD7717CBC1CC0000CBB4 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		789CCD7817CBC1CC0000CBB4 /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		789CCD7917CBC1CC0000CBB4 /* libFlurryAds_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds_4.2.3.a; sourceTree = "<group>"; };
 		789CCD7B17CBC5160000CBB4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		789CCD7D17CBC5270000CBB4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		789CCD7F17CBC52F0000CBB4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -833,8 +835,10 @@
 				78299BB41745632F00FF7E31 /* QuartzCore.framework in Frameworks */,
 				78299BB51745635900FF7E31 /* MobileCoreServices.framework in Frameworks */,
 				78299BE7174566CB00FF7E31 /* MessageUI.framework in Frameworks */,
-				783F3EE817DA55FC003785C6 /* libGoogleAdMobAds.a in Frameworks */,
 				789CCD7517CBBAE50000CBB4 /* libFlurry_4.2.3.a in Frameworks */,
+				789CCD7A17CBC1CC0000CBB4 /* libFlurryAds_4.2.3.a in Frameworks */,
+				787B1C8817D674E60010CC8C /* libGoogleAdMobAds.a in Frameworks */,
+				787B1D8A17D67A150010CC8C /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1216,7 @@
 		78346F2017279550006B22BA = {
 			isa = PBXGroup;
 			children = (
+				787B1C8717D674E60010CC8C /* libGoogleAdMobAds.a */,
 				78A183EC176B847800F670AF /* cupcake_ipad.png */,
 				78A183EA176B845600F670AF /* cupcake_ipad@2x.png */,
 				78A183E8176B839300F670AF /* Default-Landscape@2x~ipad.png */,
@@ -1237,7 +1242,6 @@
 		78346F2B17279550006B22BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				787B1C8717D674E60010CC8C /* libGoogleAdMobAds.a */,
 				7845DB3217CFC1C90037BCC4 /* EventKitUI.framework */,
 				7845DB3017CFC1560037BCC4 /* EventKit.framework */,
 				789CCD7F17CBC52F0000CBB4 /* AdSupport.framework */,
@@ -1279,6 +1283,7 @@
 				788DF9FE1796EF2E00E106DF /* controller */,
 				788DF9FD1796EF1B00E106DF /* model */,
 				78A183F4176B857E00F670AF /* ipad.storyboard */,
+				78346F4417279551006B22BA /* iphone.storyboard */,
 				78254B6F17C7C6280090B511 /* FlowySplitViewController.h */,
 				78254B7017C7C6290090B511 /* FlowySplitViewController.m */,
 				78254B6917C7BC620090B511 /* MainNavViewController.h */,
@@ -1318,6 +1323,7 @@
 				78346F3A17279550006B22BA /* Flowee-Prefix.pch */,
 				781BC7B91751E5DD00261653 /* go.png */,
 				789366A717568374009779D8 /* iine.png */,
+				78346F3517279550006B22BA /* InfoPlist.strings */,
 				78346F3817279550006B22BA /* main.m */,
 				78CB63E117C58EFC00C4025E /* smileyStar.png */,
 				78ED1706174C2E7E009C5DC4 /* snowflake2.png */,
@@ -1648,15 +1654,11 @@
 			isa = PBXGroup;
 			children = (
 				781079C51732E1B40098114E /* BBFViewController.h */,
-				783F3EE917DA582E003785C6 /* MainViewController.m */,
-				783F3EEB17DA582E003785C6 /* Localizable.strings */,
-				783F3EED17DA582E003785C6 /* iphone.storyboard */,
-				783F3EEF17DA582E003785C6 /* InfoPlist.strings */,
 				781079C61732E1B40098114E /* BBFViewController.m */,
 				7849A6EE174691A8000D99F6 /* FlowingController.h */,
 				7849A6EF174691A8000D99F6 /* FlowingController.m */,
 				780AD09B179C613F0057F038 /* MainViewController.h */,
-				783F3EE617DA5195003785C6 /* MailViewController.m */,
+				781079C11732E13B0098114E /* MainViewController.m */,
 				780894CF17D274A900676075 /* InterstitialAdViewController.h */,
 				780894D017D274AA00676075 /* InterstitialAdViewController.m */,
 				78346F521727A2FB006B22BA /* ColorViewController.h */,
@@ -1674,8 +1676,19 @@
 			children = (
 				789CCD7317CBBAE50000CBB4 /* Flurry.h */,
 				789CCD7417CBBAE50000CBB4 /* libFlurry_4.2.3.a */,
+				789CCD7617CBC1CC0000CBB4 /* FlurryAds */,
 			);
 			path = Flurry;
+			sourceTree = "<group>";
+		};
+		789CCD7617CBC1CC0000CBB4 /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				789CCD7717CBC1CC0000CBB4 /* FlurryAdDelegate.h */,
+				789CCD7817CBC1CC0000CBB4 /* FlurryAds.h */,
+				789CCD7917CBC1CC0000CBB4 /* libFlurryAds_4.2.3.a */,
+			);
+			path = FlurryAds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1730,9 +1743,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78346F3717279550006B22BA /* InfoPlist.strings in Resources */,
 				78346F3F17279551006B22BA /* Default.png in Resources */,
 				78346F4117279551006B22BA /* Default@2x.png in Resources */,
 				78346F4317279551006B22BA /* Default-568h@2x.png in Resources */,
+				78346F4617279551006B22BA /* iphone.storyboard in Resources */,
 				78174EC717306B1700949244 /* circle.png in Resources */,
 				788921DD17318B0100549320 /* bg.png in Resources */,
 				78FB15ED1736F14000946188 /* washi-01-swans-640.png in Resources */,
@@ -1777,9 +1792,6 @@
 				7845DB2517CFBD4C0037BCC4 /* MPCloseButtonX.png in Resources */,
 				7845DB2617CFBD4C0037BCC4 /* MPCloseButtonX@2x.png in Resources */,
 				7845DB2717CFBD4C0037BCC4 /* MRAID.bundle in Resources */,
-				783F3EF117DA582E003785C6 /* Localizable.strings in Resources */,
-				783F3EF217DA582E003785C6 /* iphone.storyboard in Resources */,
-				783F3EF317DA582E003785C6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1794,6 +1806,7 @@
 				78346F3D17279550006B22BA /* SelectorAppDelegate.m in Sources */,
 				78346F4917279551006B22BA /* SelectorViewController.m in Sources */,
 				78346F541727A2FB006B22BA /* ColorViewController.m in Sources */,
+				781079C21732E13B0098114E /* MainViewController.m in Sources */,
 				781079C71732E1B40098114E /* BBFImageStore.m in Sources */,
 				781079C81732E1B40098114E /* BBFViewController.m in Sources */,
 				7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */,
@@ -1983,43 +1996,26 @@
 				787B1B9817D661A40010CC8C /* MPiAdInterstitialCustomEvent.m in Sources */,
 				787B1D8817D67A150010CC8C /* MPGoogleAdMobBannerCustomEvent.m in Sources */,
 				787B1D8917D67A150010CC8C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */,
-				783F3EE717DA5195003785C6 /* MailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		783F3EE917DA582E003785C6 /* MainViewController.m */ = {
+		78346F3517279550006B22BA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				783F3EEA17DA582E003785C6 /* en */,
-			);
-			name = MainViewController.m;
-			sourceTree = "<group>";
-		};
-		783F3EEB17DA582E003785C6 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				783F3EEC17DA582E003785C6 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		783F3EED17DA582E003785C6 /* iphone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				783F3EEE17DA582E003785C6 /* en */,
-			);
-			name = iphone.storyboard;
-			sourceTree = "<group>";
-		};
-		783F3EEF17DA582E003785C6 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				783F3EF017DA582E003785C6 /* en */,
+				78346F3617279550006B22BA /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		78346F4417279551006B22BA /* iphone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78346F4517279551006B22BA /* en */,
+			);
+			name = iphone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
