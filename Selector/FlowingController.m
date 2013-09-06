@@ -12,8 +12,14 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "EmitterLayer.h"
 #import "Snapshot.h"
-#import <Twitter/Twitter.h>
+#if defined(__IPHONE_6_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_1
 #import <Social/Social.h>
+#elif defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
+#import <Twitter/Twitter.h>
+#else
+#error Need at least 5.0.
+#endif
+
 
 
 @interface FlowingController ()
@@ -29,6 +35,8 @@
 @synthesize director;
 @synthesize interstitialAd;
 @synthesize recorder;
+@synthesize tryAgain;
+@synthesize email;
 
 
 - (void)viewDidLoad
@@ -98,6 +106,9 @@
 	} else
 		NSLog(@"No recorder");
     NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+    
+    [tryAgain setTitle:NSLocalizedString(@"TRY_AGAIN", nil)];
+    [email setTitle:NSLocalizedString(@"EMAIL", nil)];
 
 }
 
@@ -223,12 +234,12 @@
         MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
 
-        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"Flowyee_Image"];
+        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"Flowee_Image"];
         
         [self presentViewController:mailer animated:YES completion:NULL];
     }
     else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:NSLocalizedString(@"CANT_SEND_MAIL", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
@@ -236,10 +247,10 @@
 #pragma mark - MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"SENT!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"SAVED!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"FAILED!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"SENT", nil) message:NSLocalizedString(@"SENT_MESSAGE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"SAVED", nil)message:NSLocalizedString(@"SAVED_MESSAGE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"FAILED", nil) message:NSLocalizedString(@"FAILED_MESSAGE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"NOTSENT", nil) message:NSLocalizedString(@"NOTSENT_MESSAGE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
             [alert4 show];
@@ -354,7 +365,6 @@
     {
         if(![TWTweetComposeViewController canSendTweet])
         {
-            NSLog(@"Can't tweet");
             twitBarItem.enabled = NO;
         }
     
@@ -384,7 +394,7 @@
     
     }
     else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the Twitter" delegate:nil cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"TWIT_FAILED", nil) message:NSLocalizedString(@"TWIT_FAILED_MESSAGE", nil) delegate:nil cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
         [alert show];
     }
   
@@ -451,4 +461,9 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setTryAgain:nil];
+    [self setEmail:nil];
+    [super viewDidUnload];
+}
 @end

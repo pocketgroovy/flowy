@@ -135,7 +135,7 @@
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HUc-3Y-hv7"/>
-                                    <barButtonItem title="EMAIL" id="7X7-zi-RAw">
+                                    <barButtonItem title="  " id="7X7-zi-RAw">
                                         <connections>
                                             <action selector="openMail:" destination="eAr-Jk-NBr" id="2Vq-Ux-Smb"/>
                                         </connections>
@@ -157,13 +157,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="HF6-ST-qlG">
-                        <barButtonItem key="rightBarButtonItem" title="Try Again!" id="ymr-2a-IU6">
+                        <barButtonItem key="rightBarButtonItem" title="  " id="ymr-2a-IU6">
                             <connections>
                                 <action selector="blowAgain:" destination="eAr-Jk-NBr" id="re3-Iy-WfM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="email" destination="7X7-zi-RAw" id="sAu-NO-aN8"/>
+                        <outlet property="tryAgain" destination="ymr-2a-IU6" id="8Xw-t2-l8C"/>
                         <outlet property="twitBarItem" destination="LTC-Jo-UZS" id="KEs-0y-QUI"/>
                     </connections>
                 </viewController>
@@ -284,7 +286,7 @@
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="O9V-EY-SXB"/>
-                                    <barButtonItem title="CHOOSE PHOTO" id="Y87-pH-7aX">
+                                    <barButtonItem id="Y87-pH-7aX">
                                         <connections>
                                             <action selector="addPhoto:" destination="8OR-Hp-Gtm" id="7fq-KW-qdf"/>
                                         </connections>
@@ -311,6 +313,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ECj-5c-JlP"/>
                     <connections>
+                        <outlet property="choosePhoto" destination="Y87-pH-7aX" id="Pi0-Pt-jMs"/>
                         <outlet property="imageView" destination="7Gn-Wn-fqk" id="bTc-D8-Msg"/>
                     </connections>
                 </viewController>
@@ -342,6 +345,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BBFViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="barButtonOK" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="choosePhoto" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
@@ -356,6 +360,11 @@
         <class className="FlowingController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlowingController.h"/>
             <relationships>
+                <relationship kind="action" name="blowAgain:"/>
+                <relationship kind="action" name="openMail:"/>
+                <relationship kind="action" name="tweetPhoto:"/>
+                <relationship kind="outlet" name="email" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tryAgain" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="twitBarItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

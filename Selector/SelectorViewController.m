@@ -50,6 +50,7 @@
     btnShape.layer.borderColor = [UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
     btnShape.layer.borderWidth = 5.0f;
     btnShape.layer.cornerRadius = 40.0f;
+    [btnShape setTitle:NSLocalizedString(@"CHOOSE_SHAPE", nil) forState:UIControlStateNormal];
     
     //color button
     bg = [UIImage imageNamed:@"colorful2.png"];
@@ -57,6 +58,7 @@
     btnColor.layer.borderColor = [UIColor colorWithR:30 G:144 B:255 A:1].CGColor;
     btnColor.layer.borderWidth = 5.0f;
     btnColor.layer.cornerRadius = 40.0f;
+    [btnColor setTitle:NSLocalizedString(@"CHOOSE_COLOR", nil) forState:UIControlStateNormal];
     
     //go button
     UIImage * readyImage = [UIImage imageNamed:@"go.png"];
