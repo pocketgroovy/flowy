@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Flowee
+
+  Created by Yoshihisa Miyamoto on 9/6/13.
+  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
+*/
+"INSTRUCTION1" = "最初に写真を選んでね! ➡";
+
+"INSTRUCTION2" = "次にフローウィーの形と色をチョイス!";
+
+"CHOOSE_PHOTO" = "写真をライブラリーから選ぶ!";
+
+"CHOOSE_SHAPE" = "どのフローウィーにする？";
+
+"CHOOSE_COLOR" = "基本の色は？";
+
+"EMAIL" = "Eメール";
+
+"TRY_AGAIN" = "もう一度トライ!";
+
+
+"MAIL_FAIL" = "エラー";
+"CANT_SEND_MAIL" = "この機能がサポートされていません";
+
+"SENT" = "送信";
+"SENT_MESSAGE" = "メールが送信されました";
+"SAVED" = "保存";
+"SAVED_MESSAGE" = "メールが保存されました";
+"FAILED" = "送信失敗";
+"FAILED_MESSAGE" = "メールの送信が失敗しました";
+"NOTSENT" = "未送信";
+"NOTSENT_MESSAGE" = "メールの送信がキャンセルされました";
+
+"TWIT_FAILED" = "エラー";
+"TWIT_FAILED_MESSAGE" = "ツイッター機能がサポートされていません";

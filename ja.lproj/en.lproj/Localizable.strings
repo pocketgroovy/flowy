@@ -5,15 +5,15 @@
   Created by Yoshihisa Miyamoto on 9/6/13.
   Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
 */
-"INSTRUCTION1" = "1st Step! Take or Choose a Photo! ➡";
+"INSTRUCTION1" = "1st Step! Take or Choose a Photo!  ➡";
 
-"INSTRUCTION2" = "2nd Step! Pic Your Flowee and Color!";
+"INSTRUCTION2" = "2nd Step! Select Your Shape and Color!";
 
-"CHOOSE_PHOTO" = "CHOOSE A PHOTO!";
+"CHOOSE_PHOTO" = "CHOOSE PHOTO!";
 
-"CHOOSE_SHAPE" = "CHOOSE YOUR FLOWEE!";
+"CHOOSE_SHAPE" = "CHOOSE YOUR SHAPE!";
 
-"CHOOSE_COLOR" = "CHOOSE YOUR FLOWEE'S BASE COLOR!";
+"CHOOSE_COLOR" = "CHOOSE YOUR BASE COLOR!";
 
 "EMAIL" = "EMAIL";
 
