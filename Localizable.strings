@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Flowee
+
+  Created by Yoshihisa Miyamoto on 9/6/13.
+  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
+*/
+"INSTRUCTION1" = "1st Step! Take or Choose a Photo! ➡";
+
+"INSTRUCTION2" = "2nd Step! Pic Your Flowee and Color!";
+
+"CHOOSE_PHOTO" = "CHOOSE A PHOTO!";
+
+"CHOOSE_SHAPE" = "CHOOSE YOUR FLOWEE!";
+
+"CHOOSE_COLOR" = "CHOOSE YOUR FLOWEE'S BASE COLOR!";
+
+"EMAIL" = "EMAIL";
+
+"TRY_AGAIN" = "TRY AGAIN!";
+
+
+"MAIL_FAIL" = "Failure";
+"CANT_SEND_MAIL" = "Your device doesn't support the composer sheet";
+
+"SENT" = "SENT!";
+"SENT_MESSAGE" = "Your email has been sent";
+"SAVED" = "SAVED!";
+"SAVED_MESSAGE" = "Your email has been saved";
+"FAILED" = "FAILED!";
+"FAILED_MESSAGE" = "Sending email has been failed";
+"NOTSENT" = "NOT SENT!";
+"NOTSENT_MESSAGE" = "cancelled";
+
+"TWIT_FAILED" = "Failure";
+"TWIT_FAILED_MESSAGE" = "Your device doesn't support the Twitter";

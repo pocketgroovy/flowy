@@ -22,7 +22,7 @@
 @synthesize imageView;
 @synthesize barButtonOK;
 @synthesize photo;
-
+@synthesize choosePhoto;
 
 - (void)viewDidLoad
 {
@@ -36,6 +36,8 @@
     }
     imageView.image = photo;
     
+    NSString * locChoosePhoto = NSLocalizedString(@"CHOOSE_PHOTO", nil);
+    [choosePhoto setTitle:locChoosePhoto];
 
 }
 
@@ -168,4 +170,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setChoosePhoto:nil];
+    [super viewDidUnload];
+}
 @end

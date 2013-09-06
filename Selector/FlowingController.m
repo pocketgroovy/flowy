@@ -29,7 +29,8 @@
 @synthesize director;
 @synthesize interstitialAd;
 @synthesize recorder;
-
+@synthesize email;
+@synthesize tryAgain;
 
 - (void)viewDidLoad
 {
@@ -37,7 +38,12 @@
         
    //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
-        
+    
+    NSString * locEmail = NSLocalizedString(@"EMAIL", nil);
+    [email setTitle:locEmail];
+    NSString * locTry = NSLocalizedString(@"TRY_AGAIN", nil);
+    [tryAgain setTitle:locTry];
+    
     director = [CCDirector sharedDirector];
     
     if([director isViewLoaded] == NO)
@@ -228,7 +234,12 @@
         [self presentViewController:mailer animated:YES completion:NULL];
     }
     else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        
+        NSString * locMailFailure = NSLocalizedString(@"MAIL_FAIL", nil);
+        NSString * locMailFailureMessage = NSLocalizedString(@"CANT_SEND_MAIL", nil);
+
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locMailFailure message:locMailFailureMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
@@ -236,10 +247,21 @@
 #pragma mark - MAIL COMPOSE DELEGATE
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"SENT!" message:@"Your email has been sent" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"SAVED!" message:@"Your email has been saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:@"FAILED!" message:@"Sending email has been failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:@"NOT SENT!" message:@"cancelled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    
+    NSString * locSent = NSLocalizedString(@"SENT", nil);
+    NSString * locSentMessage = NSLocalizedString(@"SENT_MESSAGE", nil);
+    NSString * locSaved = NSLocalizedString(@"SAVED", nil);
+    NSString * locSavedMessage = NSLocalizedString(@"SAVED_MESSAGE", nil);
+    NSString * locFailed = NSLocalizedString(@"FAILED", nil);
+    NSString * locFailedMessage = NSLocalizedString(@"FAILED_MESSAGE", nil);
+    NSString * locNotSent = NSLocalizedString(@"NOTSENT", nil);
+    NSString * locNotSentMessage = NSLocalizedString(@"NOTSENT_MESSAGE", nil);
+    
+    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locSent message:locSentMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:locSaved message:locSavedMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert3 = [[UIAlertView alloc]initWithTitle:locFailed message:locFailedMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     UIAlertView * alert4 = [[UIAlertView alloc]initWithTitle:locNotSent message:locNotSentMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     switch (result) {
         case MFMailComposeResultCancelled:
             [alert4 show];
@@ -384,7 +406,11 @@
     
     }
     else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Failure" message:@"Your device doesn't support the Twitter" delegate:nil cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+        
+        NSString * locTwitFailed = NSLocalizedString(@"TWIT_FAILED", nil);
+        NSString * locTwitFailedMessage = NSLocalizedString(@"TWIT_FAILED_MESSAGE", nil);
+        
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locTwitFailed message:locTwitFailedMessage delegate:nil cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
         [alert show];
     }
   
@@ -451,4 +477,9 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setEmail:nil];
+    [self setTryAgain:nil];
+    [super viewDidUnload];
+}
 @end

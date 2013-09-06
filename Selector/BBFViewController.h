@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonOK;
 @property (strong, nonatomic) UIImage * photo;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *choosePhoto;
 @end

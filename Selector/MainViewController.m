@@ -102,13 +102,13 @@
     if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
     {
         defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-        instruction.text = @"2nd Step! Select Your Shape and Color!";
+        instruction.text = NSLocalizedString(@"INSTRUCTION2", nil);
         
     }
     
     else
     {
-        instruction.text = @"1st Step! Take or Choose a Photo! ➡";
+        instruction.text = NSLocalizedString(@"INSTRUCTION1", nil);
     }
 
     

@@ -21,6 +21,8 @@ double lowPassResults;
 }
 @property (nonatomic, strong)MPInterstitialAdController *interstitialAd;
 @property (nonatomic, strong)AVAudioRecorder *recorder;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *email;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tryAgain;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 @end
