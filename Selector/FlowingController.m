@@ -223,7 +223,7 @@
         MFMailComposeViewController * mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
 
-        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"Flowee_Image"];
+        [mailer addAttachmentData:[Snapshot takeAsPNG:node] mimeType:@"image/png" fileName:@"Flowyee_Image"];
         
         [self presentViewController:mailer animated:YES completion:NULL];
     }
