@@ -12,8 +12,13 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "EmitterLayer.h"
 #import "Snapshot.h"
-#import <Twitter/Twitter.h>
+#if defined(__IPHONE_6_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_1
 #import <Social/Social.h>
+#elif defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
+#import <Twitter/Twitter.h>
+#else
+#error Need at least 5.0
+#endif
 
 
 @interface FlowingController ()
