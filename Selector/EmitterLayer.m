@@ -92,9 +92,7 @@
         emitter.gravity = ccp(0,-30);
         }
         [self addChild:emitter z:1];
-
     }
-    
     
 	return self;
 }

@@ -108,7 +108,7 @@
         
 	} else
 		NSLog(@"No recorder");
-
+    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
 
 }
 
@@ -443,22 +443,7 @@
         [director resume];
         isBlowed = YES;
         particleTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(particleTimerCallback:) userInfo: nil repeats: NO];
-//        SimpleAudioEngine * audoEngine = [SimpleAudioEngine sharedEngine];
-//        
-//        if(audoEngine)
-//        {
-//            [audoEngine preloadEffect:@"flowing_mono.mp3"];
-//            
-//            audoEngine.effectsVolume = 0.01f;
-//            [[SimpleAudioEngine sharedEngine]playEffect:@"flowing_mono.mp3"];
-//
-//        }
-//        
-//        else
-//            NSLog(@"No Sound Effects played");
     }
-    else
-        NSLog(@"error audio, %c is blowed, %f", isBlowed, lowPassResults);
     
     
 }

@@ -245,13 +245,12 @@
 		784880651759BA0C000B2D32 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784880641759BA0C000B2D32 /* AudioToolbox.framework */; };
 		7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7849A6EF174691A8000D99F6 /* FlowingController.m */; };
 		785F33EB17C997B100AA8B67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785F33EA17C997B100AA8B67 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		7879FED517DF7897002A9E6A /* flowing_mono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7879FED317DF7897002A9E6A /* flowing_mono.mp3 */; };
-		7879FED617DF7897002A9E6A /* splash_flowee_mono.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7879FED417DF7897002A9E6A /* splash_flowee_mono.mp3 */; };
 		787B1B9717D661A40010CC8C /* MPiAdBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1B9417D661A40010CC8C /* MPiAdBannerCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		787B1B9817D661A40010CC8C /* MPiAdInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1B9617D661A40010CC8C /* MPiAdInterstitialCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		787B1C8817D674E60010CC8C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787B1C8717D674E60010CC8C /* libGoogleAdMobAds.a */; };
 		787B1D8817D67A150010CC8C /* MPGoogleAdMobBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1D7917D67A150010CC8C /* MPGoogleAdMobBannerCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		787B1D8917D67A150010CC8C /* MPGoogleAdMobInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B1D7B17D67A150010CC8C /* MPGoogleAdMobInterstitialCustomEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		787B1D8A17D67A150010CC8C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787B1D8617D67A150010CC8C /* libGoogleAdMobAds.a */; };
 		788921DD17318B0100549320 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 788921DC17318B0100549320 /* bg.png */; };
 		788DFA0417970A1000E106DF /* twitter-bird-light-bgs.png in Resources */ = {isa = PBXBuildFile; fileRef = 788DFA0317970A1000E106DF /* twitter-bird-light-bgs.png */; };
 		788DFA0817970EE300E106DF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DFA0717970EE300E106DF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -750,8 +749,6 @@
 		7849A6EE174691A8000D99F6 /* FlowingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowingController.h; sourceTree = "<group>"; };
 		7849A6EF174691A8000D99F6 /* FlowingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowingController.m; sourceTree = "<group>"; };
 		785F33EA17C997B100AA8B67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		7879FED317DF7897002A9E6A /* flowing_mono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flowing_mono.mp3; sourceTree = "<group>"; };
-		7879FED417DF7897002A9E6A /* splash_flowee_mono.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash_flowee_mono.mp3; sourceTree = "<group>"; };
 		787B1B9317D661A40010CC8C /* MPiAdBannerCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPiAdBannerCustomEvent.h; sourceTree = "<group>"; };
 		787B1B9417D661A40010CC8C /* MPiAdBannerCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPiAdBannerCustomEvent.m; sourceTree = "<group>"; };
 		787B1B9517D661A40010CC8C /* MPiAdInterstitialCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPiAdInterstitialCustomEvent.h; sourceTree = "<group>"; };
@@ -799,7 +796,7 @@
 		78EE754A17DA8DA900512B7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Localizable.strings; sourceTree = "<group>"; };
 		78EE754F17DA8DA900512B7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = ipad.storyboard; sourceTree = "<group>"; };
 		78EE755117DA8DA900512B7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iphone.storyboard; sourceTree = "<group>"; };
-		78EE755D17DA91CE00512B7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		78EE755D17DA91CE00512B7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78EE755F17DA940500512B7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/ipad.storyboard; sourceTree = "<group>"; };
 		78EE756017DA957B00512B7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/iphone.storyboard; sourceTree = "<group>"; };
 		78EE756117DA999600512B7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -841,6 +838,7 @@
 				78299BE7174566CB00FF7E31 /* MessageUI.framework in Frameworks */,
 				789CCD7517CBBAE50000CBB4 /* libFlurry_4.2.3.a in Frameworks */,
 				787B1C8817D674E60010CC8C /* libGoogleAdMobAds.a in Frameworks */,
+				787B1D8A17D67A150010CC8C /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,9 +1300,6 @@
 		78346F3317279550006B22BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7879FED317DF7897002A9E6A /* flowing_mono.mp3 */,
-				7879FED417DF7897002A9E6A /* splash_flowee_mono.mp3 */,
-				7879FED217DF783A002A9E6A /* audio */,
 				78EE755E17DA91CE00512B7B /* InfoPlist.strings */,
 				788921DC17318B0100549320 /* bg.png */,
 				78EE754817DA8DA900512B7B /* ja.lproj */,
@@ -1606,13 +1601,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		7879FED217DF783A002A9E6A /* audio */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = audio;
-			sourceTree = "<group>";
-		};
 		787B1B9217D661A30010CC8C /* iAd */ = {
 			isa = PBXGroup;
 			children = (
@@ -1812,8 +1800,6 @@
 				78EE755617DA8DA900512B7B /* ipad.storyboard in Resources */,
 				78EE755717DA8DA900512B7B /* iphone.storyboard in Resources */,
 				78EE755C17DA91CE00512B7B /* InfoPlist.strings in Resources */,
-				7879FED517DF7897002A9E6A /* flowing_mono.mp3 in Resources */,
-				7879FED617DF7897002A9E6A /* splash_flowee_mono.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

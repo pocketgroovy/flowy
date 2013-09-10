@@ -86,6 +86,7 @@
     [self.view addSubview:self.adView];
     [self.adView loadAd];
 
+    
 }
 
 #pragma mark - <MPAdViewDelegate>
@@ -98,23 +99,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    SimpleAudioEngine * audoEngine = [SimpleAudioEngine sharedEngine];
-//    
-//    if(audoEngine)
-//    {
-//        [audoEngine preloadBackgroundMusic:@"splash_flowee_mono.mp3"];
-//        if(audoEngine.willPlayBackgroundMusic)
-//        {
-//            audoEngine.backgroundMusicVolume = 0.01f;
-//            [[SimpleAudioEngine sharedEngine]playBackgroundMusic:@"splash_flowee_mono.mp3" loop:NO];
-//
-//        }
-//    }
-//    else{
-//        NSLog(@"NO background Music");
-//    }
-
-
     if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
     {
         defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
