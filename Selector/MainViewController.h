@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MPAdView.h"
+#import "SimpleAudioEngine.h"
 
 @interface MainViewController : UIViewController<MPAdViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *photos;

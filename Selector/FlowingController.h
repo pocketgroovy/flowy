@@ -10,9 +10,9 @@
 #import <MessageUI/MessageUI.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
-#import <Social/Social.h>
 #import "cocos2d.h"
 #import "MPInterstitialAdController.h"
+//#import "SimpleAudioEngine.h"
 
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate, UIAlertViewDelegate>
 {
@@ -21,6 +21,7 @@ double lowPassResults;
 }
 @property (nonatomic, strong)MPInterstitialAdController *interstitialAd;
 @property (nonatomic, strong)AVAudioRecorder *recorder;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *email;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tryAgain;
 
