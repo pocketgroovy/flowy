@@ -14,10 +14,11 @@
 #import "cocos2d.h"
 #import "MPInterstitialAdController.h"
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate, UIAlertViewDelegate>
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 {
 NSTimer *levelTimer, *particleTimer;
 double lowPassResults;
+    AVAudioPlayer * audioPlayer;
 }
 @property (nonatomic, strong)MPInterstitialAdController *interstitialAd;
 @property (nonatomic, strong)AVAudioRecorder *recorder;

@@ -12,6 +12,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "EmitterLayer.h"
 #import "Snapshot.h"
+#import "SimpleAudioEngine.h"
+
+
 #if defined(__IPHONE_6_1) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_1
 #import <Social/Social.h>
 #elif defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
@@ -110,12 +113,18 @@
 		NSLog(@"No recorder");
     NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
 
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+
+    
     director = [CCDirector sharedDirector];
+    
+    
     
     if([director isViewLoaded] == NO)
     {
@@ -443,6 +452,21 @@
         [director resume];
         isBlowed = YES;
         particleTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(particleTimerCallback:) userInfo: nil repeats: NO];
+        //SimpleAudioEngine * audioEngine = [SimpleAudioEngine sharedEngine];
+        
+        NSError * categoryErr;
+        [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
+        
+        NSString * pathForAudio = [[NSBundle mainBundle]pathForResource:@"splash_flowee_mono" ofType:@"mp3"];
+        NSURL *audioURL = [NSURL fileURLWithPath:pathForAudio];
+        
+        NSError * err;
+        audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:audioURL error:&err];
+        [audioPlayer setDelegate:self];
+        [audioPlayer setVolume:0.01f];
+        [audioPlayer prepareToPlay];
+        [audioPlayer play];
+        
     }
     
     
@@ -483,8 +507,9 @@
 
 
 - (void)viewDidUnload {
-    [self setEmail:nil];
-    [self setTryAgain:nil];
+//    [self setEmail:nil];
+//    [self setTryAgain:nil];
+    [audioPlayer stop];
     [super viewDidUnload];
 }
 @end
