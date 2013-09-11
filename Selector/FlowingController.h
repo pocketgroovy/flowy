@@ -24,6 +24,7 @@ double lowPassResults;
 @property (nonatomic, strong)AVAudioRecorder *recorder;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *email;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tryAgain;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *soundSwitch;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 @end

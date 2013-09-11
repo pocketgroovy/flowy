@@ -11,17 +11,29 @@
 
 @implementation SelectorAppDelegate
 @synthesize window;
+@synthesize audioPlayer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
         [Flurry startSession:@"5BBZNGZ2FK9YFQ7SKZY5"];
-
+    NSError * categoryErr;
+    [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
+    
+    NSString * pathForAudio = [[NSBundle mainBundle]pathForResource:@"splash_sound" ofType:@"mp3"];
+    NSURL *audioURL = [NSURL fileURLWithPath:pathForAudio];
+    
+    NSError * err;
+    audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:audioURL error:&err];
+    [audioPlayer setDelegate:self];
+    [audioPlayer setVolume:0.1f];
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
     
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

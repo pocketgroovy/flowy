@@ -28,6 +28,7 @@
 @property(nonatomic)BOOL isBlowed;
 @property (nonatomic, strong)CCDirector * director;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
+@property (nonatomic)BOOL isMuted;
 
 @end
 
@@ -39,6 +40,8 @@
 @synthesize recorder;
 @synthesize email;
 @synthesize tryAgain;
+@synthesize soundSwitch;
+@synthesize isMuted;
 
 - (void)viewDidLoad
 {
@@ -46,6 +49,8 @@
         
    //twitter button
     [twitBarItem setImage:[UIImage imageNamed:@"twitter-bird-light-bgs.png"]];
+    NSString * soundButton = NSLocalizedString(@"MUTESOUND", nil);
+    [soundSwitch setTitle:soundButton];
     
     NSString * locEmail = NSLocalizedString(@"EMAIL", nil);
     [email setTitle:locEmail];
@@ -88,30 +93,32 @@
     
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
-    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *sessionError;
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
     
-    NSLog(@"%@, %s", url, __FUNCTION__);
     
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-							  nil];
+        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
-	NSError *error;
+    	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+    							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+    							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+    							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+    							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+    							  nil];
     
-    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    	NSError *error;
     
-	if (recorder) {
-		[recorder prepareToRecord];
-		recorder.meteringEnabled = YES;
-		[recorder record];
-		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-        
-	} else
-		NSLog(@"No recorder");
-    NSLog(@"%f width, %f height", [director winSize].width,[director winSize].height);
+        recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+    	if (recorder) {
+    		[recorder prepareToRecord];
+    		recorder.meteringEnabled = YES;
+    		[recorder record];
+    		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+            
+    	} else
+    		NSLog(@"No recorder");
 
 
 }
@@ -160,28 +167,34 @@
     
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *sessionError;
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
+    
+    
     NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
     
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-							  nil];
+    NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+                              [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                              [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+                              [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                              nil];
     
-	NSError *error;
+    NSError *error;
     
     recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     
-	if (recorder) {
-		[recorder prepareToRecord];
-		recorder.meteringEnabled = YES;
-		[recorder record];
-		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+    if (recorder) {
+        [recorder prepareToRecord];
+        recorder.meteringEnabled = YES;
+        [recorder record];
+        levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
         
-	} else
-		NSLog(@"No recorder");
-    
+    } else
+        NSLog(@"No recorder");
+
+
 
     //MoPub Interstitial for iPhone
     if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -449,6 +462,7 @@
 	
 	if (lowPassResults > 0.3 && !isBlowed)
     {
+        NSLog(@"detected, %s", __FUNCTION__);
         [director resume];
         isBlowed = YES;
         particleTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(particleTimerCallback:) userInfo: nil repeats: NO];
@@ -457,7 +471,7 @@
         NSError * categoryErr;
         [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
         
-        NSString * pathForAudio = [[NSBundle mainBundle]pathForResource:@"splash_flowee_mono" ofType:@"mp3"];
+        NSString * pathForAudio = [[NSBundle mainBundle]pathForResource:@"flowing_sound" ofType:@"mp3"];
         NSURL *audioURL = [NSURL fileURLWithPath:pathForAudio];
         
         NSError * err;
@@ -478,6 +492,26 @@
 {
     [director pause];
 }
+
+
+#pragma mark toggle switch for sound
+- (IBAction)toggleSound:(id)sender {
+    if(!isMuted)
+    {
+        [audioPlayer setVolume:0.0f];
+        NSString * muted = NSLocalizedString(@"SOUNDMUTED", nil);
+        [soundSwitch setTitle:muted];
+        isMuted = YES;
+    }
+    else
+    {
+        [audioPlayer setVolume:0.01f];
+        NSString * soundButton = NSLocalizedString(@"MUTESOUND", nil);
+        [soundSwitch setTitle:soundButton];
+        isMuted = NO;
+    }
+}
+
 
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -507,9 +541,7 @@
 
 
 - (void)viewDidUnload {
-//    [self setEmail:nil];
-//    [self setTryAgain:nil];
-    [audioPlayer stop];
+
     [super viewDidUnload];
 }
 @end

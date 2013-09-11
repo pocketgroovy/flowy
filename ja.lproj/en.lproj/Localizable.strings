@@ -34,3 +34,7 @@
 
 "TWIT_FAILED" = "Failure";
 "TWIT_FAILED_MESSAGE" = "Your device doesn't support the Twitter";
+
+"MUTESOUND" = "mute sound";
+
+"SOUNDMUTED" = "sound muted";

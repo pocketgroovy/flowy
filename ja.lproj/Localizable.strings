@@ -34,3 +34,7 @@
 
 "TWIT_FAILED" = "エラー";
 "TWIT_FAILED_MESSAGE" = "ツイッター機能がサポートされていません";
+
+"MUTESOUND" = "音を消す";
+
+"SOUNDMUTED" = "音を出す";
