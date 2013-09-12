@@ -38,3 +38,7 @@
 "MUTESOUND" = "音を消す";
 
 "SOUNDMUTED" = "音を出す";
+
+"TRANSERROR" = "エラー";
+
+"TRANSERRORMESSAGE" = "エラーが発生した為、決済が出来ませんでした";

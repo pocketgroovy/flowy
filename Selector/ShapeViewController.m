@@ -12,9 +12,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "BBFImageStore.h"
 #import "Flurry.h"
+#import <StoreKit/StoreKit.h>
 
-
-@interface ShapeViewController ()<UIPickerViewDelegate>
+@interface ShapeViewController ()<UIPickerViewDelegate, SKProductsRequestDelegate>
 @property NSMutableArray * imageArray;
 @property (nonatomic)UIImageView * imageView;
 @property (nonatomic)UIImageView * imageView2;
@@ -56,7 +56,9 @@
 {
     [super viewDidLoad];
     
-      [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
+
+    
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
     
     imageArray = [[NSMutableArray alloc]init];
         
@@ -127,6 +129,25 @@
     cancel.layer.cornerRadius = 10.0f;
 
 }
+
+- (void)requestProductData
+{
+    SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:
+                                 [NSSet setWithObject: kMyFeatureIdentifier]];
+    request.delegate = self;
+    [request start];
+}
+
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSArray *myProducts = response.products;
+    // Populate your UI from the products list.
+    // Save a reference to the products list.
+}
+
+
+
 
 
 #pragma mark - UIPickerViewDelegate

@@ -8,16 +8,28 @@
 
 #import "SelectorAppDelegate.h"
 #import "Flurry.h"
-
+#import "PGStoreObserver.h"
+#import <StoreKit/StoreKit.h>
 @implementation SelectorAppDelegate
 @synthesize window;
 @synthesize audioPlayer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    //in-app Store observer
+    if ([SKPaymentQueue canMakePayments]) {
+        PGStoreObserver * observer = [[PGStoreObserver alloc]init];
+        [[SKPaymentQueue defaultQueue]addTransactionObserver:observer];
+    } else {
+        // Warn the user that purchases are disabled.
+    }
+
+
+    //Flurry analytic
+    [Flurry startSession:@"5BBZNGZ2FK9YFQ7SKZY5"];
     
-        [Flurry startSession:@"5BBZNGZ2FK9YFQ7SKZY5"];
+    
+    //opening sound
     NSError * categoryErr;
     [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
     
@@ -30,6 +42,9 @@
     [audioPlayer setVolume:0.1f];
     [audioPlayer prepareToPlay];
     [audioPlayer play];
+    
+    
+    
     
     return YES;
 }

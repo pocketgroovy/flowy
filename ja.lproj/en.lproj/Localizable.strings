@@ -38,3 +38,7 @@
 "MUTESOUND" = "mute sound";
 
 "SOUNDMUTED" = "sound muted";
+
+"TRANSERROR" = "TRANSACTION FAILED";
+
+"TRANSERRORMESSAGE" = "couldn't complete the transaction";
