@@ -11,7 +11,7 @@
 
 @protocol ShapeViewControllerDelegate <NSObject>
 
--(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage*)shape;
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage*)shape inRow:(NSInteger)row;
 
 @end
 

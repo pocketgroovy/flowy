@@ -179,15 +179,35 @@
 }
 
 #pragma mark - SHAPEVIEWCONTROLLER DELEGATE
--(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape inRow:(NSInteger)row
 {    NSLog(@"%s", __FUNCTION__);
+    
+    
+    
+    if(![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%@", shape]] && row > 4)
+    {
+        NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
+        NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
+        [alert show];
+        
+        myShape = nil;
+        
+    }
+    
+    else{
     myShape = shape;
+    }
     coloredShape = nil;
     [resultView setImage:myShape];
     if([[FloweeColorStore sharedStore]colorForKey:@"myColor"])
     {
         [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
     }
+    
+    
+    
+    
     [self dismissModalViewControllerAnimated:YES];
 
 }

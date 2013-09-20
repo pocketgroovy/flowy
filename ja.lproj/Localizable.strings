@@ -50,3 +50,7 @@
 "INAPP_PURCHASE" = "購入";
 
 "INAPP_PURCHASE_MESSAGE"= "このフローウィーを買いますか？";
+
+"INAPP_PURCHASE_WARNING" = "選べません";
+
+"INAPP_PURCHASE_WARNING_MESSAGE" = "他のフローウィーを選択するか購入して下さい";

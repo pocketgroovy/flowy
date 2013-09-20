@@ -69,7 +69,8 @@
     [super viewDidLoad];
 
     
-    
+    Reachability * reachNet = [Reachability reachabilityForInternetConnection];
+    NetworkStatus statusNet = [reachNet currentReachabilityStatus];
 
     NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
     [productNC addObserver:self selector:@selector(provideProduct:) name:@"ProductReady" object:[PGStoreObserver sharedObserver]];
@@ -97,7 +98,7 @@
     
     
     //IN-APP store products
-    if([[FloweeShapeStore sharedStore]hasProducts] || [[NSUserDefaults standardUserDefaults]boolForKey:@"someBeenPurchased"])
+    if([[FloweeShapeStore sharedStore]hasProducts] || [[NSUserDefaults standardUserDefaults]boolForKey:@"someBeenPurchased"]|| statusNet == NotReachable)
     {
             //before purchase
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
@@ -210,7 +211,7 @@
         imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
         imageView6.frame = CGRectMake(0, 0, 100, 100);
         [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView6];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%d",selectedShapeRow]];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%@",[imageView6 image]]];
         NSLog(@"Flowee_Shape1, %s", __FUNCTION__);
 
     }
@@ -220,7 +221,7 @@
         imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
         imageView7.frame = CGRectMake(0, 0, 100, 100);
         [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView7];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%d",selectedShapeRow]];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%@",[imageView7 image]]];
         NSLog(@"Flowee_Shape2, %s", __FUNCTION__);
 
     }
@@ -272,9 +273,13 @@
     Reachability * reachNet = [Reachability reachabilityForInternetConnection];
     NetworkStatus statusNet = [reachNet currentReachabilityStatus];
     
+    selectedImageView = [imageArray objectAtIndex:selectedShapeRow];
+
+    
     if(statusNet != NotReachable)
     {
-        if(selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%d", selectedShapeRow]] &&[SKPaymentQueue canMakePayments])
+        
+        if(selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%@", [selectedImageView image]]] &&[SKPaymentQueue canMakePayments])
         {
             NSString * locInAppPurchase = NSLocalizedString(@"INAPP_PURCHASE", nil);
             NSString * locInAppPurchaseMessage = NSLocalizedString(@"INAPP_PURCHASE_MESSAGE", nil);
@@ -286,6 +291,8 @@
     }
 }
 
+
+#pragma mark - UIAlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 1)
@@ -302,19 +309,19 @@
         }
  
     }
+
 }
 
 
 #pragma mark - Send the delegate the selected shape
 - (IBAction)shapeSelected:(id)sender {
     
-    
+
     selectedImageView = [imageArray objectAtIndex:selectedShapeRow];
     
     selectedShape = [selectedImageView image];
     
-    
-    [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape];
+    [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape inRow:selectedShapeRow];
     
     NSString * selectedShapeRowNumber = [NSString stringWithFormat:@"%d", selectedShapeRow];
         
