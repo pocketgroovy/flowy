@@ -42,3 +42,11 @@
 "TRANSERROR" = "エラー";
 
 "TRANSERRORMESSAGE" = "エラーが発生した為、決済が出来ませんでした";
+
+"PURCHASE_ERROR" = "復元処理失敗";
+
+"PURCHASE_ERROR_MESSAGE" = "アプリ内課金の復元処理ができませんでした";
+
+"INAPP_PURCHASE" = "購入";
+
+"INAPP_PURCHASE_MESSAGE"= "このフローウィーを買いますか？";

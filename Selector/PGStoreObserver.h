@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-@interface PGStoreObserver : NSObject<SKPaymentTransactionObserver>
+@interface PGStoreObserver : NSObject<SKPaymentTransactionObserver, SKProductsRequestDelegate>
+
+@property (nonatomic, strong)NSArray * myProducts;
 
 
++(PGStoreObserver *)sharedObserver;
+-(void)checkPurchasedItems;
+- (void)requestProductData:(NSString*)kMyFeatureIdentifier;
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response;
+
+-(void)buyProduct:(SKProduct*)aProduct;
 @end

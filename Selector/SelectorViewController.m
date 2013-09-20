@@ -12,9 +12,10 @@
 #import "UIColor+JP.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "Flurry.h"
+#import "FloweeColorStore.h"
 
 @interface SelectorViewController ()
-@property (nonatomic, weak)ShapeViewController * shapeVC;
+@property (nonatomic, weak)ShapeViewController * shapeVC;   
 @property (nonatomic, weak)ColorViewController * colorVC;
 @property (nonatomic, weak)FlowingController * flowVC;
 @property (nonatomic, weak)UIImage * myShape;
@@ -168,10 +169,10 @@
 {
     NSLog(@"%@, %s", color, __FUNCTION__);
     myColor = color;
-    [resultView setImage:nil];
+    [[FloweeColorStore sharedStore]setColor:myColor forKey:@"myColor"];
     if(myShape)
     {
-    [resultView setImage:[self colorShape:myColor]];
+    [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
     }
     [self dismissModalViewControllerAnimated:YES];
 
@@ -181,11 +182,11 @@
 -(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape
 {    NSLog(@"%s", __FUNCTION__);
     myShape = shape;
-    
+    coloredShape = nil;
     [resultView setImage:myShape];
-    if(myColor)
+    if([[FloweeColorStore sharedStore]colorForKey:@"myColor"])
     {
-        [resultView setImage:[self colorShape:myColor]];
+        [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
     }
     [self dismissModalViewControllerAnimated:YES];
 

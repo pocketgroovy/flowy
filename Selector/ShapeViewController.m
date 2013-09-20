@@ -13,20 +13,27 @@
 #import "BBFImageStore.h"
 #import "Flurry.h"
 #import <StoreKit/StoreKit.h>
+#import "FloweeShapeStore.h"
+#import "PGStoreObserver.h"
+#import "Reachability.h"
 
-@interface ShapeViewController ()<UIPickerViewDelegate, SKProductsRequestDelegate>
-@property NSMutableArray * imageArray;
+@interface ShapeViewController ()<UIPickerViewDelegate, UIAlertViewDelegate>
+@property NSArray * imageArray;
 @property (nonatomic)UIImageView * imageView;
 @property (nonatomic)UIImageView * imageView2;
 @property (nonatomic)UIImageView * imageView3;
 @property (nonatomic)UIImageView * imageView4;
 @property (nonatomic)UIImageView * imageView5;
+@property (nonatomic)UIImageView * imageView6;
+@property (nonatomic)UIImageView * imageView7;
 @property  (nonatomic) IBOutlet UIImageView *wallpaper;
 @property (weak, nonatomic) IBOutlet UIButton *go;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (assign, nonatomic) NSInteger selectedShapeRow;
 @property (nonatomic)UIImageView * selectedImageView;
-
+@property (nonatomic, weak)NSArray * floweeOptionalShapes;
+@property (nonatomic, strong)UIPickerView * pickerView;
+@property (nonatomic, strong)NSMutableArray * tempArray;
 @end
 
 @implementation ShapeViewController
@@ -37,12 +44,17 @@
 @synthesize imageView3;
 @synthesize imageView4;
 @synthesize imageView5;
+@synthesize imageView6;
+@synthesize imageView7;
 @synthesize selectedImageView;
 @synthesize wallpaper;
 @synthesize go;
 @synthesize cancel;
 @synthesize shapeDelegate;
 @synthesize selectedShapeRow;
+@synthesize floweeOptionalShapes;
+@synthesize pickerView;
+@synthesize tempArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,35 +67,75 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     
 
+    NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
+    [productNC addObserver:self selector:@selector(provideProduct:) name:@"ProductReady" object:[PGStoreObserver sharedObserver]];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
     
-    imageArray = [[NSMutableArray alloc]init];
-        
     imageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"smileyStar.png"]];
     imageView.frame = CGRectMake(0, 0, 100, 100);
     
     imageView2 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"diamond.png"]];
     imageView2.frame = CGRectMake(0, 0, 100, 100);
-    
+ 
     imageView3 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"egg.png"]];
     imageView3.frame = CGRectMake(0, 0, 100, 100);
     
-    imageView4 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snowflake2.png"]];
-    imageView5 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circle.png"]];
-    wallpaper =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"candies.png"]];
+    imageView4 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxx.png"]];
+    imageView4.frame = CGRectMake(0, 0, 100, 100);
 
+    imageView5 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaiju.png"]];
+    imageView5.frame = CGRectMake(0, 0, 100, 100);
 
-    [imageArray addObject:imageView];
-    [imageArray addObject:imageView2];
-    [imageArray addObject:imageView3];
-    [imageArray addObject:imageView4];
-    [imageArray addObject:imageView5];
+    imageArray = [NSArray arrayWithObjects:imageView, imageView2, imageView3,imageView4, imageView5, nil];
+    
+
+    
+    
+    //IN-APP store products
+    if([[FloweeShapeStore sharedStore]hasProducts] || [[NSUserDefaults standardUserDefaults]boolForKey:@"someBeenPurchased"])
+    {
+            //before purchase
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
+            {
+            imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedFoxxEgg.png"]];
+            imageView6.frame = CGRectMake(0, 0, 100, 100);
+            [self addStoreProduct:imageView6];
+            }
+            //after purchase
+            else{
+            imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
+            imageView6.frame = CGRectMake(0, 0, 100, 100);
+            [self addStoreProduct:imageView6];
+                NSLog(@"imageView6, -%s", __FUNCTION__);
+            }
+            
+        
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape2"])
+            {
+            imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedKaijuEgg.png"]];
+            imageView7.frame = CGRectMake(0, 0, 100, 100);
+            [self addStoreProduct:imageView7];
+            }
+            else{
+            imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
+            imageView7.frame = CGRectMake(0, 0, 100, 100);
+            [self addStoreProduct:imageView7];
+                NSLog(@"imageView7, -%s", __FUNCTION__);
+
+            }
+        
+        NSLog(@"FloweeShapeStore hasProducts, -%s", __FUNCTION__);
+
+    }
+
     
     CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
-    UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
+    pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
 
     
     float numPicker = self.view.frame.size.height /pickerView.frame.size.width;
@@ -130,24 +182,52 @@
 
 }
 
-- (void)requestProductData
+-(void)addStoreProduct:(UIImageView *)storeImageView
 {
-    SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:
-                                 [NSSet setWithObject: kMyFeatureIdentifier]];
-    request.delegate = self;
-    [request start];
+    tempArray = [NSMutableArray arrayWithArray:imageArray];
+    [tempArray addObject:storeImageView];
+    imageArray = tempArray;
 }
 
 
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+-(void)replaceImageAtIndex:(NSInteger )index withUnlockedImageView:(UIImageView *)unlockedImageView
 {
-    NSArray *myProducts = response.products;
-    // Populate your UI from the products list.
-    // Save a reference to the products list.
+    tempArray = [NSMutableArray arrayWithArray:imageArray];
+    [tempArray removeObjectAtIndex:index];
+    [tempArray insertObject:unlockedImageView atIndex:index];
+    [pickerView reloadAllComponents];
 }
 
 
+-(void)provideProduct:(NSNotification *)productIsReady
+{
+    NSDictionary * productInfo = [productIsReady userInfo];
+    
+    NSString * productID = [productInfo objectForKey:@"PurchasedProduct"];
 
+    if([productID isEqualToString:@"Flowee_Shape1"])
+    {
+        imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
+        imageView6.frame = CGRectMake(0, 0, 100, 100);
+        [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView6];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%d",selectedShapeRow]];
+        NSLog(@"Flowee_Shape1, %s", __FUNCTION__);
+
+    }
+    else if([productID isEqualToString:@"Flowee_Shape2"])
+    {
+        
+        imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
+        imageView7.frame = CGRectMake(0, 0, 100, 100);
+        [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView7];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%d",selectedShapeRow]];
+        NSLog(@"Flowee_Shape2, %s", __FUNCTION__);
+
+    }
+
+    
+    
+}
 
 
 #pragma mark - UIPickerViewDelegate
@@ -175,30 +255,72 @@
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
+    if(tempArray)
+    {
+        imageArray = tempArray;
+    }
+    
     return [imageArray objectAtIndex:row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	
     AudioServicesPlaySystemSound(0x450);
-
-    selectedImageView = [imageArray objectAtIndex:row];
-    
-    selectedShape = [selectedImageView image];
     
     selectedShapeRow = row;
+    
+    Reachability * reachNet = [Reachability reachabilityForInternetConnection];
+    NetworkStatus statusNet = [reachNet currentReachabilityStatus];
+    
+    if(statusNet != NotReachable)
+    {
+        if(selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%d", selectedShapeRow]] &&[SKPaymentQueue canMakePayments])
+        {
+            NSString * locInAppPurchase = NSLocalizedString(@"INAPP_PURCHASE", nil);
+            NSString * locInAppPurchaseMessage = NSLocalizedString(@"INAPP_PURCHASE_MESSAGE", nil);
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchase message:locInAppPurchaseMessage delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+            [alert show];
+            
+            NSLog(@"selectedRow, %d - %s", selectedShapeRow, __FUNCTION__);
+        }
+    }
+}
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        switch (selectedShapeRow ) {
+            case 5:
+                [[PGStoreObserver sharedObserver]buyProduct:[[FloweeShapeStore sharedStore]shapeForKey:@"Flowee_Shape1"]];
+                break;
+            case 6:
+                [[PGStoreObserver sharedObserver]buyProduct:[[FloweeShapeStore sharedStore]shapeForKey:@"Flowee_Shape2"]];
+                break;
+            default:
+                break;
+        }
+ 
+    }
 }
 
 
 #pragma mark - Send the delegate the selected shape
 - (IBAction)shapeSelected:(id)sender {
     
-        [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape];
+    
+    selectedImageView = [imageArray objectAtIndex:selectedShapeRow];
+    
+    selectedShape = [selectedImageView image];
+    
+    
+    [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape];
     
     NSString * selectedShapeRowNumber = [NSString stringWithFormat:@"%d", selectedShapeRow];
         
     NSDictionary *shapeChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:selectedShapeRowNumber, @"Selected Shape Row", nil ];
+    NSLog(@"selectedRow in delegate, %d - %s", selectedShapeRow, __FUNCTION__);
+
     
     [Flurry logEvent:@"Shape_Selected" withParameters:shapeChosenByUser];
 }

@@ -42,3 +42,11 @@
 "TRANSERROR" = "TRANSACTION FAILED";
 
 "TRANSERRORMESSAGE" = "couldn't complete the transaction";
+
+"PURCHASE_ERROR" = "RESTORE FAILED";
+
+"PURCHASE_ERROR_MESSAGE" = "Failure in restoring In-App Purchases";
+
+"INAPP_PURCHASE" = "PURCHASE?";
+
+"INAPP_PURCHASE_MESSAGE" = "Do you want to purchase this Flowee?";

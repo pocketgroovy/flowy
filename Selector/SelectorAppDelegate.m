@@ -10,19 +10,43 @@
 #import "Flurry.h"
 #import "PGStoreObserver.h"
 #import <StoreKit/StoreKit.h>
+#import "FloweeShapeStore.h"
+
 @implementation SelectorAppDelegate
 @synthesize window;
 @synthesize audioPlayer;
+@synthesize productList;
+
+#define kMyFeatureIdentifier @"Flowee_Shape1"
+#define kMyFeatureIdentifier2 @"Flowee_Shape2"
+#define kMyFeatureIdentifier3 @"Flowee_Shape3"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //in-app Store observer
     if ([SKPaymentQueue canMakePayments]) {
-        PGStoreObserver * observer = [[PGStoreObserver alloc]init];
+        PGStoreObserver * observer = [PGStoreObserver sharedObserver];
         [[SKPaymentQueue defaultQueue]addTransactionObserver:observer];
+        [observer requestProductData:kMyFeatureIdentifier];
+        [observer requestProductData:kMyFeatureIdentifier2];
+        [observer requestProductData:kMyFeatureIdentifier3];
+        
+        
+        NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
+        [productNC addObserver:self selector:@selector(listStoreProducts:) name:@"product_response_received" object:observer];
+        
+        NSLog(@"Can Make Payments, -%s", __FUNCTION__);
+        
+        
+        
     } else {
-        // Warn the user that purchases are disabled.
+        NSString * locPurchaseError = NSLocalizedString(@"PURCHASE_ERROR", nil);
+        NSString * locPurchaseErrorMessage = NSLocalizedString(@"PURCHASE_ERROR_MESSAGE", nil);
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locPurchaseError message:locPurchaseErrorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
     }
+
 
 
     //Flurry analytic
@@ -39,14 +63,31 @@
     NSError * err;
     audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:audioURL error:&err];
     [audioPlayer setDelegate:self];
-    [audioPlayer setVolume:0.1f];
+    [audioPlayer setVolume:0.5f];
     [audioPlayer prepareToPlay];
     [audioPlayer play];
     
-    
+    productList = [[NSMutableArray alloc]init];
     
     
     return YES;
+}
+
+-(void)listStoreProducts:(NSNotification *)productResponseReceived
+{
+    NSLog(@"%@, %s", [[[productResponseReceived userInfo]objectForKey:@"Flowee_Product"]productIdentifier], __FUNCTION__);
+    
+   
+    [productList addObject:[[productResponseReceived userInfo]objectForKey:@"Flowee_Product"]];
+    
+    NSLog(@"%d, %s",[productList count], __FUNCTION__);
+    for (SKProduct *aProduct in productList)
+    {
+        [[FloweeShapeStore sharedStore]setShape:aProduct forKey:[aProduct productIdentifier]];
+        NSLog(@"%@ in loop, %s",[aProduct productIdentifier], __FUNCTION__);
+    }
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
