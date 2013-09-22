@@ -15,6 +15,12 @@
 
 @end
 
+//flowee shapes from store
+typedef enum {
+    flowee1 = 5,
+    flowee2 = 6
+}Flowee_Store_Shapes;
+
 @interface ShapeViewController : UIViewController
 @property (nonatomic, readonly) UIImage * selectedShape;
 @property (nonatomic) id<ShapeViewControllerDelegate>shapeDelegate;

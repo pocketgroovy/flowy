@@ -184,7 +184,7 @@
     
     
     
-    if(![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%@", shape]] && row > 4)
+    if((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee1Purchased"]]&& (row > 4))|| ((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]]) && (row > 4)))
     {
         NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
         NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);

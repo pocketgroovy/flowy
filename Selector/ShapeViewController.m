@@ -19,14 +19,19 @@
 
 @interface ShapeViewController ()<UIPickerViewDelegate, UIAlertViewDelegate>
 @property NSArray * imageArray;
-@property (nonatomic)UIImageView * imageView;
-@property (nonatomic)UIImageView * imageView2;
-@property (nonatomic)UIImageView * imageView3;
-@property (nonatomic)UIImageView * imageView4;
-@property (nonatomic)UIImageView * imageView5;
-@property (nonatomic)UIImageView * imageView6;
-@property (nonatomic)UIImageView * imageView7;
-@property  (nonatomic) IBOutlet UIImageView *wallpaper;
+@property (nonatomic,strong)UIImageView * imageView;
+@property (nonatomic,strong)UIImageView * imageView2;
+@property (nonatomic,strong)UIImageView * imageView3;
+@property (nonatomic,strong)UIImageView * imageView4;
+@property (nonatomic,strong)UIImageView * imageView5;
+@property (nonatomic,strong)UIImageView * imageView6;
+@property (nonatomic,strong)UIImageView * imageView7;
+@property (nonatomic,strong)UIImageView * imageView6Unlocked;
+@property (nonatomic,strong)UIImageView * imageView7Unlocked;
+
+
+
+@property  (nonatomic, weak) IBOutlet UIImageView *wallpaper;
 @property (weak, nonatomic) IBOutlet UIButton *go;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (assign, nonatomic) NSInteger selectedShapeRow;
@@ -46,6 +51,8 @@
 @synthesize imageView5;
 @synthesize imageView6;
 @synthesize imageView7;
+@synthesize imageView6Unlocked;
+@synthesize imageView7Unlocked;
 @synthesize selectedImageView;
 @synthesize wallpaper;
 @synthesize go;
@@ -55,6 +62,7 @@
 @synthesize floweeOptionalShapes;
 @synthesize pickerView;
 @synthesize tempArray;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,12 +76,19 @@
 {
     [super viewDidLoad];
 
-    
+    //check network
     Reachability * reachNet = [Reachability reachabilityForInternetConnection];
     NetworkStatus statusNet = [reachNet currentReachabilityStatus];
 
+    //listening store observer
     NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
     [productNC addObserver:self selector:@selector(provideProduct:) name:@"ProductReady" object:[PGStoreObserver sharedObserver]];
+    
+    //show if needs to restore items
+    if(statusNet != NotReachable && ![[NSUserDefaults standardUserDefaults]boolForKey:@"restoreAsked"])
+    {
+    [[PGStoreObserver sharedObserver]checkPurchasedItems];
+    }
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
     
@@ -91,48 +106,30 @@
 
     imageView5 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaiju.png"]];
     imageView5.frame = CGRectMake(0, 0, 100, 100);
+    
+    imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedFoxxEgg.png"]];
+                imageView6.frame = CGRectMake(0, 0, 100, 100);
+    imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedKaijuEgg.png"]];
+                imageView7.frame = CGRectMake(0, 0, 100, 100);
 
-    imageArray = [NSArray arrayWithObjects:imageView, imageView2, imageView3,imageView4, imageView5, nil];
-    
-
+    imageArray = [NSArray arrayWithObjects:imageView, imageView2, imageView3,imageView4, imageView5, imageView6, imageView7, nil];
     
     
-    //IN-APP store products
-    if([[FloweeShapeStore sharedStore]hasProducts] || [[NSUserDefaults standardUserDefaults]boolForKey:@"someBeenPurchased"]|| statusNet == NotReachable)
+    imageView6Unlocked =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
+    imageView6Unlocked.frame = CGRectMake(0, 0, 100, 100);
+    
+    if([[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee1Purchased"]]) 
     {
-            //before purchase
-            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
-            {
-            imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedFoxxEgg.png"]];
-            imageView6.frame = CGRectMake(0, 0, 100, 100);
-            [self addStoreProduct:imageView6];
-            }
-            //after purchase
-            else{
-            imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
-            imageView6.frame = CGRectMake(0, 0, 100, 100);
-            [self addStoreProduct:imageView6];
-                NSLog(@"imageView6, -%s", __FUNCTION__);
-            }
-            
-        
-            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape2"])
-            {
-            imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedKaijuEgg.png"]];
-            imageView7.frame = CGRectMake(0, 0, 100, 100);
-            [self addStoreProduct:imageView7];
-            }
-            else{
-            imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
-            imageView7.frame = CGRectMake(0, 0, 100, 100);
-            [self addStoreProduct:imageView7];
-                NSLog(@"imageView7, -%s", __FUNCTION__);
-
-            }
-        
-        NSLog(@"FloweeShapeStore hasProducts, -%s", __FUNCTION__);
-
+        [self replaceImageAtIndex:flowee1 withUnlockedImageView:imageView6Unlocked];
     }
+    
+    imageView7Unlocked =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
+    imageView7Unlocked.frame = CGRectMake(0, 0, 100, 100);
+    if([[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]])
+    {
+        [self replaceImageAtIndex:flowee2 withUnlockedImageView:imageView7Unlocked];
+    }
+    
 
     
     CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
@@ -183,51 +180,44 @@
 
 }
 
--(void)addStoreProduct:(UIImageView *)storeImageView
-{
-    tempArray = [NSMutableArray arrayWithArray:imageArray];
-    [tempArray addObject:storeImageView];
-    imageArray = tempArray;
-}
 
+
+//replace with unlocked shapes
 
 -(void)replaceImageAtIndex:(NSInteger )index withUnlockedImageView:(UIImageView *)unlockedImageView
 {
+    NSLog(@"%@, %s",[[unlockedImageView image]description], __FUNCTION__);
     tempArray = [NSMutableArray arrayWithArray:imageArray];
     [tempArray removeObjectAtIndex:index];
     [tempArray insertObject:unlockedImageView atIndex:index];
+    imageArray = tempArray;
     [pickerView reloadAllComponents];
 }
 
 
+//provide the purchased product after recieving response from store
 -(void)provideProduct:(NSNotification *)productIsReady
 {
+    
     NSDictionary * productInfo = [productIsReady userInfo];
     
     NSString * productID = [productInfo objectForKey:@"PurchasedProduct"];
 
+
     if([productID isEqualToString:@"Flowee_Shape1"])
     {
-        imageView6 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
-        imageView6.frame = CGRectMake(0, 0, 100, 100);
-        [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView6];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%@",[imageView6 image]]];
-        NSLog(@"Flowee_Shape1, %s", __FUNCTION__);
-
+        imageView6Unlocked =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"foxxEgg.png"]];
+        imageView6Unlocked.frame = CGRectMake(0, 0, 100, 100);
+        [self replaceImageAtIndex:flowee1 withUnlockedImageView:imageView6Unlocked];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"flowee1Purchased"]];
     }
     else if([productID isEqualToString:@"Flowee_Shape2"])
     {
-        
-        imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
-        imageView7.frame = CGRectMake(0, 0, 100, 100);
-        [self replaceImageAtIndex:selectedShapeRow withUnlockedImageView:imageView7];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"%@",[imageView7 image]]];
-        NSLog(@"Flowee_Shape2, %s", __FUNCTION__);
-
+        imageView7Unlocked =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"kaijuEgg.png"]];
+        imageView7Unlocked.frame = CGRectMake(0, 0, 100, 100);
+        [self replaceImageAtIndex:flowee2 withUnlockedImageView:imageView7Unlocked];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:[NSString stringWithFormat:@"flowee2Purchased"]];
     }
-
-    
-    
 }
 
 
@@ -256,11 +246,7 @@
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    if(tempArray)
-    {
-        imageArray = tempArray;
-    }
-    
+
     return [imageArray objectAtIndex:row];
 }
 
@@ -279,7 +265,7 @@
     if(statusNet != NotReachable)
     {
         
-        if(selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"%@", [selectedImageView image]]] &&[SKPaymentQueue canMakePayments])
+        if((selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee1Purchased"]] &&[SKPaymentQueue canMakePayments]) ||(selectedShapeRow > 4 && ![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]] &&[SKPaymentQueue canMakePayments]))
         {
             NSString * locInAppPurchase = NSLocalizedString(@"INAPP_PURCHASE", nil);
             NSString * locInAppPurchaseMessage = NSLocalizedString(@"INAPP_PURCHASE_MESSAGE", nil);

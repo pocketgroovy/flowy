@@ -127,6 +127,7 @@
     [self recordTransaction: transaction];
     [self provideContent: transaction.originalTransaction.payment.productIdentifier];
     [self finishTransaction:transaction wasSuccessful:YES];
+    NSLog(@"%@, %s", transaction.originalTransaction.payment.productIdentifier, __FUNCTION__);
     NSLog(@"IN-APP:%s", __FUNCTION__);
 
 }
@@ -188,11 +189,7 @@
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     NSLog(@"received restored transactions: %i", queue.transactions.count);
-    for (SKPaymentTransaction *transaction in queue.transactions)
-    {
-        NSString *productID = transaction.payment.productIdentifier;
-    }
-    
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreAsked"];
 }
 
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
