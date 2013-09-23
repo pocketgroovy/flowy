@@ -169,13 +169,15 @@
 {
     NSLog(@"%@, %s", color, __FUNCTION__);
     myColor = color;
-    [[FloweeColorStore sharedStore]setColor:myColor forKey:@"myColor"];
-    if(myShape)
-    {
-    [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
-    }
-    [self dismissModalViewControllerAnimated:YES];
 
+        [[FloweeColorStore sharedStore]setColor:myColor forKey:@"myColor"];
+        if(myShape)
+        {
+        [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
+        }
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
 }
 
 #pragma mark - SHAPEVIEWCONTROLLER DELEGATE
@@ -221,7 +223,9 @@
     UIGraphicsBeginImageContext(myShape.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+
     [color setFill];
+    
     
     CGContextTranslateCTM(context, 0, myShape.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);

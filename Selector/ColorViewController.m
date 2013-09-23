@@ -94,9 +94,10 @@
         blueColor -= 0.3;
     }
 
-    
+    NSString * locColor = NSLocalizedString(@"NO_COLOR", nil);
+
     colorFrame = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 150, 60)];
-    [colorFrame setText:@"Only the Shape!"];
+    [colorFrame setText:locColor];
 
     colorFrame.textAlignment = NSTextAlignmentCenter;
     [colorFrame setTextColor:[UIColor brownColor]];
@@ -186,10 +187,20 @@
 
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    AudioServicesPlaySystemSound(1200);
+    AudioServicesPlaySystemSound(1057);
 
+    if(row!=([colorArray count]-1))
+    {
+        NSLog(@"%d, -didselectRow, %lu", row, (unsigned long)[colorArray count]);
+        
     selectedColor = [[colorArray objectAtIndex:row]backgroundColor];
-    
+    }
+    else
+    {
+        selectedColor = [UIColor clearColor];
+        NSLog(@"clearcolor,%@, %s", selectedColor, __FUNCTION__);
+
+    }
     selectedRow = row;
      
 }
@@ -205,7 +216,6 @@
     NSDictionary *colorChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:selectedColorRowNumber, @"Selected Color Row", nil ];
     
     [Flurry logEvent:@"Color_Selected" withParameters:colorChosenByUser];
-
 }
 
 - (IBAction)cancelled:(id)sender {

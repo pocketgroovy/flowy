@@ -18,7 +18,6 @@
 @property (nonatomic, retain) MPAdView *adView;
 
 
--(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape;
-
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape inRow:(NSInteger)row;
 
 @end

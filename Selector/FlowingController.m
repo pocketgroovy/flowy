@@ -56,6 +56,7 @@
     [email setTitle:locEmail];
     NSString * locTry = NSLocalizedString(@"TRY_AGAIN", nil);
     [tryAgain setTitle:locTry];
+    [tryAgain setEnabled:NO];
     
     director = [CCDirector sharedDirector];
     
@@ -93,32 +94,32 @@
     
     
     //SET UP RECORDER FOR SOUND LEVEL DETECTION
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *sessionError;
-    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
-    
-    
-        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-    
-    	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-    							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-    							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-    							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-    							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-    							  nil];
-    
-    	NSError *error;
-    
-        recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-    
-    	if (recorder) {
-    		[recorder prepareToRecord];
-    		recorder.meteringEnabled = YES;
-    		[recorder record];
-    		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-            
-    	} else
-    		NSLog(@"No recorder");
+//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//    NSError *sessionError;
+//    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
+//    
+//    
+//        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+//    
+//    	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+//    							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+//    							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+//    							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+//    							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+//    							  nil];
+//    
+//    	NSError *error;
+//    
+//        recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+//    
+//    	if (recorder) {
+//    		[recorder prepareToRecord];
+//    		recorder.meteringEnabled = YES;
+//    		[recorder record];
+//    		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+//            
+//    	} else
+//    		NSLog(@"No recorder");
 
 
 }
@@ -446,8 +447,32 @@
 #pragma mark - Try blow
 - (IBAction)blowAgain:(id)sender {
    AudioServicesPlaySystemSound(1057);
-
+    levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+    
+  
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *sessionError;
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
+    
+    
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+    NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+                              [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                              [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+                              [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                              nil];
+    
+    NSError *error;
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    [recorder stop];
+    [recorder prepareToRecord];
+    recorder.meteringEnabled = YES;
+    [recorder record];
     isBlowed = NO;
+    lowPassResults = 0.0;
+    [tryAgain setEnabled:NO];
 }
 
 
@@ -455,9 +480,11 @@
 
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
-    
+    NSLog(@"LowpassResults, %f - %s", lowPassResults, __FUNCTION__);
 	const double ALPHA = 0.05;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+    NSLog(@"peakPwer, %f - %s", [recorder peakPowerForChannel:0], __FUNCTION__);
+
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
 	
 	if (lowPassResults > 0.3 && !isBlowed)
@@ -480,9 +507,8 @@
         [audioPlayer setVolume:0.01f];
         [audioPlayer prepareToPlay];
         [audioPlayer play];
-        
+        recorder = nil;
     }
-    
     
 }
 
@@ -491,6 +517,9 @@
 -(void)particleTimerCallback:(NSTimer *)timer
 {
     [director pause];
+    [tryAgain setEnabled:YES];
+    [levelTimer invalidate];
+    levelTimer = nil;
 }
 
 

@@ -17,7 +17,8 @@
 @interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 {
 NSTimer *levelTimer, *particleTimer;
-double lowPassResults;
+    double lowPassResults;
+
     AVAudioPlayer * audioPlayer;
 }
 @property (nonatomic, strong)MPInterstitialAdController *interstitialAd;

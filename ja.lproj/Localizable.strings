@@ -13,11 +13,11 @@
 
 "CHOOSE_SHAPE" = "どのフローウィーにする？";
 
-"CHOOSE_COLOR" = "基本の色は？";
+"CHOOSE_COLOR" = "色を加えてみよう！";
 
 "EMAIL" = "Eメール";
 
-"TRY_AGAIN" = "もう一度トライ!";
+"TRY_AGAIN" = "もう一度!";
 
 
 "MAIL_FAIL" = "エラー";
@@ -54,3 +54,5 @@
 "INAPP_PURCHASE_WARNING" = "選べません";
 
 "INAPP_PURCHASE_WARNING_MESSAGE" = "他のフローウィーを選択するか購入して下さい";
+
+"NO_COLOR" = "色を加えない";

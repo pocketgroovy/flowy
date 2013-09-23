@@ -28,7 +28,7 @@
 @property (nonatomic,strong)UIImageView * imageView7;
 @property (nonatomic,strong)UIImageView * imageView6Unlocked;
 @property (nonatomic,strong)UIImageView * imageView7Unlocked;
-
+@property (nonatomic,strong)UIImageView * imageView8;
 
 
 @property  (nonatomic, weak) IBOutlet UIImageView *wallpaper;
@@ -62,6 +62,7 @@
 @synthesize floweeOptionalShapes;
 @synthesize pickerView;
 @synthesize tempArray;
+@synthesize imageView8;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -111,7 +112,7 @@
                 imageView6.frame = CGRectMake(0, 0, 100, 100);
     imageView7 =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LockedKaijuEgg.png"]];
                 imageView7.frame = CGRectMake(0, 0, 100, 100);
-
+        
     imageArray = [NSArray arrayWithObjects:imageView, imageView2, imageView3,imageView4, imageView5, imageView6, imageView7, nil];
     
     
@@ -252,7 +253,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	
-    AudioServicesPlaySystemSound(0x450);
+    AudioServicesPlaySystemSound(1057);
     
     selectedShapeRow = row;
     
@@ -309,9 +310,37 @@
     
     [self.shapeDelegate shapeViewController:self didFinishSelecting:selectedShape inRow:selectedShapeRow];
     
-    NSString * selectedShapeRowNumber = [NSString stringWithFormat:@"%d", selectedShapeRow];
+    
+    //For Flurry - shape chosen by the user
+    NSString * shapeName;
+    switch (selectedShapeRow) {
+        case 0:
+            shapeName = @"Smiley";
+            break;
+        case 1:
+            shapeName = @"Diamond";
+            break;
+        case 2:
+            shapeName = @"Egg";
+            break;
+        case 3:
+            shapeName = @"Foxx";
+            break;
+        case 4:
+            shapeName = @"Kaiju";
+            break;
+        case 5:
+            shapeName = @"FoxxEgg";
+            break;
+        case 6:
+            shapeName = @"KaijuEgg";
+            break;
+        default:
+            break;
+    }
+    
         
-    NSDictionary *shapeChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:selectedShapeRowNumber, @"Selected Shape Row", nil ];
+    NSDictionary *shapeChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:shapeName, @"Selected Shape", nil ];
     NSLog(@"selectedRow in delegate, %d - %s", selectedShapeRow, __FUNCTION__);
 
     
