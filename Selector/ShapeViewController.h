@@ -7,22 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShapeData.h"
 @class ShapeViewController;
 
 @protocol ShapeViewControllerDelegate <NSObject>
+
 
 -(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage*)shape inRow:(NSInteger)row;
 
 @end
 
-//flowee shapes from store
-typedef enum {
-    flowee1 = 5,
-    flowee2 = 6
-}Flowee_Store_Shapes;
 
 @interface ShapeViewController : UIViewController
+{
+    ShapeData * shapes;
+}
 @property (nonatomic, readonly) UIImage * selectedShape;
+@property  (nonatomic, weak)UIImageView * selectedImageView;
 @property (nonatomic) id<ShapeViewControllerDelegate>shapeDelegate;
 
 @end

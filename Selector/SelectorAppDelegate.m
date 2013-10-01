@@ -19,7 +19,7 @@
 
 #define kMyFeatureIdentifier @"Flowee_Shape1"
 #define kMyFeatureIdentifier2 @"Flowee_Shape2"
-#define kMyFeatureIdentifier3 @"Flowee_Shape3"
+#define kMyFeatureIdentifier3 @"Flowee_Shape3s"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -51,7 +51,7 @@
 
 "INAPP_PURCHASE_MESSAGE" = "Do you want to purchase this Flowee?";
 
-"INAPP_PURCHASE_WARNING" = "CHOOSE OTHER";
+"INAPP_PURCHASE_WARNING" = "NOT PURCHASED YET";
 
 "INAPP_PURCHASE_WARNING_MESSAGE" = "Please choose other Flowee or buy";
 

@@ -36,6 +36,8 @@
 @synthesize flowVC;
 @synthesize adView;
 @synthesize coloredShape;
+
+#define shopBorder 10
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -180,35 +182,68 @@
     
 }
 
+-(void)unabletoUseTheShapeMessage
+{
+    NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
+    NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
+    [alert show];
+    
+    myShape = nil;
+}
+
 #pragma mark - SHAPEVIEWCONTROLLER DELEGATE
 -(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape inRow:(NSInteger)row
 {    NSLog(@"%s", __FUNCTION__);
     
-    
-    
-    if((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee1Purchased"]]&& (row > 4))|| ((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]]) && (row > 4)))
-    {
-        NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
-        NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
-        [alert show];
-        
-        myShape = nil;
-        
+    switch (row) {
+        case 11:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        case 12:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape2"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        case 13:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape3s"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        default:
+            myShape = shape;
+            NSLog(@"%d default switch, %s", row, __FUNCTION__);
+            break;
     }
+//    
+//    if((![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"]]&& (row > shopBorder))|| ((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]]) && (row > shopBorder)))
+//    {
+//        NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
+//        NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
+//        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
+//        [alert show];
+//        
+//        myShape = nil;
+//        
+//    }
     
-    else{
-    myShape = shape;
-    }
+//    else{
+//    myShape = shape;
+//    }
     coloredShape = nil;
     [resultView setImage:myShape];
     if([[FloweeColorStore sharedStore]colorForKey:@"myColor"])
     {
         [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
     }
-    
-    
-    
     
     [self dismissModalViewControllerAnimated:YES];
 
@@ -240,8 +275,10 @@
     UIGraphicsEndImageContext();
     
     NSString * key = @"myColoredShape";
+    if(coloredShape)
+    {
     [[BBFImageStore sharedStore]setImage:coloredShape forKey:key];
-    
+    }   
     return coloredShape;
 }
 

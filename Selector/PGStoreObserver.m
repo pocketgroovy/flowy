@@ -114,7 +114,9 @@
     // Your application should implement these two methods.
     [self recordTransaction:transaction];
     [self provideContent:transaction.payment.productIdentifier];
-    
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:transaction.payment.productIdentifier];
+    NSLog(@"%@ productID, %s", transaction.payment.productIdentifier, __FUNCTION__);
+
     // Remove the transaction from the payment queue.
     [self finishTransaction:transaction wasSuccessful:YES];
     NSLog(@"IN-APP:%s", __FUNCTION__);
@@ -127,7 +129,9 @@
     [self recordTransaction: transaction];
     [self provideContent: transaction.originalTransaction.payment.productIdentifier];
     [self finishTransaction:transaction wasSuccessful:YES];
-    NSLog(@"%@, %s", transaction.originalTransaction.payment.productIdentifier, __FUNCTION__);
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:transaction.originalTransaction.payment.productIdentifier];
+
+    NSLog(@"%@ productID, %s", transaction.originalTransaction.payment.productIdentifier, __FUNCTION__);
     NSLog(@"IN-APP:%s", __FUNCTION__);
 
 }
@@ -189,7 +193,7 @@
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     NSLog(@"received restored transactions: %i", queue.transactions.count);
-    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreAsked"];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreCompleted"];
 }
 
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error

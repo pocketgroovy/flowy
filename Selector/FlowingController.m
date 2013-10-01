@@ -92,43 +92,12 @@
         [director pause];
     }
     
-    
-    //SET UP RECORDER FOR SOUND LEVEL DETECTION
-//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//    NSError *sessionError;
-//    [audioSession setCategory:AVAudioSessionCategoryRecord error:&sessionError];
-//    
-//    
-//        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-//    
-//    	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-//    							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-//    							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-//    							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-//    							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-//    							  nil];
-//    
-//    	NSError *error;
-//    
-//        recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-//    
-//    	if (recorder) {
-//    		[recorder prepareToRecord];
-//    		recorder.meteringEnabled = YES;
-//    		[recorder record];
-//    		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.05 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-//            
-//    	} else
-//    		NSLog(@"No recorder");
-
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-
     
     director = [CCDirector sharedDirector];
     
@@ -221,6 +190,7 @@
     [director end];
     director = nil;
     [particleTimer invalidate];
+    [levelTimer invalidate];
 }
 
 
@@ -352,8 +322,11 @@
 
     [self dismissViewControllerAnimated:YES completion:NULL];
     
- 
-
+    //enable tryAgain button after the email composer closed in iPhone
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+    [tryAgain setEnabled:YES];
+    }
     
 }
 
@@ -480,20 +453,18 @@
 
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
-    NSLog(@"LowpassResults, %f - %s", lowPassResults, __FUNCTION__);
+//    NSLog(@"LowpassResults, %f - %s", lowPassResults, __FUNCTION__);
 	const double ALPHA = 0.05;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-    NSLog(@"peakPwer, %f - %s", [recorder peakPowerForChannel:0], __FUNCTION__);
+//    NSLog(@"peakPwer, %f - %s", [recorder peakPowerForChannel:0], __FUNCTION__);
 
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
 	
 	if (lowPassResults > 0.3 && !isBlowed)
     {
-        NSLog(@"detected, %s", __FUNCTION__);
         [director resume];
         isBlowed = YES;
         particleTimer = [NSTimer scheduledTimerWithTimeInterval: 10 target: self selector: @selector(particleTimerCallback:) userInfo: nil repeats: NO];
-        //SimpleAudioEngine * audioEngine = [SimpleAudioEngine sharedEngine];
         
         NSError * categoryErr;
         [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
