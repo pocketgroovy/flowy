@@ -453,10 +453,8 @@
 
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
-//    NSLog(@"LowpassResults, %f - %s", lowPassResults, __FUNCTION__);
 	const double ALPHA = 0.05;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-//    NSLog(@"peakPwer, %f - %s", [recorder peakPowerForChannel:0], __FUNCTION__);
 
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
 	

@@ -48,16 +48,16 @@
     [imageBackGround setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"washi-01-swans-640.png"]]];
     
     //shape button
-    UIImage * bg = [UIImage imageNamed:@"candy2.jpeg"];
+    UIImage * bg = [UIImage imageNamed:@"shapeSelector.png"];
     [btnShape setBackgroundImage:bg forState:UIControlStateNormal];
-    btnShape.layer.borderColor = [UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
+    btnShape.layer.borderColor = [UIColor colorWithR:255 G:30 B:20 A:1].CGColor;
     btnShape.layer.borderWidth = 5.0f;
     btnShape.layer.cornerRadius = 40.0f;
     NSString * locChooseShape = NSLocalizedString(@"CHOOSE_SHAPE", nil);
     [btnShape setTitle:locChooseShape forState:UIControlStateNormal];
     
     //color button
-    bg = [UIImage imageNamed:@"colorful2.png"];
+    bg = [UIImage imageNamed:@"colorWall.png"];
     [btnColor setBackgroundImage:bg forState:UIControlStateNormal];
     btnColor.layer.borderColor = [UIColor colorWithR:30 G:144 B:255 A:1].CGColor;
     btnColor.layer.borderWidth = 5.0f;
@@ -65,7 +65,7 @@
     NSString * locChooseColor = NSLocalizedString(@"CHOOSE_COLOR", nil);
     [btnColor setTitle:locChooseColor forState:UIControlStateNormal];
     //go button
-    UIImage * readyImage = [UIImage imageNamed:@"go.png"];
+    UIImage * readyImage = [UIImage imageNamed:@"start.png"];
     
     //for iphone display size
     float btnYOrigin = resultView.frame.origin.y + resultView.bounds.size.height;
@@ -80,6 +80,10 @@
     CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - (imageBackGround.bounds.size.width/4)/2), btnYOrigin, imageBackGround.bounds.size.width/4, imageBackGround.bounds.size.width/4);
     btnReady = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnReady setImage:readyImage forState:UIControlStateNormal];
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+    btnReady.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+    }
     [btnReady setFrame:btnFrame];
     [btnReady addTarget:self action:@selector(flowy:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnReady];
@@ -169,7 +173,6 @@
 #pragma mark - COLORVIEWCONTROLLER DELEGATE
 -(void)colorViewController:(ColorViewController *)controller didFinishSelecting:(UIColor *)color
 {
-    NSLog(@"%@, %s", color, __FUNCTION__);
     myColor = color;
 
         [[FloweeColorStore sharedStore]setColor:myColor forKey:@"myColor"];
@@ -194,8 +197,7 @@
 
 #pragma mark - SHAPEVIEWCONTROLLER DELEGATE
 -(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape inRow:(NSInteger)row
-{    NSLog(@"%s", __FUNCTION__);
-    
+{    
     switch (row) {
         case 11:
             if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
@@ -220,24 +222,9 @@
             break;
         default:
             myShape = shape;
-            NSLog(@"%d default switch, %s", row, __FUNCTION__);
             break;
     }
-//    
-//    if((![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"]]&& (row > shopBorder))|| ((![[NSUserDefaults standardUserDefaults]boolForKey:[NSString stringWithFormat:@"flowee2Purchased"]]) && (row > shopBorder)))
-//    {
-//        NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
-//        NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
-//        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
-//        [alert show];
-//        
-//        myShape = nil;
-//        
-//    }
-    
-//    else{
-//    myShape = shape;
-//    }
+
     coloredShape = nil;
     [resultView setImage:myShape];
     if([[FloweeColorStore sharedStore]colorForKey:@"myColor"])
@@ -252,9 +239,6 @@
 #pragma mark - COLOR THE SELECTED SHAPE
 -(UIImage *) colorShape:(UIColor *)color
 {
- 
-    NSLog(@"%@, %s", color, __FUNCTION__);
-    
     UIGraphicsBeginImageContext(myShape.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -286,7 +270,6 @@
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 
@@ -299,8 +282,6 @@
 #pragma mark - For iOS6 bug
 -(NSUInteger)supportedInterfaceOrientations
 {
-    NSLog(@"%s", __FUNCTION__);
-
     return UIInterfaceOrientationMaskLandscape;
 }
 

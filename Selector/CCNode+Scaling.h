@@ -13,7 +13,6 @@ typedef enum {
     
     CCScaleFitFull,
     CCScaleFitAspectFit,
-    //CCSCaleFitAspectFill,
 } CCScaleFit;
 
 

@@ -15,6 +15,7 @@
 @implementation InterstitialAdViewController
 @synthesize interstitialAd;
 @synthesize adView;
+@synthesize message;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,9 +36,9 @@
                                                 size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;
     CGRect frame = CGRectMake(0, 0, 320, 780);
-   // CGSize size = [self.adView adContentViewSize];
 
     self.adView.frame = frame;
+    [message setText:NSLocalizedString(@"INSTRUCTION3", nil)];
     [self.view addSubview:self.adView];
     [self.adView loadAd];
     
@@ -77,4 +78,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setMessage:nil];
+    [super viewDidUnload];
+}
 @end

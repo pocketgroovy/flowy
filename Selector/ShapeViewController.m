@@ -75,7 +75,7 @@
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreAsked"];
     }
     
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"candies.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"shapeWall.png"]]];
     
     
     CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
@@ -116,14 +116,11 @@
 
     [self.view addSubview:pickerView];
     
-    [go setImage:[UIImage imageNamed:@"iine.png"] forState:UIControlStateNormal];
-    go.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
-    go.layer.borderWidth = 10.0f;
-    go.layer.cornerRadius = 20.0f;
+    //OK button
+    [go setBackgroundImage:[UIImage imageNamed:@"OK-blue.png"] forState:UIControlStateNormal];
     
-    [cancel setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
-    cancel.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
-    cancel.layer.borderWidth = 5.0f;
+    //cancel button
+    [cancel setBackgroundImage:[UIImage imageNamed:@"cancel4.png"] forState:UIControlStateNormal];
     cancel.layer.cornerRadius = 10.0f;
 
 }
@@ -214,23 +211,18 @@
             case 11:
                 if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"] &&[SKPaymentQueue canMakePayments])
                 {
-                    NSLog(@"purchased1, -%s", __FUNCTION__);
-
                     [self purchaseMessage];
                 }
                 break;
             case 12:
                 if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape2"] &&[SKPaymentQueue canMakePayments])
                 {
-                    NSLog(@"purchased2, -%s", __FUNCTION__);
                     [self purchaseMessage];
                 }
                 break;
             case 13:
                 if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape3s"] &&[SKPaymentQueue canMakePayments])
                 {
-                    NSLog(@"purchased3, -%s", __FUNCTION__);
-
                     [self purchaseMessage];
                 }
                 break;
@@ -338,8 +330,6 @@
     
         
     NSDictionary *shapeChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:shapeName, @"Selected Shape", nil ];
-    NSLog(@"selectedRow in delegate, %d - %s", selectedShapeRow, __FUNCTION__);
-
     
     [Flurry logEvent:@"Shape_Selected" withParameters:shapeChosenByUser];
 }

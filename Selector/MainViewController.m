@@ -54,29 +54,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithR:255 G:248 B:220 A:1]];
-    defaultImage = [UIImage imageNamed:@"camera2.png"];
+    defaultImage = [UIImage imageNamed:@"camera.png"];
+    
 
     [[BBFImageStore sharedStore]setImage:defaultImage forKey:@"defaultImage"];
-
+    
     //main photo button
     [photos setImage:defaultImage  forState:UIControlStateNormal];
     photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
-    photos.layer.borderWidth = 20.0f;
+    photos.layer.borderWidth = 5.0f;
     photos.layer.cornerRadius = 50.0f;
+    photos.imageEdgeInsets = UIEdgeInsetsMake(-20, 10, -20, 10);
     
-    UIImage * defaultImage2 = [UIImage imageNamed:@"stars.png"];
+    UIImage * defaultImage2 = [UIImage imageNamed:@"shapeButton.png"];
     
     [[BBFImageStore sharedStore]setImage:defaultImage2 forKey:@"defaultImage2"];
 
     //particles button
     [stars setImage:defaultImage2  forState:UIControlStateNormal];
     stars.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
-    stars.layer.borderWidth = 20.0f;
+    stars.layer.borderWidth = 5.0f;
     stars.layer.cornerRadius = 50.0f;
-    
-    NSLog(@"%s", __FUNCTION__);
-    
+        
     self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
                                                  size:MOPUB_BANNER_SIZE];
     self.adView.delegate = self;

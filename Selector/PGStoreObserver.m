@@ -55,7 +55,6 @@
     SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kMyFeatureIdentifier]];
     request.delegate = self;
     [request start];
-    NSLog(@"%@, -%s", kMyFeatureIdentifier, __FUNCTION__);
     NSLog(@"IN-APP:requestProductData END");
 }
 
@@ -115,7 +114,6 @@
     [self recordTransaction:transaction];
     [self provideContent:transaction.payment.productIdentifier];
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:transaction.payment.productIdentifier];
-    NSLog(@"%@ productID, %s", transaction.payment.productIdentifier, __FUNCTION__);
 
     // Remove the transaction from the payment queue.
     [self finishTransaction:transaction wasSuccessful:YES];
@@ -130,8 +128,6 @@
     [self provideContent: transaction.originalTransaction.payment.productIdentifier];
     [self finishTransaction:transaction wasSuccessful:YES];
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:transaction.originalTransaction.payment.productIdentifier];
-
-    NSLog(@"%@ productID, %s", transaction.originalTransaction.payment.productIdentifier, __FUNCTION__);
     NSLog(@"IN-APP:%s", __FUNCTION__);
 
 }
@@ -153,7 +149,6 @@
              NSLog(@"Payment not allowed.-%s", __FUNCTION__);
         }
         else if (transaction.error.code == SKErrorPaymentCancelled) {
-            // [self showAlert:@"In-App Purchase" withMessage:@"This device is not allowed to make the payment."];
             NSLog(@"User Cancellation.");
         }
         else {
@@ -184,15 +179,11 @@
     
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:productIdentifier, @"PurchasedProduct" , nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ProductReady" object:self userInfo:userInfo];
-
-    NSLog(@"IN-APP:%s", __FUNCTION__);
-
     
 }
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
-    NSLog(@"received restored transactions: %i", queue.transactions.count);
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreCompleted"];
 }
 

@@ -75,16 +75,13 @@
 
 -(void)listStoreProducts:(NSNotification *)productResponseReceived
 {
-    NSLog(@"%@, %s", [[[productResponseReceived userInfo]objectForKey:@"Flowee_Product"]productIdentifier], __FUNCTION__);
     
    
     [productList addObject:[[productResponseReceived userInfo]objectForKey:@"Flowee_Product"]];
     
-    NSLog(@"%d, %s",[productList count], __FUNCTION__);
     for (SKProduct *aProduct in productList)
     {
         [[FloweeShapeStore sharedStore]setShape:aProduct forKey:[aProduct productIdentifier]];
-        NSLog(@"%@ in loop, %s",[aProduct productIdentifier], __FUNCTION__);
     }
     
     

@@ -52,6 +52,8 @@
 
 -(id)init
 {
+    self = [super init];
+    if(self){
     shapeSmiley =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"smileyStar.png"]];
     shapeSmiley.frame = CGRectMake(0, 0, 100, 100);
 
@@ -110,6 +112,7 @@
     [self checkPurchasedItem:@"Flowee_Shape1" andReplaceWithUnLockedItem:shapeFoxxEgg atRow:flowee1];
     [self checkPurchasedItem:@"Flowee_Shape2" andReplaceWithUnLockedItem:shapeKaijuEgg atRow:flowee2];
     [self checkPurchasedItem:@"Flowee_Shape3s" andReplaceWithUnLockedItem:shapePigEgg atRow:flowee3];
+    }
 
     return self;
 }

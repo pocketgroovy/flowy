@@ -43,7 +43,6 @@
     if(!hasProducts)
     {
         hasProducts = YES;
-        NSLog(@"hasProducts, -%s", __FUNCTION__);
     }
     numberOfProducts = [dictionary count];
 

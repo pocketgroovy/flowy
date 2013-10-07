@@ -108,7 +108,7 @@
 {
     [super viewDidLoad];
     [self colorList];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"colorful.jpeg"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"colorWall.png"]]];
     
     CGRect pickerFrame = CGRectMake(0, 120, 0, 0);
     UIPickerView * pickerView = [[UIPickerView alloc]initWithFrame:pickerFrame];
@@ -147,14 +147,11 @@
     
     [self.view addSubview:pickerView];
     
-    [go setImage:[UIImage imageNamed:@"iine.png"] forState:UIControlStateNormal];
-    go.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
-    go.layer.borderWidth = 10.0f;
-    go.layer.cornerRadius = 20.0f;
-    
-    [cancel setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
-    cancel.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
-    cancel.layer.borderWidth = 5.0f;
+    //ok button
+    [go setBackgroundImage:[UIImage imageNamed:@"OK-blue.png"] forState:UIControlStateNormal];
+
+    //cancel button
+    [cancel setBackgroundImage:[UIImage imageNamed:@"cancel4.png"] forState:UIControlStateNormal];
     cancel.layer.cornerRadius = 10.0f;
     
 }
@@ -190,16 +187,12 @@
     AudioServicesPlaySystemSound(1057);
 
     if(row!=([colorArray count]-1))
-    {
-        NSLog(@"%d, -didselectRow, %lu", row, (unsigned long)[colorArray count]);
-        
-    selectedColor = [[colorArray objectAtIndex:row]backgroundColor];
+    {        
+        selectedColor = [[colorArray objectAtIndex:row]backgroundColor];
     }
     else
     {
         selectedColor = [UIColor clearColor];
-        NSLog(@"clearcolor,%@, %s", selectedColor, __FUNCTION__);
-
     }
     selectedRow = row;
      
@@ -209,9 +202,7 @@
 - (IBAction)colorSelected:(id)sender {
     [self.colorDelegate colorViewController:self didFinishSelecting:selectedColor];
     
-    
     NSString * selectedColorRowNumber = [NSString stringWithFormat:@"%d", selectedRow];
-    NSLog(@"%@, %s", selectedColorRowNumber, __FUNCTION__);
     
     NSDictionary *colorChosenByUser = [NSDictionary dictionaryWithObjectsAndKeys:selectedColorRowNumber, @"Selected Color Row", nil ];
     

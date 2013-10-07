@@ -12,6 +12,7 @@
 @interface InterstitialAdViewController : UIViewController<MPInterstitialAdControllerDelegate, MPAdViewDelegate>
 
 @property (nonatomic, retain) MPAdView *adView;
+@property (weak, nonatomic) IBOutlet UILabel *message;
 
 @property (nonatomic, strong)MPInterstitialAdController *interstitialAd;
 

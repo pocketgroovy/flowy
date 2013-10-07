@@ -7,13 +7,15 @@
 */
 "INSTRUCTION1" = "1st Step! Take or Choose a Photo!  ➡";
 
-"INSTRUCTION2" = "2nd Step! Select Your Shape and Color!";
+"INSTRUCTION2" = "2nd Step! Select Your Flowee and Color!";
+
+"INSTRUCTION3" = "Finally! Blow air into the device and blow off the Flowee!";
 
 "CHOOSE_PHOTO" = "CHOOSE PHOTO!";
 
 "CHOOSE_SHAPE" = "CHOOSE YOUR SHAPE!";
 
-"CHOOSE_COLOR" = "CHOOSE YOUR ADDITIONAL COLOR!";
+"CHOOSE_COLOR" = "PAINT WITH ADDITIONAL COLOR!";
 
 "EMAIL" = "EMAIL";
 

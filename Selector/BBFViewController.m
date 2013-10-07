@@ -32,7 +32,7 @@
     photo = [[BBFImageStore sharedStore]imageForKey:@"defaultImage"];
     if(!photo)
     {
-        photo = [UIImage imageNamed:@"camera2.png"];
+        photo = [UIImage imageNamed:@"camera.png"];
     }
     imageView.image = photo;
     
@@ -101,12 +101,8 @@
     if(!image) image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if(image)
     {
-
         //save the photo a user selected to the store
-        
         [[BBFImageStore sharedStore]setImage:image forKey:@"mySelectedPhoto"];
-
-        //[self.imageView setImage:image];
         [imageView setImage:image];
     }
     
@@ -136,23 +132,19 @@
 #pragma mark - For iOS5 and older orientation in iPAD
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSLog(@"%s", __FUNCTION__);
-
     return YES;
 }
 
 #pragma mark - For iOS6
 
 -(BOOL)shouldAutorotate
-{    NSLog(@"%s", __FUNCTION__);
-
+{    
     return NO;
 }
 
 #pragma mark - For iOS6 bug
 -(NSUInteger)supportedInterfaceOrientations
-{    NSLog(@"%s", __FUNCTION__);
-
+{
     return UIInterfaceOrientationMaskLandscape;
 }
 

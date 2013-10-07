@@ -31,7 +31,6 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    NSLog(@"%s", __FUNCTION__);
     
     return UIInterfaceOrientationMaskLandscape;
 }
@@ -39,7 +38,6 @@
 //iOS5 5.1 needs this to stay in Landscape
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSLog(@"%s", __FUNCTION__);
     
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
