@@ -11,19 +11,21 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import <Social/Social.h>
+#import "cocos2d.h"
+#import "MPInterstitialAdController.h"
 
-@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface FlowingController : UIViewController <MFMailComposeViewControllerDelegate, CCDirectorDelegate, UINavigationControllerDelegate, MPInterstitialAdControllerDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate>
 {
-AVAudioRecorder *recorder;
-NSTimer *levelTimer;
-double lowPassResults;
+NSTimer *levelTimer, *particleTimer;
+    double lowPassResults;
+
+    AVAudioPlayer * audioPlayer;
 }
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbarButtom;
-@property (weak, nonatomic) IBOutlet UIToolbar *barButtonEmailItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonTryItem;
-@property (weak, nonatomic) IBOutlet UIImageView *photoView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *twitBarItem;
+@property (nonatomic, strong)MPInterstitialAdController *interstitialAd;
+@property (nonatomic, strong)AVAudioRecorder *recorder;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *email;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tryAgain;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *soundSwitch;
 
 - (void)levelTimerCallback:(NSTimer *)timer;
 @end

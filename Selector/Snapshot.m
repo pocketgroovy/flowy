@@ -7,82 +7,36 @@
 //
 
 #import "Snapshot.h"
-#import <QuartzCore/QuartzCore.h> 
 
 @implementation Snapshot
 
-@synthesize imageData;
-@synthesize image;
--(void)snap
+#pragma mark - Snapshot in UIImage
+
+
++(UIImage*)takeAsUIImage:(CCNode*)startNode
 {
-//     NSString * imagePath = [self imagePathForKey:@"s2.png"];
-
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO,0.0);
-    else
-    {
-        UIGraphicsBeginImageContext(self.window.bounds.size);
-     
-    }
-    [self.window.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *imageSource = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+    CCDirector* director = [CCDirector sharedDirector];
+    CGSize size = [director winSize];
+    CCRenderTexture * rtx = [CCRenderTexture renderTextureWithWidth:size.width height:size.height];
     
-    //the entire screen image
-    CGImageRef ref = imageSource.CGImage;
+    [rtx begin];
+    [startNode visit];
+    [rtx end];
     
-    CGRect imageRect = CGRectMake(0, 65, self.window.bounds.size.width, 370);
-    
-    //trim the screen image into the rect
-    CGImageRef imageRef = CGImageCreateWithImageInRect(ref, imageRect);
-    
-    
-    image = [UIImage imageWithCGImage:imageRef];
-    
-    //convert the UIImage to PNG
-    imageData = UIImagePNGRepresentation(image);
-    
-    
-//       [imageData writeToFile:imagePath atomically:YES];
-
+    return [rtx getUIImage];
 }
 
--(void)snapIpadInViewWidth:(CGFloat )width andHeight:(CGFloat)height withNavBar:(CGFloat)navHeight
-{
-    //     NSString * imagePath = [self imagePathForKey:@"s2.png"];
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO,0.0);
-    else
-    {
-        UIGraphicsBeginImageContext(self.window.bounds.size);
-        
-    }
-    [self.window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *imageSource = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    //the entire screen image
-    CGImageRef ref = imageSource.CGImage;
 
+#pragma mark - Snapshot in PNG
++(NSData *)takeAsPNG:(CCNode*)statrtNode
+{
+    NSData * ouputImage = UIImagePNGRepresentation([Snapshot takeAsUIImage:statrtNode]);
     
-    CGRect imageRect = CGRectMake(navHeight, 0, width , height);
-    
-    //trim the screen image into the rect
-    CGImageRef imageRef = CGImageCreateWithImageInRect(ref, imageRect);
-    
-    
-    image = [UIImage imageWithCGImage:imageRef];
-    
-  
-    
-    //convert the UIImage to PNG
-    imageData = UIImagePNGRepresentation(image);
-    
-    
-    //       [imageData writeToFile:imagePath atomically:YES];
-    
+    return ouputImage;
 }
+
+
+
 
 
 @end

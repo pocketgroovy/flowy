@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPAdView.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<MPAdViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *photos;
 @property (weak, nonatomic) IBOutlet UIButton *stars;
 @property (weak, nonatomic) IBOutlet UILabel *instruction;
 @property  (strong, nonatomic) UIImage * defaultImage;
+@property(nonatomic, retain)MPAdView *adView;
 @end

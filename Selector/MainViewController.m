@@ -25,6 +25,7 @@
 @synthesize stars;
 @synthesize instruction;
 @synthesize defaultImage;
+@synthesize adView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +41,8 @@
     self.splitViewController.delegate=self;
 }
 
+
+#pragma mark - UISplitViewControllerDelegate
 -(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
     return UIInterfaceOrientationIsPortrait(orientation);
@@ -51,73 +54,91 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithR:255 G:248 B:220 A:1]];
-    defaultImage = [UIImage imageNamed:@"camera2.png"];
+    defaultImage = [UIImage imageNamed:@"camera.png"];
+    
 
     [[BBFImageStore sharedStore]setImage:defaultImage forKey:@"defaultImage"];
+    
+    //main photo button
+    [photos setImage:defaultImage  forState:UIControlStateNormal];
+    photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
+    photos.layer.borderWidth = 5.0f;
+    photos.layer.cornerRadius = 50.0f;
+    photos.imageEdgeInsets = UIEdgeInsetsMake(-20, 10, -20, 10);
+    
+    UIImage * defaultImage2 = [UIImage imageNamed:@"shapeButton.png"];
+    
+    [[BBFImageStore sharedStore]setImage:defaultImage2 forKey:@"defaultImage2"];
+
+    //particles button
+    [stars setImage:defaultImage2  forState:UIControlStateNormal];
+    stars.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
+    stars.layer.borderWidth = 5.0f;
+    stars.layer.cornerRadius = 50.0f;
+        
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+                                                 size:MOPUB_BANNER_SIZE];
+    self.adView.delegate = self;
+    CGRect frame = self.adView.frame;
+    frame.origin.y = 0;
+    self.adView.frame = frame;
+    [self.view addSubview:self.adView];
+    [self.adView loadAd];
+
+    
+}
+
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
+
+
+#pragma mark - get selected photo from BBFImageStore
+
+-(void)viewWillAppear:(BOOL)animated
+{
     if([[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"] )
     {
         defaultImage = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-        instruction.text = @"2nd Step! Select Your Shape and Color!";
+        instruction.text = NSLocalizedString(@"INSTRUCTION2", nil);
         
     }
     
     else
     {
-        instruction.text = @"1st Step! Take or Choose a Photo! ➡";
+        instruction.text = NSLocalizedString(@"INSTRUCTION1", nil);
     }
+
+    
     [photos setImage:defaultImage  forState:UIControlStateNormal];
-    photos.layer.borderColor =[UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
-    photos.layer.borderWidth = 20.0f;
-    photos.layer.cornerRadius = 50.0f;
-    
-    UIImage * defaultImage2 = [UIImage imageNamed:@"stars.png"];
-    
-    [[BBFImageStore sharedStore]setImage:defaultImage2 forKey:@"defaultImage2"];
 
-
-    [stars setImage:defaultImage2  forState:UIControlStateNormal];
-    stars.layer.borderColor =[UIColor colorWithR:173 G:255 B:47 A:1].CGColor;
-    stars.layer.borderWidth = 20.0f;
-    stars.layer.cornerRadius = 50.0f;
     
 }
 
 
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-        AudioServicesPlaySystemSound(0x450);
-    
-    if([segue.identifier isEqualToString:@"SelectImage"]){
-        
-        if([segue.destinationViewController isKindOfClass:[SelectorViewController class]])
-        {
-        }
-    }
-    if([segue.identifier isEqualToString:@"SelectPhoto"]){
-        
-        if([segue.destinationViewController isKindOfClass:[BBFViewController class]])
-        {
-
-        }
-    }
+    return YES;
 }
 
-
-
--(IBAction)confirmedPhoto:(UIStoryboardSegue *)segue
+#pragma mark - For iOS6
+-(BOOL)shouldAutorotate
 {
-    AudioServicesPlaySystemSound(0x450);
 
-    picVC = segue.sourceViewController;
-    if(picVC)
-    {
-        UIImage * picSelected = [[BBFImageStore sharedStore]imageForKey:@"mySelectedPhoto"];
-         [photos setImage:picSelected forState:UIControlStateNormal];
-    }
+    return NO;
 }
+
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+
+#pragma mark
 
 - (void)didReceiveMemoryWarning
 {

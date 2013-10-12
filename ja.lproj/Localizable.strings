@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  Flowee
+
+  Created by Yoshihisa Miyamoto on 9/6/13.
+  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
+*/
+"INSTRUCTION1" = "最初に写真を選んでね! ➡";
+
+"INSTRUCTION2" = "次にフローウィーの形と色をチョイス!";
+
+"INSTRUCTION3" = "息を吹きかけてフローウィーを吹き飛ばそう！";
+
+"CHOOSE_PHOTO" = "写真をライブラリーから選ぶ!";
+
+"CHOOSE_SHAPE" = "どのフローウィーにする？";
+
+"CHOOSE_COLOR" = "色を加えてみよう！";
+
+"EMAIL" = "Eメール";
+
+"TRY_AGAIN" = "もう一度!";
+
+
+"MAIL_FAIL" = "エラー";
+"CANT_SEND_MAIL" = "この機能がサポートされていません";
+
+"SENT" = "送信";
+"SENT_MESSAGE" = "メールが送信されました";
+"SAVED" = "保存";
+"SAVED_MESSAGE" = "メールが保存されました";
+"FAILED" = "送信失敗";
+"FAILED_MESSAGE" = "メールの送信が失敗しました";
+"NOTSENT" = "未送信";
+"NOTSENT_MESSAGE" = "メールの送信がキャンセルされました";
+
+"TWIT_FAILED" = "エラー";
+"TWIT_FAILED_MESSAGE" = "ツイッター機能がサポートされていません";
+
+"MUTESOUND" = "音を消す";
+
+"SOUNDMUTED" = "音を出す";
+
+"TRANSERROR" = "エラー";
+
+"TRANSERRORMESSAGE" = "エラーが発生した為、決済が出来ませんでした";
+
+"PURCHASE_ERROR" = "復元処理失敗";
+
+"PURCHASE_ERROR_MESSAGE" = "アプリ内課金の復元処理ができませんでした";
+
+"INAPP_PURCHASE" = "購入";
+
+"INAPP_PURCHASE_MESSAGE"= "このフローウィーを買いますか？";
+
+"INAPP_PURCHASE_WARNING" = "選べません";
+
+"INAPP_PURCHASE_WARNING_MESSAGE" = "他のフローウィーを選択するか購入して下さい";
+
+"NO_COLOR" = "色を加えない";

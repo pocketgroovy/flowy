@@ -5,52 +5,130 @@
 //  Created by Yoshihisa Miyamoto on 4/23/13.
 //  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
 //
-
 #import "SelectorViewController.h"
-#import "ShapeViewController.h"
-#import "ColorViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FlowingController.h"
 #import "BBFImageStore.h"
 #import "UIColor+JP.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "Flurry.h"
+#import "FloweeColorStore.h"
 
 @interface SelectorViewController ()
-@property ShapeViewController * shape;
-@property ColorViewController * colorView;
+@property (nonatomic, weak)ShapeViewController * shapeVC;   
+@property (nonatomic, weak)ColorViewController * colorVC;
+@property (nonatomic, weak)FlowingController * flowVC;
+@property (nonatomic, weak)UIImage * myShape;
+@property (nonatomic, weak)UIColor * myColor;
+@property (nonatomic, weak)UIImage * coloredShape;
 @end
 
-@implementation SelectorViewController
+@implementation SelectorViewController 
 @synthesize btnShape;
 @synthesize resultView;
 @synthesize btnColor;
-@synthesize shape;
+@synthesize shapeVC;
 @synthesize btnReady;
-@synthesize colorView;
+@synthesize colorVC;
 @synthesize imageBackGround;
+@synthesize myShape;
+@synthesize myColor;
+@synthesize flowVC;
+@synthesize adView;
+@synthesize coloredShape;
 
+#define shopBorder 10
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    btnReady.hidden = YES;
-    
+
+
+    //wallpaper
     [imageBackGround setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"washi-01-swans-640.png"]]];
-    UIImage * bg = [UIImage imageNamed:@"candy2.jpeg"];
+    
+    //shape button
+    UIImage * bg = [UIImage imageNamed:@"shapeSelector.png"];
     [btnShape setBackgroundImage:bg forState:UIControlStateNormal];
-    btnShape.layer.borderColor = [UIColor colorWithR:238 G:130 B:238 A:1].CGColor;
+    btnShape.layer.borderColor = [UIColor colorWithR:255 G:30 B:20 A:1].CGColor;
     btnShape.layer.borderWidth = 5.0f;
     btnShape.layer.cornerRadius = 40.0f;
+    NSString * locChooseShape = NSLocalizedString(@"CHOOSE_SHAPE", nil);
+    [btnShape setTitle:locChooseShape forState:UIControlStateNormal];
     
-    bg = [UIImage imageNamed:@"colorful2.png"];
+    //color button
+    bg = [UIImage imageNamed:@"colorWall.png"];
     [btnColor setBackgroundImage:bg forState:UIControlStateNormal];
     btnColor.layer.borderColor = [UIColor colorWithR:30 G:144 B:255 A:1].CGColor;
     btnColor.layer.borderWidth = 5.0f;
     btnColor.layer.cornerRadius = 40.0f;
+    NSString * locChooseColor = NSLocalizedString(@"CHOOSE_COLOR", nil);
+    [btnColor setTitle:locChooseColor forState:UIControlStateNormal];
+    //go button
+    UIImage * readyImage = [UIImage imageNamed:@"start.png"];
     
-    bg = [UIImage imageNamed:@"go.png"];
-    [btnReady setBackgroundImage:bg forState:UIControlStateNormal];
+    //for iphone display size
+    float btnYOrigin = resultView.frame.origin.y + resultView.bounds.size.height;
+
+    //for iPad Landscape display
+    if(btnYOrigin +imageBackGround.bounds.size.width/4 > imageBackGround.bounds.size.height - btnColor.bounds.size.height + 20)
+    {
+        btnYOrigin = resultView.frame.origin.y + 80;
+    }
+    
+    //ready go button
+    CGRect btnFrame = CGRectMake((imageBackGround.bounds.size.width/2 - (imageBackGround.bounds.size.width/4)/2), btnYOrigin, imageBackGround.bounds.size.width/4, imageBackGround.bounds.size.width/4);
+    btnReady = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnReady setImage:readyImage forState:UIControlStateNormal];
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+    btnReady.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+    }
+    [btnReady setFrame:btnFrame];
+    [btnReady addTarget:self action:@selector(flowy:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnReady];
+    btnReady.hidden = YES;
+    
+    
+    //MoPub Ad
+    self.adView = [[MPAdView alloc] initWithAdUnitId:@"ee8e981869a24bbe92d464e31df9efa7"
+                                                 size:MOPUB_BANNER_SIZE];
+    self.adView.delegate = self;
+    CGRect frame = self.adView.frame;
+    CGSize size = [self.adView adContentViewSize];
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+    {
+    frame.origin.y = btnShape.bounds.size.height;
+    }
+    else{
+        frame.origin.y = self.view.bounds.size.width - size.height*2;
+        frame.origin.x = size.width;
+    }
+    self.adView.frame = frame;
+    [self.view addSubview:self.adView];
+    [self.adView loadAd];
+    
 }
+
+
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
+
+
+#pragma mark - segue to Flowing Controller
+-(void)flowy:(id)sender
+{
+    [self performSegueWithIdentifier:@"flowing" sender:sender];
+    
+    if(UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+    [self performSegueWithIdentifier:@"showAd" sender:sender];
+    }
+}
+
+#pragma mark - prepareForSegue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -59,15 +137,31 @@
     if([segue.identifier isEqualToString:@"flowing"]){
         if([segue.destinationViewController isKindOfClass:[FlowingController class]])
         {
-
+            flowVC =(FlowingController*) segue.destinationViewController;
+        }
+    }
+    if([segue.identifier isEqualToString:@"shapeModal"]){
+        if([segue.destinationViewController isKindOfClass:[ShapeViewController class]])
+        {
+            shapeVC =(ShapeViewController*) segue.destinationViewController;
+            shapeVC.shapeDelegate = self;            
+        }
+    }
+    
+    if([segue.identifier isEqualToString:@"colorModal"]){
+        if([segue.destinationViewController isKindOfClass:[ColorViewController class]])
+        {
+            colorVC =(ColorViewController*) segue.destinationViewController;
+            colorVC.colorDelegate = self;            
         }
     }
 }
 
 
+#pragma mark - show the ready button when both shape and color are selected
 -(void)viewDidAppear:(BOOL)animated
 {
-    if ([resultView image]&& colorView.selectedColor ) {
+    if (coloredShape) {
         btnReady.hidden = NO;
     }
     else
@@ -75,44 +169,82 @@
 
 }
 
--(IBAction)cancelSelection:(UIStoryboardSegue *)segue
+
+#pragma mark - COLORVIEWCONTROLLER DELEGATE
+-(void)colorViewController:(ColorViewController *)controller didFinishSelecting:(UIColor *)color
 {
-    AudioServicesPlaySystemSound(0x450);
+    myColor = color;
 
-}
-
--(IBAction)confirmedShape:(UIStoryboardSegue *)segue
-{
-    AudioServicesPlaySystemSound(0x450);
-
-    shape = segue.sourceViewController;
-    if(shape)
-    [resultView setImage:[self colorShape:colorView.selectedColor]];
-}
-
-
--(IBAction)confirmedColor:(UIStoryboardSegue *) segue
-{
-    AudioServicesPlaySystemSound(0x450);
-
-    colorView = segue.sourceViewController;
-    if(shape)
-    {
-    [resultView setImage:nil];
-    [resultView setImage:[self colorShape:colorView.selectedColor]];
-    }
+        [[FloweeColorStore sharedStore]setColor:myColor forKey:@"myColor"];
+        if(myShape)
+        {
+        [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
+        }
+    
+    [self dismissModalViewControllerAnimated:YES];
     
 }
 
+-(void)unabletoUseTheShapeMessage
+{
+    NSString * locInAppPurchaseWarning = NSLocalizedString(@"INAPP_PURCHASE_WARNING", nil);
+    NSString * locInAppPurchaseWarningMessage = NSLocalizedString(@"INAPP_PURCHASE_WARNING_MESSAGE", nil);
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locInAppPurchaseWarning message:locInAppPurchaseWarningMessage delegate:self cancelButtonTitle:@"OK"otherButtonTitles:nil, nil];
+    [alert show];
+    
+    myShape = nil;
+}
 
+#pragma mark - SHAPEVIEWCONTROLLER DELEGATE
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage *)shape inRow:(NSInteger)row
+{    
+    switch (row) {
+        case 11:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape1"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        case 12:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape2"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        case 13:
+            if(![[NSUserDefaults standardUserDefaults]boolForKey:@"Flowee_Shape3s"])
+                [self unabletoUseTheShapeMessage];
+            else{
+                myShape = shape;
+            }
+            break;
+        default:
+            myShape = shape;
+            break;
+    }
+
+    coloredShape = nil;
+    [resultView setImage:myShape];
+    if([[FloweeColorStore sharedStore]colorForKey:@"myColor"])
+    {
+        [resultView setImage:[self colorShape:[[FloweeColorStore sharedStore]colorForKey:@"myColor"]]];
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
+#pragma mark - COLOR THE SELECTED SHAPE
 -(UIImage *) colorShape:(UIColor *)color
 {
-   
-    UIImage * myShape = shape.selectedShape;
     UIGraphicsBeginImageContext(myShape.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+
     [color setFill];
+    
     
     CGContextTranslateCTM(context, 0, myShape.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
@@ -123,17 +255,37 @@
     CGContextClipToMask(context, rect, myShape.CGImage);
     CGContextAddRect(context, rect);
     CGContextFillPath(context);
-    UIImage * coloredShape = UIGraphicsGetImageFromCurrentImageContext();
+    coloredShape = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     NSString * key = @"myColoredShape";
+    if(coloredShape)
+    {
     [[BBFImageStore sharedStore]setImage:coloredShape forKey:key];
-    
+    }   
     return coloredShape;
 }
 
 
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
 
+#pragma mark - For iOS6
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+#pragma mark
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
