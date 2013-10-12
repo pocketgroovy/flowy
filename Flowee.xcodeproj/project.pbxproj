@@ -17,6 +17,10 @@
 		78170F6317E37DEC00220300 /* FloweeStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78170F6217E37DEC00220300 /* FloweeStoreViewController.m */; };
 		7817AA1D17BE7AB900DB9DAA /* CCNode+Scaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817AA1C17BE7AB900DB9DAA /* CCNode+Scaling.m */; };
 		781BC7A41751D7A400261653 /* UIColor+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = 781BC7A31751D7A400261653 /* UIColor+JP.m */; };
+		781DE1E71809CB2A0085450E /* appicon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 781DE1E31809CB2A0085450E /* appicon-60.png */; };
+		781DE1E81809CB2A0085450E /* appicon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 781DE1E41809CB2A0085450E /* appicon-76.png */; };
+		781DE1E91809CB2A0085450E /* appicon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 781DE1E51809CB2A0085450E /* appicon-120.png */; };
+		781DE1EA1809CB2A0085450E /* appicon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 781DE1E61809CB2A0085450E /* appicon-152.png */; };
 		78254B6B17C7BC620090B511 /* MainNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78254B6A17C7BC620090B511 /* MainNavViewController.m */; };
 		78254B6E17C7BD2B0090B511 /* DetailNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78254B6D17C7BD2B0090B511 /* DetailNavViewController.m */; };
 		78254B7117C7C6290090B511 /* FlowySplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78254B7017C7C6290090B511 /* FlowySplitViewController.m */; };
@@ -314,6 +318,11 @@
 		7817AA1C17BE7AB900DB9DAA /* CCNode+Scaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+Scaling.m"; sourceTree = "<group>"; };
 		781BC7A21751D7A400261653 /* UIColor+JP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JP.h"; sourceTree = "<group>"; };
 		781BC7A31751D7A400261653 /* UIColor+JP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JP.m"; sourceTree = "<group>"; };
+		781DE1E21809B8ED0085450E /* Flowee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Flowee.entitlements; sourceTree = SOURCE_ROOT; };
+		781DE1E31809CB2A0085450E /* appicon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-60.png"; sourceTree = "<group>"; };
+		781DE1E41809CB2A0085450E /* appicon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-76.png"; sourceTree = "<group>"; };
+		781DE1E51809CB2A0085450E /* appicon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-120.png"; sourceTree = "<group>"; };
+		781DE1E61809CB2A0085450E /* appicon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon-152.png"; sourceTree = "<group>"; };
 		78254B6917C7BC620090B511 /* MainNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavViewController.h; sourceTree = "<group>"; };
 		78254B6A17C7BC620090B511 /* MainNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavViewController.m; sourceTree = "<group>"; };
 		78254B6C17C7BD2A0090B511 /* DetailNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNavViewController.h; sourceTree = "<group>"; };
@@ -1305,6 +1314,7 @@
 		78346F3217279550006B22BA /* Flowee */ = {
 			isa = PBXGroup;
 			children = (
+				781DE1E21809B8ED0085450E /* Flowee.entitlements */,
 				787B1D7717D67A150010CC8C /* GoogleAdMob */,
 				787B1B9217D661A30010CC8C /* iAd */,
 				7845DA0F17CFBD4C0037BCC4 /* MoPubSDK */,
@@ -1621,6 +1631,10 @@
 				7885C3E817F9E0F400A9D31A /* rain.png */,
 				7885C3EA17F9E0F400A9D31A /* flower.png */,
 				7885C3EC17F9E0F400A9D31A /* sweetcupcake.png */,
+				781DE1E31809CB2A0085450E /* appicon-60.png */,
+				781DE1E41809CB2A0085450E /* appicon-76.png */,
+				781DE1E51809CB2A0085450E /* appicon-120.png */,
+				781DE1E61809CB2A0085450E /* appicon-152.png */,
 				7885C3EE17F9E0F400A9D31A /* mashroom.png */,
 				7885C3F017F9E0F400A9D31A /* cho.png */,
 				7885C3F217F9E0F400A9D31A /* pig.png */,
@@ -1785,7 +1799,7 @@
 		78346F2117279550006B22BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Selector;
+				CLASSPREFIX = Flowee;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Yoshi Miyamoto";
 			};
@@ -1867,6 +1881,10 @@
 				78CB145418022CA400E92AED /* Default-568h@2x.png in Resources */,
 				78CB145618022CD700E92AED /* Default@2x.png in Resources */,
 				78CB145818022CDF00E92AED /* Default.png in Resources */,
+				781DE1E71809CB2A0085450E /* appicon-60.png in Resources */,
+				781DE1E81809CB2A0085450E /* appicon-76.png in Resources */,
+				781DE1E91809CB2A0085450E /* appicon-120.png in Resources */,
+				781DE1EA1809CB2A0085450E /* appicon-152.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2256,6 +2274,43 @@
 		78346F4D17279551006B22BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Selector/Flowee-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
+				INFOPLIST_FILE = "Selector/Flowee-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Selector/Flurry\"",
+					"\"$(SRCROOT)/Selector/Flurry/FlurryAds\"",
+					"\"$(SRCROOT)/Selector/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK\"",
+					"\"$(SRCROOT)/Selector/MoPubSDK/AdNetworkSupport/Millennial/SDK\"",
+					"\"$(SRCROOT)/Selector\"",
+					"\"$(SRCROOT)/Selector/GoogleAdMob/SDK\"",
+					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0/GoogleAnalytics/Library\"",
+					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0\"",
+					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1\"",
+					"\"$(SRCROOT)/../../GoogleAdMobAdsSdkiOS-6.5.1\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = Flowee;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s i386 armv6";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		78346F4E17279551006B22BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selector/Flowee-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
@@ -2277,36 +2332,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Flowee;
-				SDKROOT = iphoneos6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s i386 armv6";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		78346F4E17279551006B22BA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Selector/Flowee-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"Selector/libs/kazmath/include\"";
-				INFOPLIST_FILE = "Selector/Flowee-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Selector/Flurry\"",
-					"\"$(SRCROOT)/Selector/Flurry/FlurryAds\"",
-					"\"$(SRCROOT)/Selector/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK\"",
-					"\"$(SRCROOT)/Selector/MoPubSDK/AdNetworkSupport/Millennial/SDK\"",
-					"\"$(SRCROOT)/Selector\"",
-					"\"$(SRCROOT)/Selector/GoogleAdMob/SDK\"",
-					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0/GoogleAnalytics/Library\"",
-					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1/Add-ons/GoogleAnalyticsServicesiOS_3.0\"",
-					"\"$(SRCROOT)/Selector/GoogleAdMobAdsSdkiOS-6.5.1\"",
-					"\"$(SRCROOT)/../../GoogleAdMobAdsSdkiOS-6.5.1\"",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = Flowee;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s i386 armv6";
