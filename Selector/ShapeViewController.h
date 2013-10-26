@@ -7,11 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShapeData.h"
+@class ShapeViewController;
 
+@protocol ShapeViewControllerDelegate <NSObject>
+
+
+-(void)shapeViewController:(ShapeViewController *)controller didFinishSelecting:(UIImage*)shape inRow:(NSInteger)row;
+
+@end
 
 
 @interface ShapeViewController : UIViewController
+{
+    ShapeData * shapes;
+}
 @property (nonatomic, readonly) UIImage * selectedShape;
-
+@property  (nonatomic, weak)UIImageView * selectedImageView;
+@property (nonatomic) id<ShapeViewControllerDelegate>shapeDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 
 @end

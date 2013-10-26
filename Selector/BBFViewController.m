@@ -11,6 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MainViewController.h"
+#import "MailViewController.h"
 
 @interface BBFViewController ()
 @property (strong, nonatomic)UIPopoverController * imagePickerPopover;
@@ -21,8 +22,7 @@
 @synthesize imageView;
 @synthesize barButtonOK;
 @synthesize photo;
-
-
+@synthesize choosePhoto;
 
 - (void)viewDidLoad
 {
@@ -32,27 +32,15 @@
     photo = [[BBFImageStore sharedStore]imageForKey:@"defaultImage"];
     if(!photo)
     {
-        photo = [UIImage imageNamed:@"camera2.png"];
+        photo = [UIImage imageNamed:@"camera.png"];
     }
     imageView.image = photo;
     
+    NSString * locChoosePhoto = NSLocalizedString(@"CHOOSE_PHOTO", nil);
+    [choosePhoto setTitle:locChoosePhoto];
+
 }
 
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    AudioServicesPlaySystemSound(0x450);
-    
-    if([segue.identifier isEqualToString:@"backToMain"]){
-        if([segue.destinationViewController isKindOfClass:[MainViewController class]])
-        {
-            MainViewController * mvc = [[MainViewController alloc]init];
-            mvc.defaultImage = self.imageView.image;
-        }
-    }
-    
-}
 
 - (IBAction)takePhoto:(UIBarButtonItem *)sender
 {
@@ -66,6 +54,9 @@
     
     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum sender:sender];
 }
+
+
+#pragma mark - Presenting Camera
 
 -(void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType sender:(UIBarButtonItem *)sender
 {
@@ -94,6 +85,7 @@
     }
 }
 
+#pragma mark - UIPopoverControllerDelegate
 
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
@@ -101,27 +93,17 @@
 }
 
 
+#pragma mark - UIImagePickerControllerDelegate
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage * image = [info objectForKey:UIImagePickerControllerEditedImage];
     if(!image) image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if(image)
     {
-        
-        //        CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-        //        CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-        //        key = (__bridge NSString *)newUniqueIDString;
-        
         //save the photo a user selected to the store
-        
         [[BBFImageStore sharedStore]setImage:image forKey:@"mySelectedPhoto"];
-        
-        //
-        //        CFRelease(newUniqueIDString);
-        //        CFRelease(newUniqueID);
-        
-        [self.imageView setImage:image];
-        
+        [imageView setImage:image];
     }
     
     if(self.imagePickerPopover)
@@ -135,11 +117,43 @@
     }
 }
 
+#pragma mark - For iPhone to return to the main controller
+- (IBAction)returnToMain:(id)sender {
+    
+    for (UIViewController * vc in [self.navigationController viewControllers]) {
+        if([vc isKindOfClass:[MainViewController class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+    
+}
+
+#pragma mark - For iOS5 and older orientation in iPAD
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark - For iOS6
+
+-(BOOL)shouldAutorotate
+{    
+    return NO;
+}
+
+#pragma mark - For iOS6 bug
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+
+#pragma mark 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 - (void)didReceiveMemoryWarning
@@ -148,4 +162,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setChoosePhoto:nil];
+    [super viewDidUnload];
+}
 @end

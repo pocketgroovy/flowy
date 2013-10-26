@@ -1,0 +1,62 @@
+/* 
+  Localizable.strings
+  Flowee
+
+  Created by Yoshihisa Miyamoto on 9/6/13.
+  Copyright (c) 2013 Yoshi Miyamoto. All rights reserved.
+*/
+"INSTRUCTION1" = "1st Step! Take or Choose a Photo!  ➡";
+
+"INSTRUCTION2" = "2nd Step! Select Your Flowee and Color!";
+
+"INSTRUCTION3" = "Finally! Blow air into the device and blow off the Flowee!";
+
+"CHOOSE_PHOTO" = "CHOOSE PHOTO!";
+
+"CHOOSE_SHAPE" = "CHOOSE YOUR SHAPE!";
+
+"CHOOSE_COLOR" = "PAINT WITH ADDITIONAL COLOR!";
+
+"EMAIL" = "EMAIL";
+
+"TRY_AGAIN" = "TRY AGAIN!";
+
+
+"MAIL_FAIL" = "Failure";
+"CANT_SEND_MAIL" = "Your device doesn't support the composer sheet";
+
+"SENT" = "SENT!";
+"SENT_MESSAGE" = "Your email has been sent";
+"SAVED" = "SAVED!";
+"SAVED_MESSAGE" = "Your email has been saved";
+"FAILED" = "FAILED!";
+"FAILED_MESSAGE" = "Sending email has been failed";
+"NOTSENT" = "NOT SENT!";
+"NOTSENT_MESSAGE" = "cancelled";
+
+"TWIT_FAILED" = "Failure";
+"TWIT_FAILED_MESSAGE" = "Your device doesn't support the Twitter";
+
+"MUTESOUND" = "mute sound";
+
+"SOUNDMUTED" = "sound muted";
+
+"TRANSERROR" = "TRANSACTION FAILED";
+
+"TRANSERRORMESSAGE" = "couldn't complete the transaction";
+
+"PURCHASE_ERROR" = "IN-APP PURCHASE DISABLED";
+
+"PURCHASE_ERROR_MESSAGE" = "In-App Purchases is disabled in Settings causing Failure in restorings";
+
+"INAPP_PURCHASE" = "PURCHASE?";
+
+"INAPP_PURCHASE_MESSAGE" = "Do you want to purchase this Flowee?";
+
+"INAPP_PURCHASE_WARNING" = "NOT PURCHASED YET";
+
+"INAPP_PURCHASE_WARNING_MESSAGE" = "Please choose other Flowee or buy";
+
+"NO_COLOR" = "No Additional Color";
+
+"RESTORE_PURCHASED" = "Restore Purchased Flowees";

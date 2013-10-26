@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class ColorViewController;
+
+@protocol ColorViewControllerDelegate <NSObject>
+
+-(void)colorViewController:(ColorViewController *)controller didFinishSelecting:(UIColor*)color;
+@end
+
 @interface ColorViewController : UIViewController
+
 @property (nonatomic) UIColor * selectedColor;
+@property (nonatomic) id<ColorViewControllerDelegate>colorDelegate;
 @end

@@ -7,15 +7,85 @@
 //
 
 #import "SelectorAppDelegate.h"
+#import "Flurry.h"
+#import "PGStoreObserver.h"
+#import <StoreKit/StoreKit.h>
+#import "FloweeShapeStore.h"
 
 @implementation SelectorAppDelegate
+@synthesize window;
+@synthesize audioPlayer;
+@synthesize productList;
+
+#define kMyFeatureIdentifier @"Flowee_Shape1"
+#define kMyFeatureIdentifier2 @"Flowee_Shape2"
+#define kMyFeatureIdentifier3 @"Flowee_Shape3s"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    //in-app Store observer
+    if ([SKPaymentQueue canMakePayments]) {
+        PGStoreObserver * observer = [PGStoreObserver sharedObserver];
+        [[SKPaymentQueue defaultQueue]addTransactionObserver:observer];
+
+        [observer requestProductData:kMyFeatureIdentifier];
+        [observer requestProductData:kMyFeatureIdentifier2];
+        [observer requestProductData:kMyFeatureIdentifier3];
+        
+        
+        NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
+        [productNC addObserver:self selector:@selector(listStoreProducts:) name:@"product_response_received" object:observer];
+
+    } else {
+
+        NSString * locPurchaseError = NSLocalizedString(@"PURCHASE_ERROR", nil);
+        NSString * locPurchaseErrorMessage = NSLocalizedString(@"PURCHASE_ERROR_MESSAGE", nil);
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locPurchaseError message:locPurchaseErrorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+
+
+
+    //Flurry analytic
+    [Flurry startSession:@"5BBZNGZ2FK9YFQ7SKZY5"];
+    
+    
+    //opening sound
+    NSError * categoryErr;
+    [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:&categoryErr];
+    
+    NSString * pathForAudio = [[NSBundle mainBundle]pathForResource:@"splash_sound" ofType:@"mp3"];
+    NSURL *audioURL = [NSURL fileURLWithPath:pathForAudio];
+    
+    NSError * err;
+    audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:audioURL error:&err];
+    [audioPlayer setDelegate:self];
+    [audioPlayer setVolume:0.5f];
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+    
+    productList = [[NSMutableArray alloc]init];
+    
+    
     return YES;
 }
-							
+
+
+-(void)listStoreProducts:(NSNotification *)productResponseReceived
+{
+    
+   
+    [productList addObject:[[productResponseReceived userInfo]objectForKey:@"Flowee_Product"]];
+    
+    for (SKProduct *aProduct in productList)
+    {
+        [[FloweeShapeStore sharedStore]setShape:aProduct forKey:[aProduct productIdentifier]];
+    }
+    
+    
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -41,6 +111,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+//for iOS6 rotation bug
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        return  UIInterfaceOrientationMaskAll;
+    else
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

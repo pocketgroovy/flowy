@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface SelectorAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SelectorAppDelegate : UIResponder <UIApplicationDelegate, AVAudioPlayerDelegate>
+
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic)NSMutableArray * productList;
+
 
 @end
