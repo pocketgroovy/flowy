@@ -25,5 +25,6 @@
 @property (nonatomic, readonly) UIImage * selectedShape;
 @property  (nonatomic, weak)UIImageView * selectedImageView;
 @property (nonatomic) id<ShapeViewControllerDelegate>shapeDelegate;
+@property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 
 @end

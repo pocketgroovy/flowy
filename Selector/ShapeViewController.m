@@ -40,7 +40,7 @@
 @synthesize floweeOptionalShapes;
 @synthesize pickerView;
 @synthesize tempArray;
-
+@synthesize btnRestore;
 
 #define shopBorder 10
 
@@ -59,21 +59,18 @@
     shapes = [[ShapeData alloc]init];
     imageArray = [shapes shapeArray];
     
+    
+    NSString * locRestore = NSLocalizedString(@"RESTORE_PURCHASED", nil);
+    
+    [btnRestore setTitle:locRestore forState:UIControlStateNormal];
+    [btnRestore setBackgroundImage:[UIImage imageNamed:@"restoreButton.png"] forState:UIControlStateNormal];
+    btnRestore.layer.cornerRadius = 20.0f;
 
-    //check network
-    Reachability * reachNet = [Reachability reachabilityForInternetConnection];
-    NetworkStatus statusNet = [reachNet currentReachabilityStatus];
-
+    
     //listening store observer
     NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
     [productNC addObserver:self selector:@selector(provideProduct:) name:@"ProductReady" object:[PGStoreObserver sharedObserver]];
     
-    //show if needs to restore items
-    if(statusNet != NotReachable && ![[NSUserDefaults standardUserDefaults]boolForKey:@"restoreAsked"])
-    {
-        [[PGStoreObserver sharedObserver]checkPurchasedItems];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"restoreAsked"];
-    }
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"shapeWall.png"]]];
     
@@ -125,6 +122,11 @@
 
 }
 
+- (IBAction)restorePurchasedFlowees:(id)sender {
+    
+    [[PGStoreObserver sharedObserver]checkPurchasedItems];
+
+}
 
 //provide the purchased product after recieving response from store
 -(void)provideProduct:(NSNotification *)productIsReady
@@ -368,4 +370,8 @@
 
 
 
+- (void)viewDidUnload {
+    [self setBtnRestore:nil];
+    [super viewDidUnload];
+}
 @end

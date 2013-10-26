@@ -58,3 +58,5 @@
 "INAPP_PURCHASE_WARNING_MESSAGE" = "他のフローウィーを選択するか購入して下さい";
 
 "NO_COLOR" = "色を加えない";
+
+"RESTORE_PURCHASED" = "購入済みのフローウィーを復活";
