@@ -238,6 +238,7 @@
 		7845DB3117CFC1570037BCC4 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845DB3017CFC1560037BCC4 /* EventKit.framework */; };
 		7845DB3317CFC1C90037BCC4 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7845DB3217CFC1C90037BCC4 /* EventKitUI.framework */; };
 		784880651759BA0C000B2D32 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784880641759BA0C000B2D32 /* AudioToolbox.framework */; };
+		78490C89181C4552002682F4 /* restoreButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 78490C88181C4552002682F4 /* restoreButton.png */; };
 		7849A6F0174691A8000D99F6 /* FlowingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7849A6EF174691A8000D99F6 /* FlowingController.m */; };
 		785F33EB17C997B100AA8B67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785F33EA17C997B100AA8B67 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7860754617ECA3F10037090E /* LockedKaijuEgg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7860754017ECA3F10037090E /* LockedKaijuEgg.png */; };
@@ -759,6 +760,7 @@
 		7845DB3017CFC1560037BCC4 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		7845DB3217CFC1C90037BCC4 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		784880641759BA0C000B2D32 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		78490C88181C4552002682F4 /* restoreButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restoreButton.png; sourceTree = "<group>"; };
 		7849A6EE174691A8000D99F6 /* FlowingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowingController.h; sourceTree = "<group>"; };
 		7849A6EF174691A8000D99F6 /* FlowingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowingController.m; sourceTree = "<group>"; };
 		785F33EA17C997B100AA8B67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -1620,6 +1622,7 @@
 		7860754C17ECA40D0037090E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				78490C88181C4552002682F4 /* restoreButton.png */,
 				78968A661801357F006DF721 /* shapeWall.png */,
 				78CC799C180122D800B069DE /* shapeButton.png */,
 				78CC799A1800FEF800B069DE /* start.png */,
@@ -1885,6 +1888,7 @@
 				781DE1E81809CB2A0085450E /* appicon-76.png in Resources */,
 				781DE1E91809CB2A0085450E /* appicon-120.png in Resources */,
 				781DE1EA1809CB2A0085450E /* appicon-152.png in Resources */,
+				78490C89181C4552002682F4 /* restoreButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,6 +27,7 @@
     if ([SKPaymentQueue canMakePayments]) {
         PGStoreObserver * observer = [PGStoreObserver sharedObserver];
         [[SKPaymentQueue defaultQueue]addTransactionObserver:observer];
+
         [observer requestProductData:kMyFeatureIdentifier];
         [observer requestProductData:kMyFeatureIdentifier2];
         [observer requestProductData:kMyFeatureIdentifier3];
@@ -34,12 +35,9 @@
         
         NSNotificationCenter *productNC = [NSNotificationCenter defaultCenter];
         [productNC addObserver:self selector:@selector(listStoreProducts:) name:@"product_response_received" object:observer];
-        
-        NSLog(@"Can Make Payments, -%s", __FUNCTION__);
-        
-        
-        
+
     } else {
+
         NSString * locPurchaseError = NSLocalizedString(@"PURCHASE_ERROR", nil);
         NSString * locPurchaseErrorMessage = NSLocalizedString(@"PURCHASE_ERROR_MESSAGE", nil);
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:locPurchaseError message:locPurchaseErrorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -72,6 +70,7 @@
     
     return YES;
 }
+
 
 -(void)listStoreProducts:(NSNotification *)productResponseReceived
 {

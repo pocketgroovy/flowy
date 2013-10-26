@@ -45,9 +45,9 @@
 
 "TRANSERRORMESSAGE" = "couldn't complete the transaction";
 
-"PURCHASE_ERROR" = "RESTORE FAILED";
+"PURCHASE_ERROR" = "IN-APP PURCHASE DISABLED";
 
-"PURCHASE_ERROR_MESSAGE" = "Failure in restoring In-App Purchases";
+"PURCHASE_ERROR_MESSAGE" = "In-App Purchases is disabled in Settings causing Failure in restorings";
 
 "INAPP_PURCHASE" = "PURCHASE?";
 
@@ -58,3 +58,5 @@
 "INAPP_PURCHASE_WARNING_MESSAGE" = "Please choose other Flowee or buy";
 
 "NO_COLOR" = "No Additional Color";
+
+"RESTORE_PURCHASED" = "Restore Purchased Flowees";
